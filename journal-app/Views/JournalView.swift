@@ -12,6 +12,14 @@ class JournalView: UIView, UITableViewDelegate, UITableViewDataSource {
     private var numberOfEntries = 3
     private let addEntryButton = UIButton()
     private let tableView = UITableView()
+    
+    lazy var title: UILabel = {
+       let title = UILabel()
+        title.font = UIFont.systemFont(ofSize: 25, weight: .light)
+        
+        title.textColor = UIColor.systemGray
+        return title
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,14 +32,6 @@ class JournalView: UIView, UITableViewDelegate, UITableViewDataSource {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    lazy var title: UILabel = {
-       let title = UILabel()
-        title.font = UIFont.systemFont(ofSize: 25, weight: .light)
-        
-        title.textColor = UIColor.systemGray
-        return title
-    }()
 }
 
 extension JournalView {
@@ -117,5 +117,4 @@ extension JournalView {
         
         return cell
     }
-    
 }

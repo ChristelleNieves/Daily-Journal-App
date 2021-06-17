@@ -54,11 +54,11 @@ extension HomeViewController {
         return dateFormatter.string(from: date)
     }
     
-    func getTodayWeekDay()-> String{
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEEE"
-            let weekDay = dateFormatter.string(from: Date())
-            return weekDay
+    func getTodayWeekDay()-> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let weekDay = dateFormatter.string(from: Date())
+        return weekDay
       }
     
     func setupRefreshControl() {

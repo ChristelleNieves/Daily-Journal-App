@@ -18,7 +18,7 @@ class TableHeader: UIView {
         super.init(frame: frame)
         backgroundColor = .white
         setupDayLabel()
-        setupLabel()
+        setupDateLabel()
         setupLeftButton()
         setupRightButton()
     }
@@ -30,8 +30,11 @@ class TableHeader: UIView {
     func setupDayLabel() {
         dayLabel.font = UIFont.systemFont(ofSize: 30, weight: .light)
         dayLabel.textColor = UIColor.darkGray
+        dayLabel.adjustsFontSizeToFitWidth = true
+        dayLabel.numberOfLines = 0
         self.addSubview(dayLabel)
         
+        // Constraints
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -40,11 +43,14 @@ class TableHeader: UIView {
         ])
     }
     
-    func setupLabel() {
+    func setupDateLabel() {
         dateLabel.font = UIFont.systemFont(ofSize: 17, weight: .light)
         dateLabel.textColor = UIColor.darkGray.withAlphaComponent(0.80)
+        dateLabel.adjustsFontSizeToFitWidth = true
+        dateLabel.numberOfLines = 0
         self.addSubview(dateLabel)
         
+        // Constraints
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
