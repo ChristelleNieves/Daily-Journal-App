@@ -11,6 +11,7 @@ class TableHeader: UIView {
     
     let dayLabel = UILabel()
     let dateLabel = UILabel()
+    private var date = Date()
     private let leftButton = UIButton()
     private let rightButton = UIButton()
 
@@ -27,7 +28,12 @@ class TableHeader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+// MARK: UI Setup
+extension TableHeader {
     func setupDayLabel() {
+        dayLabel.text = getTodayWeekDay()
         dayLabel.font = UIFont.systemFont(ofSize: 30, weight: .light)
         dayLabel.textColor = UIColor.darkGray
         dayLabel.adjustsFontSizeToFitWidth = true
@@ -44,6 +50,7 @@ class TableHeader: UIView {
     }
     
     func setupDateLabel() {
+        dateLabel.text = formatDate()
         dateLabel.font = UIFont.systemFont(ofSize: 17, weight: .light)
         dateLabel.textColor = UIColor.darkGray.withAlphaComponent(0.80)
         dateLabel.adjustsFontSizeToFitWidth = true
@@ -65,12 +72,16 @@ class TableHeader: UIView {
         leftButton.tintColor = UIColor.darkGray.withAlphaComponent(0.70)
         self.addSubview(leftButton)
         
+        leftButton.addAction(UIAction { action in
+            self.decrementDate()
+        }, for: .touchUpInside)
+        
         // Constraints
         leftButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             leftButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            leftButton.trailingAnchor.constraint(equalTo: dayLabel.leadingAnchor, constant: -30)
+            leftButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30)
         ])
     }
     
@@ -80,12 +91,47 @@ class TableHeader: UIView {
         rightButton.tintColor = UIColor.darkGray.withAlphaComponent(0.70)
         self.addSubview(rightButton)
         
+        rightButton.addAction(UIAction { action in
+            self.incrementDate()
+        }, for: .touchUpInside)
+        
         // Constraints
         rightButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             rightButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            rightButton.leadingAnchor.constraint(equalTo: dayLabel.trailingAnchor, constant: 30)
+            rightButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30)
         ])
+    }
+}
+
+// MARK: Date Helper Functions
+extension TableHeader {
+    
+    func formatDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        return dateFormatter.string(from: date)
+    }
+    
+    func getTodayWeekDay()-> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let weekDay = dateFormatter.string(from: date)
+        return weekDay
+      }
+    
+    func incrementDate() {
+        let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: date)
+        date = modifiedDate!
+        self.dayLabel.text = getTodayWeekDay()
+        self.dateLabel.text = formatDate()
+    }
+    
+    func decrementDate() {
+        let modifiedDate = Calendar.current.date(byAdding: .day, value: -1, to: date)
+        date = modifiedDate!
+        self.dayLabel.text = getTodayWeekDay()
+        self.dateLabel.text = formatDate()
     }
 }

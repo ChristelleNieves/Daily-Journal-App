@@ -9,7 +9,6 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private let date = Date()
     private let headerView = TableHeader(frame: CGRect.zero)
     private let tableView = UITableView()
     private let refreshControl = UIRefreshControl()
@@ -33,8 +32,6 @@ extension HomeViewController {
     }
     
     func setupHeaderView() {
-        headerView.dayLabel.text = getTodayWeekDay()
-        headerView.dateLabel.text = formatDate()
         view.addSubview(headerView)
         
         // Constraints
@@ -47,19 +44,6 @@ extension HomeViewController {
             headerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/10)
         ])
     }
-    
-    func formatDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        return dateFormatter.string(from: date)
-    }
-    
-    func getTodayWeekDay()-> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        let weekDay = dateFormatter.string(from: Date())
-        return weekDay
-      }
     
     func setupRefreshControl() {
         refreshControl.addAction(UIAction { action in
