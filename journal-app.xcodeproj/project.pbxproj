@@ -21,6 +21,8 @@
 		BCC0E64A2679D7DD00E12B3E /* TableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6492679D7DD00E12B3E /* TableHeader.swift */; };
 		BCC0E64C267AA5ED00E12B3E /* JournalEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E64B267AA5ED00E12B3E /* JournalEntryCell.swift */; };
 		BCC0E64E267AF8F300E12B3E /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E64D267AF8F300E12B3E /* MoodViewController.swift */; };
+		BCC0E650267B23EF00E12B3E /* MoodChoicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */; };
+		BCC0E652267B287600E12B3E /* MoodReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E651267B287600E12B3E /* MoodReasonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		BCC0E6492679D7DD00E12B3E /* TableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeader.swift; sourceTree = "<group>"; };
 		BCC0E64B267AA5ED00E12B3E /* JournalEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryCell.swift; sourceTree = "<group>"; };
 		BCC0E64D267AF8F300E12B3E /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
+		BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChoicesView.swift; sourceTree = "<group>"; };
+		BCC0E651267B287600E12B3E /* MoodReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodReasonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,8 @@
 				BCC0E63E2679B9F100E12B3E /* JournalCell.swift */,
 				BCC0E6402679BA2800E12B3E /* JournalView.swift */,
 				BCC0E6492679D7DD00E12B3E /* TableHeader.swift */,
+				BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */,
+				BCC0E651267B287600E12B3E /* MoodReasonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,6 +201,7 @@
 				BCC0E6462679CE5200E12B3E /* TabBarViewController.swift in Sources */,
 				BCC0E64A2679D7DD00E12B3E /* TableHeader.swift in Sources */,
 				BCC0E6442679BCD200E12B3E /* ColorPalette.swift in Sources */,
+				BCC0E652267B287600E12B3E /* MoodReasonView.swift in Sources */,
 				BCC0E6412679BA2800E12B3E /* JournalView.swift in Sources */,
 				BCC0E6292679B5ED00E12B3E /* HomeViewController.swift in Sources */,
 				BCC0E64E267AF8F300E12B3E /* MoodViewController.swift in Sources */,
@@ -203,6 +210,7 @@
 				BCC0E64C267AA5ED00E12B3E /* JournalEntryCell.swift in Sources */,
 				BCC0E63F2679B9F100E12B3E /* JournalCell.swift in Sources */,
 				BCC0E62F2679B5ED00E12B3E /* journal_app.xcdatamodeld in Sources */,
+				BCC0E650267B23EF00E12B3E /* MoodChoicesView.swift in Sources */,
 				BCC0E6482679D39F00E12B3E /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
