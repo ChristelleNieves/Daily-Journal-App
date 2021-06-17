@@ -14,4 +14,8 @@ struct JournalColors {
     static let peach: UIColor = UIColor.init(red: 247/240.0, green: 235/240.0, blue: 223/240.0, alpha: 1)
     static let pink: UIColor = UIColor.init(red: 250/240.0, green: 227/240.0, blue: 246/240.0, alpha: 1)
     static let blue: UIColor = UIColor.init(red: 197/240.0, green: 219/240.0, blue: 247/240.0, alpha: 1)
+    static let aeroBlue: UIColor = UIColor.init(red: 205/240.0, green: 239/240.0, blue: 231/240.0, alpha: 1)
+    static let teaGreen: UIColor = UIColor.init(red: 190/240.0, green: 234/240.0, blue: 194/240.0, alpha: 1)
+    static let indigo: UIColor = UIColor.init(red: 166/240.0, green: 201/240.0, blue: 255/240.0, alpha: 1)
+    static let robinEggBlue: UIColor = UIColor.init(red: 164/240.0, green: 217/240.0, blue: 206/240.0, alpha: 1)
 }

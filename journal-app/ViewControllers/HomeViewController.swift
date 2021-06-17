@@ -83,7 +83,7 @@ extension HomeViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JournalCell", for: indexPath) as! JournalCell
         cell.journal.title.text = titles[indexPath.row]
-        cell.journal.backgroundColor = colors[indexPath.row]
+        cell.journal.backgroundColor = JournalColors.robinEggBlue
         
         return cell
     }
