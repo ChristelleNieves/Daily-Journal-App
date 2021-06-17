@@ -9,17 +9,20 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    private let noSectionsView = NoSectionsView(frame: CGRect.zero)
     private let headerView = TableHeader(frame: CGRect.zero)
     private let tableView = UITableView()
     private let refreshControl = UIRefreshControl()
     private let colors = [JournalColors.blue, JournalColors.green, JournalColors.lavender, JournalColors.pink]
     private let titles = ["To Do List", "Goals", "Affirmations", "Ideas"]
-
+    private let sections = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRefreshControl()
         setupMainView()
         setupHeaderView()
+        setupNoSectionsView()
         setupTableView()
     }
 }
@@ -72,12 +75,38 @@ extension HomeViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    private func setupNoSectionsView() {
+        view.addSubview(noSectionsView)
+        
+        // Constraints
+        noSectionsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            noSectionsView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            noSectionsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            noSectionsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            noSectionsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
+        ])
+    }
 }
 
 // MARK: TableView
 extension HomeViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        
+        if sections.count == 0 {
+            // Display message
+            tableView.isHidden = true
+            noSectionsView.isHidden = false
+            return 0
+        }
+        else {
+            tableView.isHidden = false
+            noSectionsView.isHidden = true
+            return sections.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
