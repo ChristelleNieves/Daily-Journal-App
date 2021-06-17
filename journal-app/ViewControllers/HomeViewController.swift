@@ -12,8 +12,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     private let headerView = TableHeader(frame: CGRect.zero)
     private let tableView = UITableView()
     private let refreshControl = UIRefreshControl()
-    private let colors = [JournalColors.blue, JournalColors.green, JournalColors.lavender, JournalColors.peach, JournalColors.pink]
-    private let titles = ["To Do List", "Goals", "Affirmations", "Ideas", "Notes"]
+    private let colors = [JournalColors.blue, JournalColors.green, JournalColors.lavender, JournalColors.pink]
+    private let titles = ["To Do List", "Goals", "Affirmations", "Ideas"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 extension HomeViewController {
     func setupMainView() {
         overrideUserInterfaceStyle = .light
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = JournalColors.peach
     }
     
     func setupHeaderView() {
@@ -56,7 +56,8 @@ extension HomeViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
-        tableView.separatorColor = .white
+        tableView.separatorColor = JournalColors.peach
+        tableView.backgroundColor = JournalColors.peach
         tableView.rowHeight = view.frame.height * 1/3
         tableView.refreshControl = refreshControl
         tableView.register(JournalCell.self, forCellReuseIdentifier: "JournalCell")

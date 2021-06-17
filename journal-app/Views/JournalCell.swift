@@ -15,14 +15,12 @@ class JournalCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         setupContentView()
         setupJournal()
-
     }
-
 }
 
 extension JournalCell {
     func setupContentView() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = JournalColors.peach
     }
     
     func setupJournal() {

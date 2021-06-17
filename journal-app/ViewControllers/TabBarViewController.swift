@@ -10,6 +10,7 @@ import UIKit
 class TabBarViewController: UITabBarController {
     
     private let homeVC = HomeViewController()
+    private let moodVC = MoodViewController()
     private let settingsVC = SettingsViewController()
 
     override func viewDidLoad() {
@@ -22,18 +23,18 @@ class TabBarViewController: UITabBarController {
 extension TabBarViewController {
     func setupTabBar() {
         let appearance = UITabBarAppearance()
-        appearance.backgroundColor = .white
-        appearance.selectionIndicatorTintColor = .red
+        appearance.backgroundColor = JournalColors.peach
         appearance.shadowColor = UIColor.darkGray
-        appearance.selectionIndicatorTintColor = .black
         tabBar.standardAppearance = appearance
+        tabBar.tintColor = JournalColors.lavender
         
-        self.setViewControllers([homeVC, settingsVC], animated: true)
+        self.setViewControllers([homeVC, moodVC, settingsVC], animated: true)
     }
     
     func setupIcons() {
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .ultraLight), scale: .medium)
         homeVC.tabBarItem.image = UIImage(systemName: "house", withConfiguration: config)
+        moodVC.tabBarItem.image = UIImage(systemName: "face.smiling", withConfiguration: config)
         settingsVC.tabBarItem.image = UIImage(systemName: "gear", withConfiguration: config)
     }
 }
