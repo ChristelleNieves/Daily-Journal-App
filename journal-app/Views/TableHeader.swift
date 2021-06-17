@@ -32,7 +32,7 @@ class TableHeader: UIView {
 
 // MARK: UI Setup
 extension TableHeader {
-    func setupDayLabel() {
+    private func setupDayLabel() {
         dayLabel.text = getTodayWeekDay()
         dayLabel.font = UIFont.systemFont(ofSize: 30, weight: .light)
         dayLabel.textColor = UIColor.darkGray
@@ -49,7 +49,7 @@ extension TableHeader {
         ])
     }
     
-    func setupDateLabel() {
+    private func setupDateLabel() {
         dateLabel.text = formatDate()
         dateLabel.font = UIFont.systemFont(ofSize: 17, weight: .light)
         dateLabel.textColor = UIColor.darkGray.withAlphaComponent(0.80)
@@ -66,7 +66,7 @@ extension TableHeader {
         ])
     }
     
-    func setupLeftButton() {
+    private func setupLeftButton() {
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .light), scale: .medium)
         leftButton.setImage(UIImage(systemName: "arrowshape.turn.up.left", withConfiguration: config), for: .normal)
         leftButton.tintColor = UIColor.darkGray.withAlphaComponent(0.70)
@@ -85,8 +85,9 @@ extension TableHeader {
         ])
     }
     
-    func setupRightButton() {
+    private func setupRightButton() {
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .light), scale: .medium)
+        
         rightButton.setImage(UIImage(systemName: "arrowshape.turn.up.right", withConfiguration: config), for: .normal)
         rightButton.tintColor = UIColor.darkGray.withAlphaComponent(0.70)
         self.addSubview(rightButton)
@@ -108,27 +109,27 @@ extension TableHeader {
 // MARK: Date Helper Functions
 extension TableHeader {
     
-    func formatDate() -> String {
+    private func formatDate() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         return dateFormatter.string(from: date)
     }
     
-    func getTodayWeekDay()-> String {
+    private func getTodayWeekDay()-> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
         let weekDay = dateFormatter.string(from: date)
         return weekDay
       }
     
-    func incrementDate() {
+    private func incrementDate() {
         let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: date)
         date = modifiedDate!
         self.dayLabel.text = getTodayWeekDay()
         self.dateLabel.text = formatDate()
     }
     
-    func decrementDate() {
+    private func decrementDate() {
         let modifiedDate = Calendar.current.date(byAdding: .day, value: -1, to: date)
         date = modifiedDate!
         self.dayLabel.text = getTodayWeekDay()
