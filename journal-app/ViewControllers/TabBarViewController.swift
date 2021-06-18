@@ -57,7 +57,13 @@ extension TabBarViewController {
         view.addSubview(menuButton)
         
         menuButton.addAction(UIAction { action in
-            self.selectedIndex = 1
+            // If homeVC is already selected, show the "add section" pop up view
+            if self.selectedIndex == 1 {
+                self.homeVC.showPopUp()
+            }
+            else {
+                self.selectedIndex = 1
+            }
         }, for: .touchUpInside)
         
         // Set constraints for button title label

@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let popupVC = PopUpViewController()
     private let noSectionsView = NoSectionsView(frame: CGRect.zero)
     private let headerView = TableHeader(frame: CGRect.zero)
     private let tableView = UITableView()
@@ -88,6 +89,16 @@ extension HomeViewController {
             noSectionsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             noSectionsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
         ])
+    }
+    
+    func showPopUp() {
+        noSectionsView.isHidden = true
+        popupVC.modalPresentationStyle = .overCurrentContext
+        present(popupVC, animated: true, completion: nil)
+    }
+    
+    func dismissPopUpView() {
+        popupVC.dismiss(animated: true, completion: nil)
     }
 }
 

@@ -24,6 +24,8 @@
 		BCC0E650267B23EF00E12B3E /* MoodChoicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */; };
 		BCC0E652267B287600E12B3E /* MoodReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E651267B287600E12B3E /* MoodReasonView.swift */; };
 		BCC0E656267BF88C00E12B3E /* NoSectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */; };
+		BCC0E658267C04AA00E12B3E /* PopUpAddSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */; };
+		BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E659267C204500E12B3E /* PopUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChoicesView.swift; sourceTree = "<group>"; };
 		BCC0E651267B287600E12B3E /* MoodReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodReasonView.swift; sourceTree = "<group>"; };
 		BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSectionsView.swift; sourceTree = "<group>"; };
+		BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAddSectionView.swift; sourceTree = "<group>"; };
+		BCC0E659267C204500E12B3E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 				BCC0E6452679CE5200E12B3E /* TabBarViewController.swift */,
 				BCC0E6472679D39F00E12B3E /* SettingsViewController.swift */,
 				BCC0E64D267AF8F300E12B3E /* MoodViewController.swift */,
+				BCC0E659267C204500E12B3E /* PopUpViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 				BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */,
 				BCC0E651267B287600E12B3E /* MoodReasonView.swift */,
 				BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */,
+				BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCC0E6462679CE5200E12B3E /* TabBarViewController.swift in Sources */,
+				BCC0E658267C04AA00E12B3E /* PopUpAddSectionView.swift in Sources */,
 				BCC0E64A2679D7DD00E12B3E /* TableHeader.swift in Sources */,
 				BCC0E6442679BCD200E12B3E /* ColorPalette.swift in Sources */,
 				BCC0E652267B287600E12B3E /* MoodReasonView.swift in Sources */,
@@ -210,6 +217,7 @@
 				BCC0E64E267AF8F300E12B3E /* MoodViewController.swift in Sources */,
 				BCC0E6252679B5ED00E12B3E /* AppDelegate.swift in Sources */,
 				BCC0E6272679B5ED00E12B3E /* SceneDelegate.swift in Sources */,
+				BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */,
 				BCC0E64C267AA5ED00E12B3E /* JournalEntryCell.swift in Sources */,
 				BCC0E656267BF88C00E12B3E /* NoSectionsView.swift in Sources */,
 				BCC0E63F2679B9F100E12B3E /* JournalCell.swift in Sources */,
