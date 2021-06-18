@@ -132,11 +132,11 @@ extension PopUpAddSectionView {
         blueButton.layer.borderWidth = 1
         blueButton.layer.borderColor = UIColor.darkGray.cgColor
         blueButton.clipsToBounds = true
-        blueButton.backgroundColor = JournalColors.aeroBlue
+        blueButton.backgroundColor = JournalColors.robinEggBlue
         self.addSubview(blueButton)
         
         blueButton.addAction(UIAction { action in
-            self.colorChoice = JournalColors.aeroBlue
+            self.colorChoice = JournalColors.robinEggBlue
         }, for: .touchUpInside)
         
         blueButton.translatesAutoresizingMaskIntoConstraints = false
