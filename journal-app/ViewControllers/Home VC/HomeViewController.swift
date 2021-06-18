@@ -9,14 +9,14 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var sectionname = ""
     let popupVC = PopUpViewController()
     private let noSectionsView = NoSectionsView(frame: CGRect.zero)
     private let headerView = TableHeader(frame: CGRect.zero)
     private let tableView = UITableView()
     private let refreshControl = UIRefreshControl()
-    private let colors = [JournalColors.blue, JournalColors.green, JournalColors.lavender, JournalColors.pink]
-    private let titles = ["To Do List", "Goals", "Affirmations", "Ideas"]
-    private let sections = [String]()
+    private var sections = [String]()
+    private var colors = [UIColor]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,17 +92,13 @@ extension HomeViewController {
     }
     
     func showPopUp() {
-        noSectionsView.isHidden = true
-        popupVC.modalPresentationStyle = .overCurrentContext
-        present(popupVC, animated: true, completion: nil)
-    }
-    
-    func dismissPopUpView() {
-        popupVC.dismiss(animated: true, completion: nil)
+        self.noSectionsView.isHidden = true
+        goToPopupVC()
     }
 }
 
 // MARK: TableView
+
 extension HomeViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -117,14 +113,41 @@ extension HomeViewController {
             noSectionsView.isHidden = true
             return sections.count
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JournalCell", for: indexPath) as! JournalCell
-        cell.journal.title.text = titles[indexPath.row]
-        cell.journal.backgroundColor = JournalColors.robinEggBlue
+        
+        cell.journal.title.text = sections[indexPath.row]
+        cell.journal.backgroundColor = colors[indexPath.row]
         
         return cell
+    }
+}
+
+// MARK: Action Handlers
+
+extension HomeViewController {
+    private func goToPopupVC() {
+        let vc = PopUpViewController()
+        
+        vc.setActionHandler { action in
+            guard !vc.sectionName.trimmingCharacters(in: .whitespaces).isEmpty else {
+                self.noSectionsView.isHidden = false
+                self.tableView.reloadData()
+                return
+            }
+            
+            self.addNewSection(name: vc.sectionName, color: vc.colorChoice!)
+            self.tableView.reloadData()
+        }
+        
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: true, completion: nil)
+    }
+    
+    private func addNewSection(name: String, color: UIColor) {
+        sections.append(name)
+        colors.append(color)
     }
 }
