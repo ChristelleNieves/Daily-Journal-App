@@ -16,8 +16,6 @@ class JournalCell: UITableViewCell {
     lazy var title: UILabel = {
        let title = UILabel()
         title.font = UIFont.systemFont(ofSize: 25, weight: .light)
-        
-        //title.textColor = UIColor.systemGray
         title.textColor = .white
         return title
     }()
