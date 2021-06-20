@@ -31,8 +31,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 // MARK: UI Setup
 extension HomeViewController {
     func setupMainView() {
+        // Force light mode appearance
         overrideUserInterfaceStyle = .light
-        view.backgroundColor = JournalColors.peach
+        
+        view.backgroundColor = ThemeColors.peach
     }
     
     func setupHeaderView() {
@@ -60,12 +62,12 @@ extension HomeViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
-        tableView.separatorColor = JournalColors.peach
-        tableView.backgroundColor = JournalColors.peach
+        tableView.separatorColor = ThemeColors.peach
+        tableView.backgroundColor = ThemeColors.peach
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = view.frame.height * 1/3
         tableView.refreshControl = refreshControl
-        tableView.register(JournalCell.self, forCellReuseIdentifier: "JournalCell")
+        tableView.register(SectionCell.self, forCellReuseIdentifier: "SectionCell")
         view.addSubview(tableView)
         
         // Constraints
@@ -117,7 +119,7 @@ extension HomeViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "JournalCell", for: indexPath) as! JournalCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SectionCell", for: indexPath) as! SectionCell
         
         cell.setActionHandler { action in
             self.tableView.reloadData()

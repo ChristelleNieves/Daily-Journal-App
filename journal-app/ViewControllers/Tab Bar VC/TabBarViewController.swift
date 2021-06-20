@@ -24,7 +24,7 @@ class TabBarViewController: UITabBarController {
 extension TabBarViewController {
     private func setupTabBar() {
         let appearance = UITabBarAppearance()
-        appearance.backgroundColor = JournalColors.peach
+        appearance.backgroundColor = ThemeColors.peach
         appearance.shadowColor = UIColor.darkGray
         self.tabBar.standardAppearance = appearance
         self.tabBar.tintColor = UIColor.darkGray
@@ -48,7 +48,7 @@ extension TabBarViewController {
         menuButtonFrame.origin.y = view.bounds.height - menuButtonFrame.height - 40
         menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width/2
         menuButton.frame = menuButtonFrame
-        menuButton.backgroundColor = JournalColors.peach
+        menuButton.backgroundColor = ThemeColors.peach
         menuButton.setTitle("+", for: .normal)
         menuButton.setTitleColor(UIColor.darkGray.withAlphaComponent(0.70), for: .normal)
         menuButton.titleLabel?.font = UIFont.systemFont(ofSize: 35, weight: .ultraLight)

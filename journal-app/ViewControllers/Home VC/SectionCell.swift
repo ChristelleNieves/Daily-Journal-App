@@ -1,5 +1,5 @@
 //
-//  JournalCell.swift
+//  SectionCell.swift
 //  journal-app
 //
 //  Created by Christelle Nieves on 6/16/21.
@@ -7,29 +7,24 @@
 
 import UIKit
 
-class JournalCell: UITableViewCell {
+class SectionCell: UITableViewCell {
     
-    private var numberOfEntries = 1
+    typealias ActionHandler = (Action) -> ()
+    private var actionHandler: ActionHandler?
+    private var numberOfEntries = 3
     private let addEntryButton = UIButton()
-    let stackView = UIStackView()
+    private let stackView = UIStackView()
     
     lazy var title: UILabel = {
-       let title = UILabel()
+        let title = UILabel()
         title.font = UIFont.systemFont(ofSize: 25, weight: .light)
         title.textColor = .white
         return title
     }()
     
-    typealias ActionHandler = (Action) -> ()
-    private var actionHandler: ActionHandler?
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupContentView()
-        setupTitleLabel()
-        setupAddEntryButton()
-        setupStackView()
-        addStackViewSubViews()
+        setupAllSubviews()
     }
     
     required init?(coder: NSCoder) {
@@ -41,27 +36,41 @@ class JournalCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-          super.layoutSubviews()
-          let bottomSpace: CGFloat = 5.0
+        super.layoutSubviews()
+        
+        let bottomSpace: CGFloat = 5.0
         let topSpace: CGFloat = 10.0
-          self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: topSpace, left: 0, bottom: bottomSpace, right: 0))
-     }
+        
+        self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: topSpace, left: 0, bottom: bottomSpace, right: 0))
+    }
 }
 
-extension JournalCell {
-    func setupContentView() {
-
+// MARK: Setup
+extension SectionCell {
+    
+    // Configure all the views in this cell
+    private func setupAllSubviews() {
+        setupContentView()
+        setupTitleLabel()
+        setupAddEntryButton()
+        setupStackView()
+    }
+    
+    // Configure the contentView of the cell
+    private func setupContentView() {
+        
         let background = UIView()
         
-        background.backgroundColor = JournalColors.peach
+        background.backgroundColor = ThemeColors.peach
         backgroundView = background
         
         contentView.layer.cornerRadius = 40
     }
     
-    func setupTitleLabel() {
+    private func setupTitleLabel() {
         contentView.addSubview(title)
         
+        // Set constraints
         title.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -72,16 +81,23 @@ extension JournalCell {
         ])
     }
     
-    func setupAddEntryButton() {
+    // Configure the addEntry button
+    private func setupAddEntryButton() {
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30, weight: .light), scale: .small)
+        
         addEntryButton.setImage(UIImage(systemName: "plus", withConfiguration: config), for: .normal)
         addEntryButton.tintColor = UIColor.white
+        
         contentView.addSubview(addEntryButton)
         
+        // Add button action
         addEntryButton.addAction(UIAction { action in
+            
             self.didAddSection()
+            
         }, for: .touchUpInside)
         
+        // Set constraints
         addEntryButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -92,7 +108,7 @@ extension JournalCell {
         ])
     }
     
-    func setupStackView() {
+    private func setupStackView() {
         contentView.addSubview(stackView)
         
         stackView.axis = .vertical
@@ -109,11 +125,15 @@ extension JournalCell {
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
             stackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -20)
         ])
+        
+        // Add the starter entryViews to the stackView
+        addStackViewSubViews()
     }
     
+    // Add a defined number of entryViews to the stackView
     func addStackViewSubViews() {
         
-        for _ in 1...3 {
+        for _ in 1...numberOfEntries {
             let entry = entryView()
             stackView.addArrangedSubview(entry)
         }
@@ -121,7 +141,7 @@ extension JournalCell {
 }
 
 // MARK: Action Handlers
-extension JournalCell {
+extension SectionCell {
     
     enum Action {
         case addSection
@@ -131,6 +151,7 @@ extension JournalCell {
         self.actionHandler = handler
     }
     
+    // Add one entryView to the stackView
     private func didAddSection() {
         let entry = entryView()
         

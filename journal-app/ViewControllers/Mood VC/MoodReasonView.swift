@@ -24,7 +24,7 @@ class MoodReasonView: UIView, UITextFieldDelegate {
 
 extension MoodReasonView {
     private func setupView() {
-        self.backgroundColor = JournalColors.peach
+        self.backgroundColor = ThemeColors.peach
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowRadius = 5
         self.layer.shadowOpacity = 0.5

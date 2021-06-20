@@ -17,7 +17,7 @@ class TableHeader: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = JournalColors.peach
+        backgroundColor = ThemeColors.peach
         setupDayLabel()
         setupDateLabel()
         setupLeftButton()

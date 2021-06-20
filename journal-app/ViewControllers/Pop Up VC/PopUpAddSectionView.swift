@@ -20,7 +20,7 @@ class PopUpAddSectionView: UIView, UITextFieldDelegate {
     // Other
     private var colorChoice: UIColor?
     private let journalTitleTextField = UITextField()
-    private let buttonColors = [JournalColors.robinEggBlue, JournalColors.salmonPink, JournalColors.peachPuff, JournalColors.lilac]
+    private let buttonColors = [ThemeColors.robinEggBlue, ThemeColors.salmonPink, ThemeColors.peachPuff, ThemeColors.lilac]
     
 
     override init(frame: CGRect) {
@@ -39,7 +39,7 @@ extension PopUpAddSectionView {
     
     private func setupView() {
         
-        self.backgroundColor = JournalColors.peach
+        self.backgroundColor = ThemeColors.peach
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowRadius = 5
         self.layer.shadowOpacity = 0.5
@@ -193,7 +193,7 @@ extension PopUpAddSectionView {
     // Returns the color chosen by the user
     func getColorChoice() -> UIColor {
         
-        return colorChoice ?? JournalColors.robinEggBlue
+        return colorChoice ?? ThemeColors.robinEggBlue
     }
 }
 

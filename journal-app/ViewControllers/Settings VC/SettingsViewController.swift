@@ -11,6 +11,6 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = JournalColors.peach
+        view.backgroundColor = ThemeColors.peach
     }
 }

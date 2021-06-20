@@ -28,7 +28,7 @@ class NoSectionsView: UIView {
 
 extension NoSectionsView {
     private func setupView() {
-        self.backgroundColor = JournalColors.robinEggBlue
+        self.backgroundColor = ThemeColors.robinEggBlue
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowRadius = 5
         self.layer.shadowOpacity = 0.5
