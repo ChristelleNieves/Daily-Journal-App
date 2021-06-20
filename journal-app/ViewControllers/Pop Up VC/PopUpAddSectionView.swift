@@ -177,7 +177,7 @@ extension PopUpAddSectionView {
     }
     
     func getColorChoice() -> UIColor {
-        return colorChoice ?? JournalColors.darkBlue
+        return colorChoice ?? JournalColors.robinEggBlue
     }
     
     func configureLabel(label: UILabel, text: String) {
