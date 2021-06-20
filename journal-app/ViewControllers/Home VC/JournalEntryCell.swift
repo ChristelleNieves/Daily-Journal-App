@@ -22,9 +22,13 @@ class JournalEntryCell: UITableViewCell, UITextFieldDelegate {
 extension JournalEntryCell {
     func setupTextField() {
         textField.delegate = self
-        textField.borderStyle = .roundedRect
-        textField.backgroundColor = .clear
+        //textField.borderStyle = .roundedRect
+        //textField.backgroundColor = UIColor.init(white: 1, alpha: 0.5)
+        textField.textColor = UIColor.darkGray
+        textField.backgroundColor = JournalColors.peach.withAlphaComponent(0.70)
         textField.layer.borderColor = UIColor.darkGray.withAlphaComponent(0.40).cgColor
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 20
         contentView.addSubview(textField)
         
         // Constraints

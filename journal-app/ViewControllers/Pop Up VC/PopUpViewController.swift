@@ -56,7 +56,7 @@ extension PopUpViewController {
             popUpView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             popUpView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             popUpView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            popUpView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2.5)
+            popUpView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
         ])
     }
     

@@ -26,6 +26,7 @@
 		BCC0E656267BF88C00E12B3E /* NoSectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */; };
 		BCC0E658267C04AA00E12B3E /* PopUpAddSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */; };
 		BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E659267C204500E12B3E /* PopUpViewController.swift */; };
+		BCC0E661267D950200E12B3E /* entryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E660267D950200E12B3E /* entryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSectionsView.swift; sourceTree = "<group>"; };
 		BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAddSectionView.swift; sourceTree = "<group>"; };
 		BCC0E659267C204500E12B3E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		BCC0E660267D950200E12B3E /* entryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = entryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				BCC0E6322679B5EF00E12B3E /* LaunchScreen.storyboard */,
 				BCC0E6352679B5EF00E12B3E /* Info.plist */,
 				BCC0E62D2679B5ED00E12B3E /* journal_app.xcdatamodeld */,
+				BCC0E660267D950200E12B3E /* entryView.swift */,
 			);
 			path = "journal-app";
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				BCC0E6292679B5ED00E12B3E /* HomeViewController.swift in Sources */,
 				BCC0E64E267AF8F300E12B3E /* MoodViewController.swift in Sources */,
 				BCC0E6252679B5ED00E12B3E /* AppDelegate.swift in Sources */,
+				BCC0E661267D950200E12B3E /* entryView.swift in Sources */,
 				BCC0E6272679B5ED00E12B3E /* SceneDelegate.swift in Sources */,
 				BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */,
 				BCC0E64C267AA5ED00E12B3E /* JournalEntryCell.swift in Sources */,

@@ -48,15 +48,18 @@ extension TabBarViewController {
         menuButtonFrame.origin.y = view.bounds.height - menuButtonFrame.height - 40
         menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width/2
         menuButton.frame = menuButtonFrame
-        menuButton.backgroundColor = JournalColors.teaGreen
+        menuButton.backgroundColor = JournalColors.peach
         menuButton.setTitle("+", for: .normal)
         menuButton.setTitleColor(UIColor.darkGray.withAlphaComponent(0.70), for: .normal)
         menuButton.titleLabel?.font = UIFont.systemFont(ofSize: 35, weight: .ultraLight)
         menuButton.layer.cornerRadius = menuButtonFrame.height/2
+        menuButton.layer.borderWidth = 0.8
+        menuButton.layer.borderColor = UIColor.darkGray.withAlphaComponent(0.60).cgColor
         menuButton.tintColor = UIColor.darkGray
         view.addSubview(menuButton)
         
         menuButton.addAction(UIAction { action in
+            
             // If homeVC is already selected, show the "add section" pop up view
             if self.selectedIndex == 1 {
                 self.homeVC.showPopUp()

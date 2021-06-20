@@ -62,7 +62,8 @@ extension HomeViewController {
         tableView.allowsSelection = false
         tableView.separatorColor = JournalColors.peach
         tableView.backgroundColor = JournalColors.peach
-        tableView.rowHeight = view.frame.height * 1/3
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = view.frame.height * 1/3
         tableView.refreshControl = refreshControl
         tableView.register(JournalCell.self, forCellReuseIdentifier: "JournalCell")
         view.addSubview(tableView)
@@ -71,8 +72,8 @@ extension HomeViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 13),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -13),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
@@ -118,14 +119,19 @@ extension HomeViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JournalCell", for: indexPath) as! JournalCell
         
-        cell.journal.title.text = sections[indexPath.row]
-        cell.journal.backgroundColor = colors[indexPath.row]
+        cell.setActionHandler { action in
+            self.tableView.reloadData()
+        }
+        
+        cell.title.text = sections[indexPath.row]
+        cell.contentView.backgroundColor = colors[indexPath.row]
         
         return cell
     }
+    
 }
 
-// MARK: Action Handlers
+// MARK: Pop Up View Action Handlers
 
 extension HomeViewController {
     private func goToPopupVC() {
