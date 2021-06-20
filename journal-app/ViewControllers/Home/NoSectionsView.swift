@@ -15,10 +15,7 @@ class NoSectionsView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
-        setupHeadingLabel()
-        setupSubheadingLabel()
-        setupArrowImageView()
+        setupAllSubviews()
     }
     
     required init?(coder: NSCoder) {
@@ -26,7 +23,19 @@ class NoSectionsView: UIView {
     }
 }
 
+// MARK: View Setup
+
 extension NoSectionsView {
+    
+    // Configure all the views within this view
+    private func setupAllSubviews() {
+        setupView()
+        setupHeadingLabel()
+        setupSubheadingLabel()
+        setupArrowImageView()
+    }
+    
+    // Configure the main view
     private func setupView() {
         self.backgroundColor = ThemeColors.robinEggBlue
         self.layer.shadowColor = UIColor.gray.cgColor
@@ -35,12 +44,14 @@ extension NoSectionsView {
         self.layer.cornerRadius = 40
     }
     
+    // Configure the heading label and add it to the main view
     private func setupHeadingLabel() {
         headingLabel.text = "Looks like you haven't added any sections to your journal yet!"
         headingLabel.textColor = UIColor.darkGray
         headingLabel.font = UIFont.systemFont(ofSize: 30, weight: .light)
         headingLabel.numberOfLines = 0
         headingLabel.lineBreakMode = .byWordWrapping
+        
         self.addSubview(headingLabel)
         
         // Constraints
@@ -53,12 +64,14 @@ extension NoSectionsView {
         ])
     }
     
+    // Configure the subHeading label and add it to the main view
     private func setupSubheadingLabel() {
         subHeadingLabel.text = "Add a section using the add button below to get started!"
         subHeadingLabel.textColor = UIColor.darkGray.withAlphaComponent(0.70)
         subHeadingLabel.font = UIFont.systemFont(ofSize: 15, weight: .light)
         subHeadingLabel.numberOfLines = 0
         subHeadingLabel.lineBreakMode = .byWordWrapping
+        
         self.addSubview(subHeadingLabel)
         
         // Constraints
@@ -71,11 +84,13 @@ extension NoSectionsView {
         ])
     }
     
+    // Configure the arrow image view and add it to the main view
     private func setupArrowImageView() {
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 40, weight: .light), scale: .default)
         
         arrowImageView.image = UIImage(systemName: "arrow.down", withConfiguration: config)
         arrowImageView.tintColor = UIColor.darkGray.withAlphaComponent(0.30)
+        
         self.addSubview(arrowImageView)
         
         // Constraints

@@ -18,7 +18,6 @@
 		BCC0E6462679CE5200E12B3E /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6452679CE5200E12B3E /* TabBarViewController.swift */; };
 		BCC0E6482679D39F00E12B3E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6472679D39F00E12B3E /* SettingsViewController.swift */; };
 		BCC0E64A2679D7DD00E12B3E /* TableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6492679D7DD00E12B3E /* TableHeader.swift */; };
-		BCC0E64C267AA5ED00E12B3E /* JournalEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E64B267AA5ED00E12B3E /* JournalEntryCell.swift */; };
 		BCC0E64E267AF8F300E12B3E /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E64D267AF8F300E12B3E /* MoodViewController.swift */; };
 		BCC0E650267B23EF00E12B3E /* MoodChoicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */; };
 		BCC0E652267B287600E12B3E /* MoodReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E651267B287600E12B3E /* MoodReasonView.swift */; };
@@ -42,7 +41,6 @@
 		BCC0E6452679CE5200E12B3E /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		BCC0E6472679D39F00E12B3E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BCC0E6492679D7DD00E12B3E /* TableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeader.swift; sourceTree = "<group>"; };
-		BCC0E64B267AA5ED00E12B3E /* JournalEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryCell.swift; sourceTree = "<group>"; };
 		BCC0E64D267AF8F300E12B3E /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
 		BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChoicesView.swift; sourceTree = "<group>"; };
 		BCC0E651267B287600E12B3E /* MoodReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodReasonView.swift; sourceTree = "<group>"; };
@@ -106,11 +104,11 @@
 		BCC0E63C2679B9AE00E12B3E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				BCC0E65F267C487500E12B3E /* Pop Up VC */,
-				BCC0E65E267C486000E12B3E /* Mood VC */,
-				BCC0E65D267C482F00E12B3E /* Settings VC */,
-				BCC0E65C267C481700E12B3E /* Tab Bar VC */,
-				BCC0E65B267C47FF00E12B3E /* Home VC */,
+				BCC0E65F267C487500E12B3E /* Pop Up */,
+				BCC0E65E267C486000E12B3E /* Mood */,
+				BCC0E65D267C482F00E12B3E /* Settings */,
+				BCC0E65C267C481700E12B3E /* Tab Bar */,
+				BCC0E65B267C47FF00E12B3E /* Home */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -123,51 +121,50 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
-		BCC0E65B267C47FF00E12B3E /* Home VC */ = {
+		BCC0E65B267C47FF00E12B3E /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				BCC0E6282679B5ED00E12B3E /* HomeViewController.swift */,
 				BCC0E6492679D7DD00E12B3E /* TableHeader.swift */,
 				BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */,
 				BCC0E63E2679B9F100E12B3E /* SectionCell.swift */,
-				BCC0E64B267AA5ED00E12B3E /* JournalEntryCell.swift */,
 			);
-			path = "Home VC";
+			path = Home;
 			sourceTree = "<group>";
 		};
-		BCC0E65C267C481700E12B3E /* Tab Bar VC */ = {
+		BCC0E65C267C481700E12B3E /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
 				BCC0E6452679CE5200E12B3E /* TabBarViewController.swift */,
 			);
-			path = "Tab Bar VC";
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
-		BCC0E65D267C482F00E12B3E /* Settings VC */ = {
+		BCC0E65D267C482F00E12B3E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				BCC0E6472679D39F00E12B3E /* SettingsViewController.swift */,
 			);
-			path = "Settings VC";
+			path = Settings;
 			sourceTree = "<group>";
 		};
-		BCC0E65E267C486000E12B3E /* Mood VC */ = {
+		BCC0E65E267C486000E12B3E /* Mood */ = {
 			isa = PBXGroup;
 			children = (
 				BCC0E64D267AF8F300E12B3E /* MoodViewController.swift */,
 				BCC0E651267B287600E12B3E /* MoodReasonView.swift */,
 				BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */,
 			);
-			path = "Mood VC";
+			path = Mood;
 			sourceTree = "<group>";
 		};
-		BCC0E65F267C487500E12B3E /* Pop Up VC */ = {
+		BCC0E65F267C487500E12B3E /* Pop Up */ = {
 			isa = PBXGroup;
 			children = (
 				BCC0E659267C204500E12B3E /* PopUpViewController.swift */,
 				BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */,
 			);
-			path = "Pop Up VC";
+			path = "Pop Up";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,7 +247,6 @@
 				BCC0E661267D950200E12B3E /* entryView.swift in Sources */,
 				BCC0E6272679B5ED00E12B3E /* SceneDelegate.swift in Sources */,
 				BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */,
-				BCC0E64C267AA5ED00E12B3E /* JournalEntryCell.swift in Sources */,
 				BCC0E656267BF88C00E12B3E /* NoSectionsView.swift in Sources */,
 				BCC0E63F2679B9F100E12B3E /* SectionCell.swift in Sources */,
 				BCC0E62F2679B5ED00E12B3E /* journal_app.xcdatamodeld in Sources */,
