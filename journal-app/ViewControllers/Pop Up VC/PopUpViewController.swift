@@ -10,10 +10,10 @@ import UIKit
 
 class PopUpViewController: UIViewController {
     
-    let popUpView = PopUpAddSectionView(frame: CGRect.zero)
-    let okButton = UIButton()
-    var sectionName = ""
+    lazy var sectionName = ""
     var colorChoice: UIColor?
+    private let okButton = UIButton()
+    private let popUpView = PopUpAddSectionView(frame: CGRect.zero)
     
     typealias ActionHandler = (Action) -> ()
     private var actionHandler: ActionHandler?
@@ -32,7 +32,10 @@ class PopUpViewController: UIViewController {
 }
 
 extension PopUpViewController {
+    
+    // Setup the main view
     private func setupView() {
+        
         view.backgroundColor = .clear
         overrideUserInterfaceStyle = .light
         
@@ -46,6 +49,7 @@ extension PopUpViewController {
         self.view.insertSubview(blurEffectView, at: 0)
     }
     
+    // Set up the pop-up view
     private func setupPopUpView() {
         view.addSubview(popUpView)
         
@@ -60,7 +64,10 @@ extension PopUpViewController {
         ])
     }
     
+    // Set up the Ok button
     private func setupOkButton() {
+        
+        // Button appearance
         okButton.setTitle("Ok", for: .normal)
         okButton.setTitleColor(UIColor.darkGray, for: .normal)
         okButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .light)
@@ -72,13 +79,17 @@ extension PopUpViewController {
         okButton.layer.borderWidth = 0.5
         okButton.layer.borderColor = UIColor.darkGray.withAlphaComponent(0.40).cgColor
         okButton.titleEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        
         view.addSubview(okButton)
         
+        // Add button action
         okButton.addAction(UIAction { action in
+            
             self.dismiss(animated: true, completion: nil)
+            
         }, for: .touchUpInside)
         
-        // Constraints
+        // Set Constraints
         okButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -100,6 +111,7 @@ extension PopUpViewController {
         self.actionHandler = handler
     }
     
+    // Set the corresponding variables whenever the pop-up is being dismissed
     private func willDismissPopup() {
         self.sectionName = popUpView.getName()
         self.colorChoice = popUpView.getColorChoice()
