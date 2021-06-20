@@ -10,34 +10,38 @@ import UIKit
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var sectionname = ""
-    let popupVC = PopUpViewController()
-    private let noSectionsView = NoSectionsView(frame: CGRect.zero)
-    private let headerView = TableHeader(frame: CGRect.zero)
+    private var colors = [UIColor]()
+    private var sections = [String]()
     private let tableView = UITableView()
     private let refreshControl = UIRefreshControl()
-    private var sections = [String]()
-    private var colors = [UIColor]()
+    private let headerView = TableHeader(frame: CGRect.zero)
+    private let noSectionsView = NoSectionsView(frame: CGRect.zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAllSubviews()
+    }
+}
+
+// MARK: UI Setup
+extension HomeViewController {
+    
+    private func setupAllSubviews() {
         setupRefreshControl()
         setupMainView()
         setupHeaderView()
         setupNoSectionsView()
         setupTableView()
     }
-}
-
-// MARK: UI Setup
-extension HomeViewController {
-    func setupMainView() {
+    
+    private func setupMainView() {
         // Force light mode appearance
         overrideUserInterfaceStyle = .light
         
         view.backgroundColor = ThemeColors.peach
     }
     
-    func setupHeaderView() {
+    private func setupHeaderView() {
         view.addSubview(headerView)
         
         // Constraints
@@ -51,14 +55,16 @@ extension HomeViewController {
         ])
     }
     
-    func setupRefreshControl() {
+    private func setupRefreshControl() {
         refreshControl.addAction(UIAction { action in
+            
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
+            
         }, for: .valueChanged)
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
@@ -68,6 +74,7 @@ extension HomeViewController {
         tableView.estimatedRowHeight = view.frame.height * 1/3
         tableView.refreshControl = refreshControl
         tableView.register(SectionCell.self, forCellReuseIdentifier: "SectionCell")
+        
         view.addSubview(tableView)
         
         // Constraints
@@ -92,11 +99,6 @@ extension HomeViewController {
             noSectionsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             noSectionsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
         ])
-    }
-    
-    func showPopUp() {
-        self.noSectionsView.isHidden = true
-        goToPopupVC()
     }
 }
 
@@ -133,13 +135,16 @@ extension HomeViewController {
     
 }
 
-// MARK: Pop Up View Action Handlers
+// MARK: Pop Up View Helpers
 
 extension HomeViewController {
+    
+    // Display the pop up vc to add a section
     private func goToPopupVC() {
         let vc = PopUpViewController()
         
         vc.setActionHandler { action in
+            
             guard !vc.sectionName.trimmingCharacters(in: .whitespaces).isEmpty else {
                 self.noSectionsView.isHidden = false
                 self.tableView.reloadData()
@@ -148,6 +153,7 @@ extension HomeViewController {
             
             self.addNewSection(name: vc.sectionName, color: vc.colorChoice!)
             self.tableView.reloadData()
+            
         }
         
         vc.modalPresentationStyle = .overCurrentContext
@@ -157,5 +163,10 @@ extension HomeViewController {
     private func addNewSection(name: String, color: UIColor) {
         sections.append(name)
         colors.append(color)
+    }
+    
+    func showPopUp() {
+        self.noSectionsView.isHidden = true
+        goToPopupVC()
     }
 }
