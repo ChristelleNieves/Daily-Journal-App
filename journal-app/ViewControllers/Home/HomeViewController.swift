@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreGraphics
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -20,6 +21,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAllSubviews()
+        configureKeyboardNotifications()
     }
 }
 
@@ -68,11 +70,11 @@ extension HomeViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
+        tableView.refreshControl = refreshControl
         tableView.separatorColor = ThemeColors.peach
         tableView.backgroundColor = ThemeColors.peach
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = view.frame.height * 1/3
-        tableView.refreshControl = refreshControl
         tableView.register(SectionCell.self, forCellReuseIdentifier: "SectionCell")
         
         view.addSubview(tableView)
@@ -132,7 +134,6 @@ extension HomeViewController {
         
         return cell
     }
-    
 }
 
 // MARK: Pop Up View Helpers
@@ -168,5 +169,28 @@ extension HomeViewController {
     func showPopUp() {
         self.noSectionsView.isHidden = true
         goToPopupVC()
+    }
+}
+
+// MARK: Keyboard Configuration
+
+extension HomeViewController {
+    
+    func configureKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    // Scroll the tableView up when the keyboard is visible
+    @objc func keyboardWillShow(_ notification:Notification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 30, right: 0)
+        }
+    }
+    
+    // Return the tableView to its original position when the keyboard is hidden
+    @objc func keyboardWillHide(_ notification:Notification) {
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }

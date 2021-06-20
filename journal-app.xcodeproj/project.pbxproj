@@ -14,7 +14,7 @@
 		BCC0E6312679B5EF00E12B3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCC0E6302679B5EF00E12B3E /* Assets.xcassets */; };
 		BCC0E6342679B5EF00E12B3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCC0E6322679B5EF00E12B3E /* LaunchScreen.storyboard */; };
 		BCC0E63F2679B9F100E12B3E /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E63E2679B9F100E12B3E /* SectionCell.swift */; };
-		BCC0E6442679BCD200E12B3E /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6432679BCD200E12B3E /* ColorPalette.swift */; };
+		BCC0E6442679BCD200E12B3E /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6432679BCD200E12B3E /* ThemeColors.swift */; };
 		BCC0E6462679CE5200E12B3E /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6452679CE5200E12B3E /* TabBarViewController.swift */; };
 		BCC0E6482679D39F00E12B3E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6472679D39F00E12B3E /* SettingsViewController.swift */; };
 		BCC0E64A2679D7DD00E12B3E /* TableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6492679D7DD00E12B3E /* TableHeader.swift */; };
@@ -24,7 +24,7 @@
 		BCC0E656267BF88C00E12B3E /* NoSectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */; };
 		BCC0E658267C04AA00E12B3E /* PopUpAddSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */; };
 		BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E659267C204500E12B3E /* PopUpViewController.swift */; };
-		BCC0E661267D950200E12B3E /* entryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E660267D950200E12B3E /* entryView.swift */; };
+		BCC0E661267D950200E12B3E /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E660267D950200E12B3E /* EntryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,7 @@
 		BCC0E6332679B5EF00E12B3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BCC0E6352679B5EF00E12B3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCC0E63E2679B9F100E12B3E /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
-		BCC0E6432679BCD200E12B3E /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		BCC0E6432679BCD200E12B3E /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		BCC0E6452679CE5200E12B3E /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		BCC0E6472679D39F00E12B3E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BCC0E6492679D7DD00E12B3E /* TableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeader.swift; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSectionsView.swift; sourceTree = "<group>"; };
 		BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAddSectionView.swift; sourceTree = "<group>"; };
 		BCC0E659267C204500E12B3E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
-		BCC0E660267D950200E12B3E /* entryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = entryView.swift; sourceTree = "<group>"; };
+		BCC0E660267D950200E12B3E /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,6 @@
 				BCC0E6322679B5EF00E12B3E /* LaunchScreen.storyboard */,
 				BCC0E6352679B5EF00E12B3E /* Info.plist */,
 				BCC0E62D2679B5ED00E12B3E /* journal_app.xcdatamodeld */,
-				BCC0E660267D950200E12B3E /* entryView.swift */,
 			);
 			path = "journal-app";
 			sourceTree = "<group>";
@@ -116,7 +115,7 @@
 		BCC0E6422679BCBA00E12B3E /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				BCC0E6432679BCD200E12B3E /* ColorPalette.swift */,
+				BCC0E6432679BCD200E12B3E /* ThemeColors.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -128,6 +127,7 @@
 				BCC0E6492679D7DD00E12B3E /* TableHeader.swift */,
 				BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */,
 				BCC0E63E2679B9F100E12B3E /* SectionCell.swift */,
+				BCC0E660267D950200E12B3E /* EntryView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -239,12 +239,12 @@
 				BCC0E6462679CE5200E12B3E /* TabBarViewController.swift in Sources */,
 				BCC0E658267C04AA00E12B3E /* PopUpAddSectionView.swift in Sources */,
 				BCC0E64A2679D7DD00E12B3E /* TableHeader.swift in Sources */,
-				BCC0E6442679BCD200E12B3E /* ColorPalette.swift in Sources */,
+				BCC0E6442679BCD200E12B3E /* ThemeColors.swift in Sources */,
 				BCC0E652267B287600E12B3E /* MoodReasonView.swift in Sources */,
 				BCC0E6292679B5ED00E12B3E /* HomeViewController.swift in Sources */,
 				BCC0E64E267AF8F300E12B3E /* MoodViewController.swift in Sources */,
 				BCC0E6252679B5ED00E12B3E /* AppDelegate.swift in Sources */,
-				BCC0E661267D950200E12B3E /* entryView.swift in Sources */,
+				BCC0E661267D950200E12B3E /* EntryView.swift in Sources */,
 				BCC0E6272679B5ED00E12B3E /* SceneDelegate.swift in Sources */,
 				BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */,
 				BCC0E656267BF88C00E12B3E /* NoSectionsView.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class entryView: UIView, UITextFieldDelegate {
+class EntryView: UIView, UITextFieldDelegate {
     
     let textField = UITextField()
     
@@ -42,7 +42,7 @@ class entryView: UIView, UITextFieldDelegate {
     }
 }
 
-extension entryView {
+extension EntryView {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         

@@ -134,7 +134,7 @@ extension SectionCell {
     func addStackViewSubViews() {
         
         for _ in 1...numberOfEntries {
-            let entry = entryView()
+            let entry = EntryView()
             stackView.addArrangedSubview(entry)
         }
     }
@@ -153,7 +153,7 @@ extension SectionCell {
     
     // Add one entryView to the stackView
     private func didAddSection() {
-        let entry = entryView()
+        let entry = EntryView()
         
         stackView.addArrangedSubview(entry)
         self.actionHandler?(.addSection)
