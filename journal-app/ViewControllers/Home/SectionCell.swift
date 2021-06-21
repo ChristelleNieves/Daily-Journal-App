@@ -13,6 +13,7 @@ class SectionCell: UITableViewCell {
     private var actionHandler: ActionHandler?
     private var numberOfEntries = 3
     private let addEntryButton = UIButton()
+    private let editSectionButton = UIButton()
     private let stackView = UIStackView()
     
     lazy var title: UILabel = {
@@ -53,6 +54,7 @@ extension SectionCell {
         setupContentView()
         setupTitleLabel()
         setupAddEntryButton()
+        setupEditSectionButton()
         setupStackView()
     }
     
@@ -76,7 +78,7 @@ extension SectionCell {
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 17),
             title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -50),
+            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -80),
             title.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
@@ -86,7 +88,7 @@ extension SectionCell {
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30, weight: .light), scale: .small)
         
         addEntryButton.setImage(UIImage(systemName: "plus", withConfiguration: config), for: .normal)
-        addEntryButton.tintColor = UIColor.white
+        addEntryButton.tintColor = UIColor.init(white: 1, alpha: 0.50)
         
         contentView.addSubview(addEntryButton)
         
@@ -102,9 +104,34 @@ extension SectionCell {
         
         NSLayoutConstraint.activate([
             addEntryButton.topAnchor.constraint(equalTo: title.topAnchor),
-            addEntryButton.leadingAnchor.constraint(equalTo: title.trailingAnchor, constant: 15),
-            addEntryButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            addEntryButton.bottomAnchor.constraint(equalTo: title.bottomAnchor)
+            addEntryButton.leadingAnchor.constraint(equalTo: title.trailingAnchor, constant: 5),
+            addEntryButton.bottomAnchor.constraint(equalTo: title.bottomAnchor),
+            
+            addEntryButton.widthAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    private func setupEditSectionButton() {
+        let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30, weight: .light), scale: .small)
+        
+        editSectionButton.setImage(UIImage(systemName: "line.horizontal.3", withConfiguration: config), for: .normal)
+        editSectionButton.tintColor = UIColor.init(white: 1, alpha: 0.50)
+        
+        contentView.addSubview(editSectionButton)
+        
+        // Add button action
+        editSectionButton.addAction(UIAction { action in
+            // Display editing pop up
+        }, for: .touchUpInside)
+        
+        // Set constraints
+        editSectionButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            editSectionButton.topAnchor.constraint(equalTo: title.topAnchor),
+            editSectionButton.leadingAnchor.constraint(equalTo: addEntryButton.trailingAnchor, constant: 8),
+            editSectionButton.bottomAnchor.constraint(equalTo: title.bottomAnchor),
+            editSectionButton.widthAnchor.constraint(equalToConstant: 30)
         ])
     }
     

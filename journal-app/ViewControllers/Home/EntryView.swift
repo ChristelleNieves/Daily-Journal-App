@@ -48,4 +48,5 @@ extension EntryView {
         
         return true
     }
+    
 }

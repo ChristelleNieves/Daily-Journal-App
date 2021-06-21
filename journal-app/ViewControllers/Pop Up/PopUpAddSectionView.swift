@@ -219,7 +219,7 @@ extension PopUpAddSectionView {
         // add their new text to the existing text
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
 
-        // make sure the result is under 30 characters
-        return updatedText.count <= 30
+        // make sure the result is under 25 characters
+        return updatedText.count <= 25
     }
 }

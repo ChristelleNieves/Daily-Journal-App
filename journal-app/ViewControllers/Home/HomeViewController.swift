@@ -71,7 +71,8 @@ extension HomeViewController {
         tableView.dataSource = self
         tableView.allowsSelection = false
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = ThemeColors.peach
+        tableView.separatorColor = .none
+        tableView.separatorStyle = .none
         tableView.backgroundColor = ThemeColors.peach
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = view.frame.height * 1/3
@@ -179,13 +180,14 @@ extension HomeViewController {
     func configureKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidChangeFrame), name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
     }
     
     // Scroll the tableView up when the keyboard is visible
     @objc func keyboardWillShow(_ notification:Notification) {
         
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 30, right: 0)
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 40, right: 0)
         }
     }
     

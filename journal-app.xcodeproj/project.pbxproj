@@ -25,6 +25,9 @@
 		BCC0E658267C04AA00E12B3E /* PopUpAddSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */; };
 		BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E659267C204500E12B3E /* PopUpViewController.swift */; };
 		BCC0E661267D950200E12B3E /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E660267D950200E12B3E /* EntryView.swift */; };
+		BCC0E66326800F2A00E12B3E /* EditSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E66226800F2A00E12B3E /* EditSectionViewController.swift */; };
+		BCC0E6652680106200E12B3E /* PopUpEditSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6642680106200E12B3E /* PopUpEditSectionView.swift */; };
+		BCC0E6692680208100E12B3E /* PopUpEditSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6682680208100E12B3E /* PopUpEditSectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAddSectionView.swift; sourceTree = "<group>"; };
 		BCC0E659267C204500E12B3E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		BCC0E660267D950200E12B3E /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
+		BCC0E66226800F2A00E12B3E /* EditSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSectionViewController.swift; sourceTree = "<group>"; };
+		BCC0E6642680106200E12B3E /* PopUpEditSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpEditSectionView.swift; sourceTree = "<group>"; };
+		BCC0E6682680208100E12B3E /* PopUpEditSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpEditSectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,7 @@
 				BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */,
 				BCC0E63E2679B9F100E12B3E /* SectionCell.swift */,
 				BCC0E660267D950200E12B3E /* EntryView.swift */,
+				BCC0E66226800F2A00E12B3E /* EditSectionViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -163,6 +170,8 @@
 			children = (
 				BCC0E659267C204500E12B3E /* PopUpViewController.swift */,
 				BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */,
+				BCC0E6642680106200E12B3E /* PopUpEditSectionView.swift */,
+				BCC0E6682680208100E12B3E /* PopUpEditSectionViewController.swift */,
 			);
 			path = "Pop Up";
 			sourceTree = "<group>";
@@ -239,14 +248,17 @@
 				BCC0E6462679CE5200E12B3E /* TabBarViewController.swift in Sources */,
 				BCC0E658267C04AA00E12B3E /* PopUpAddSectionView.swift in Sources */,
 				BCC0E64A2679D7DD00E12B3E /* TableHeader.swift in Sources */,
+				BCC0E6692680208100E12B3E /* PopUpEditSectionViewController.swift in Sources */,
 				BCC0E6442679BCD200E12B3E /* ThemeColors.swift in Sources */,
 				BCC0E652267B287600E12B3E /* MoodReasonView.swift in Sources */,
 				BCC0E6292679B5ED00E12B3E /* HomeViewController.swift in Sources */,
 				BCC0E64E267AF8F300E12B3E /* MoodViewController.swift in Sources */,
 				BCC0E6252679B5ED00E12B3E /* AppDelegate.swift in Sources */,
 				BCC0E661267D950200E12B3E /* EntryView.swift in Sources */,
+				BCC0E6652680106200E12B3E /* PopUpEditSectionView.swift in Sources */,
 				BCC0E6272679B5ED00E12B3E /* SceneDelegate.swift in Sources */,
 				BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */,
+				BCC0E66326800F2A00E12B3E /* EditSectionViewController.swift in Sources */,
 				BCC0E656267BF88C00E12B3E /* NoSectionsView.swift in Sources */,
 				BCC0E63F2679B9F100E12B3E /* SectionCell.swift in Sources */,
 				BCC0E62F2679B5ED00E12B3E /* journal_app.xcdatamodeld in Sources */,
