@@ -19,7 +19,6 @@ class EditSectionViewController: UIViewController {
     private func setupView() {
         
         view.backgroundColor = .clear
-        overrideUserInterfaceStyle = .light
         
         // Set up the blur effect
         let blurEffect = UIBlurEffect(style: .systemThickMaterial)

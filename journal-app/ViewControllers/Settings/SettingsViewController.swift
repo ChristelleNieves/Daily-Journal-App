@@ -11,6 +11,6 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = ThemeColors.peach
+        view.backgroundColor = ThemeColor.background
     }
 }

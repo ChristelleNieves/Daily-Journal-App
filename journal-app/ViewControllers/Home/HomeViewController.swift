@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreGraphics
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -25,7 +24,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 }
 
-// MARK: UI Setup
+// MARK: View Setup
+
 extension HomeViewController {
     
     private func setupAllSubviews() {
@@ -37,10 +37,7 @@ extension HomeViewController {
     }
     
     private func setupMainView() {
-        // Force light mode appearance
-        overrideUserInterfaceStyle = .light
-        
-        view.backgroundColor = ThemeColors.peach
+        view.backgroundColor = ThemeColor.background
     }
     
     private func setupHeaderView() {
@@ -73,7 +70,7 @@ extension HomeViewController {
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
-        tableView.backgroundColor = ThemeColors.peach
+        tableView.backgroundColor = ThemeColor.background
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = view.frame.height * 1/3
         tableView.register(SectionCell.self, forCellReuseIdentifier: "SectionCell")
@@ -105,7 +102,7 @@ extension HomeViewController {
     }
 }
 
-// MARK: TableView
+// MARK: TableView Functions
 
 extension HomeViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -180,7 +177,6 @@ extension HomeViewController {
     func configureKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidChangeFrame), name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
     }
     
     // Scroll the tableView up when the keyboard is visible

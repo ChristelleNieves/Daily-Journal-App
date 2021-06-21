@@ -20,7 +20,7 @@ class PopUpAddSectionView: UIView, UITextFieldDelegate {
     // Other
     private var colorChoice: UIColor?
     private let journalTitleTextField = UITextField()
-    private let buttonColors = [ThemeColors.robinEggBlue, ThemeColors.salmonPink, ThemeColors.peachPuff, ThemeColors.lilac]
+    private let buttonColors = [ThemeColor.robinEggBlue, ThemeColor.salmonPink, ThemeColor.peachPuff, ThemeColor.lilac]
     
 
     override init(frame: CGRect) {
@@ -39,7 +39,7 @@ extension PopUpAddSectionView {
     
     private func setupView() {
         
-        self.backgroundColor = ThemeColors.peach
+        self.backgroundColor = ThemeColor.background
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowRadius = 5
         self.layer.shadowOpacity = 0.5
@@ -123,14 +123,20 @@ extension PopUpAddSectionView {
             button.addAction(UIAction { action in
                 
                 self.colorChoice = self.buttonColors[i]
+                self.addBorderToButton(button: button)
+                self.uncheckOtherButtons(button: button)
                 
             }, for: .touchUpInside)
             
             // Set constraints
             button.translatesAutoresizingMaskIntoConstraints = false
             
-            // Only the first button will be constrained to the colorLabel, every other button will be constrained to the previous button in the buttons array
+            // The first button will be constrained to the colorLabel. Other buttons will be constrained to the previous button in the array
             if i == 0 {
+                
+                // Display a border around the first color button by default
+                addBorderToButton(button: button)
+                
                 NSLayoutConstraint.activate([
                     button.topAnchor.constraint(equalTo: colorLabel.topAnchor),
                     button.leadingAnchor.constraint(equalTo: colorLabel.trailingAnchor, constant: 15)
@@ -143,6 +149,26 @@ extension PopUpAddSectionView {
                 ])
             }
         }
+    }
+    
+    // Remove the border from all buttons other than the current one
+    private func uncheckOtherButtons(button: UIButton) {
+        
+        // Go through the buttons array and remove thick borders from any button that is not the currently chosen one
+        for colorButton in self.buttons {
+            
+            if colorButton != button {
+                colorButton.layer.borderWidth = 0.5
+                colorButton.layer.borderColor = ThemeColor.heading.cgColor
+            }
+        }
+    }
+    
+    // Add a border around a button
+    private func addBorderToButton(button: UIButton) {
+        // Display a border around the color button that is currently chosen
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.darkGray.withAlphaComponent(0.80).cgColor
     }
 }
 
@@ -177,8 +203,8 @@ extension PopUpAddSectionView {
         
         button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         button.layer.cornerRadius = button.frame.size.width * 0.5
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.darkGray.cgColor
+        button.layer.borderWidth = 0.5
+        button.layer.borderColor = ThemeColor.heading.cgColor
         button.clipsToBounds = true
         
         self.addSubview(button)
@@ -193,7 +219,7 @@ extension PopUpAddSectionView {
     // Returns the color chosen by the user
     func getColorChoice() -> UIColor {
         
-        return colorChoice ?? ThemeColors.robinEggBlue
+        return colorChoice ?? ThemeColor.robinEggBlue
     }
 }
 

@@ -29,7 +29,7 @@ extension PopUpEditSectionView {
     
     private func setupView() {
         
-        self.backgroundColor = ThemeColors.peach
+        self.backgroundColor = ThemeColor.background
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowRadius = 5
         self.layer.shadowOpacity = 0.5
@@ -39,7 +39,7 @@ extension PopUpEditSectionView {
     private func setupTitleLabel() {
         
         titleLabel.text = "Delete Section?"
-        titleLabel.textColor = UIColor.darkGray
+        titleLabel.textColor = ThemeColor.heading
         titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .light)
         
         self.addSubview(titleLabel)

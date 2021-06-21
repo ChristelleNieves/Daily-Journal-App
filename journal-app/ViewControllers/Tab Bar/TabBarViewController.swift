@@ -24,17 +24,19 @@ class TabBarViewController: UITabBarController {
 extension TabBarViewController {
     private func setupTabBar() {
         let appearance = UITabBarAppearance()
-        appearance.backgroundColor = ThemeColors.peach
-        appearance.shadowColor = UIColor.darkGray
+        
+        appearance.backgroundColor = ThemeColor.background
+        appearance.shadowColor = ThemeColor.heading
+        
         self.tabBar.standardAppearance = appearance
-        self.tabBar.tintColor = UIColor.darkGray
+        self.tabBar.tintColor = ThemeColor.heading
         
         self.setViewControllers([moodVC, homeVC, settingsVC], animated: true)
         setupMiddleButton()
     }
     
     private func setupIcons() {
-        let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .ultraLight), scale: .medium)
+        let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .light), scale: .medium)
         
         homeVC.tabBarItem.image = UIImage(systemName: "house", withConfiguration: config)
         moodVC.tabBarItem.image = UIImage(systemName: "face.smiling", withConfiguration: config)
@@ -46,16 +48,17 @@ extension TabBarViewController {
         var menuButtonFrame = menuButton.frame
         
         menuButtonFrame.origin.y = view.bounds.height - menuButtonFrame.height - 40
-        menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width/2
+        menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width / 2
         menuButton.frame = menuButtonFrame
-        menuButton.backgroundColor = ThemeColors.robinEggBlue
+        menuButton.backgroundColor = ThemeColor.robinEggBlue
         menuButton.setTitle("+", for: .normal)
-        menuButton.setTitleColor(UIColor.darkGray.withAlphaComponent(0.70), for: .normal)
+        menuButton.setTitleColor(ThemeColor.subheading, for: .normal)
         menuButton.titleLabel?.font = UIFont.systemFont(ofSize: 35, weight: .ultraLight)
-        menuButton.layer.cornerRadius = menuButtonFrame.height/2
+        menuButton.layer.cornerRadius = menuButtonFrame.height / 2
         menuButton.layer.borderWidth = 0.8
-        menuButton.layer.borderColor = UIColor.darkGray.withAlphaComponent(0.60).cgColor
-        menuButton.tintColor = UIColor.darkGray
+        menuButton.layer.borderColor = ThemeColor.subheading.cgColor
+        menuButton.tintColor = ThemeColor.heading
+        
         view.addSubview(menuButton)
         
         menuButton.addAction(UIAction { action in

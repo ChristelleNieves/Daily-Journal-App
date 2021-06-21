@@ -23,10 +23,9 @@ class EntryView: UIView, UITextFieldDelegate {
     func setupTextField() {
         textField.delegate = self
         
-        textField.textColor = UIColor.darkGray.withAlphaComponent(0.60)
-        textField.backgroundColor = UIColor.init(white: 1, alpha: 0.50)
-        textField.layer.borderColor = UIColor.darkGray.withAlphaComponent(0.70).cgColor
-        textField.borderStyle = .roundedRect
+        textField.textColor = ThemeColor.subheading
+        textField.backgroundColor = ThemeColor.overlay
+        textField.layer.borderColor = ThemeColor.subheading.cgColor
         
         self.addSubview(textField)
         
@@ -37,16 +36,16 @@ class EntryView: UIView, UITextFieldDelegate {
             textField.topAnchor.constraint(equalTo: self.topAnchor),
             textField.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             textField.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            textField.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            textField.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
     }
 }
 
 extension EntryView {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
         return true
     }
-    
 }

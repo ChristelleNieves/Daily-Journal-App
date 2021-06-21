@@ -37,7 +37,7 @@ extension NoSectionsView {
     
     // Configure the main view
     private func setupView() {
-        self.backgroundColor = ThemeColors.robinEggBlue
+        self.backgroundColor = ThemeColor.robinEggBlue
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowRadius = 5
         self.layer.shadowOpacity = 0.5
@@ -47,7 +47,7 @@ extension NoSectionsView {
     // Configure the heading label and add it to the main view
     private func setupHeadingLabel() {
         headingLabel.text = "Looks like you haven't added any sections to your journal yet!"
-        headingLabel.textColor = UIColor.darkGray
+        headingLabel.textColor = ThemeColor.heading
         headingLabel.font = UIFont.systemFont(ofSize: 30, weight: .light)
         headingLabel.numberOfLines = 0
         headingLabel.lineBreakMode = .byWordWrapping
@@ -67,7 +67,7 @@ extension NoSectionsView {
     // Configure the subHeading label and add it to the main view
     private func setupSubheadingLabel() {
         subHeadingLabel.text = "Add a section using the add button below to get started!"
-        subHeadingLabel.textColor = UIColor.darkGray.withAlphaComponent(0.70)
+        subHeadingLabel.textColor = ThemeColor.subheading
         subHeadingLabel.font = UIFont.systemFont(ofSize: 15, weight: .light)
         subHeadingLabel.numberOfLines = 0
         subHeadingLabel.lineBreakMode = .byWordWrapping

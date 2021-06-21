@@ -27,7 +27,7 @@ class MoodViewController: UIViewController, UITextFieldDelegate {
 // MARK: Setup
 extension MoodViewController {
     private func setupMainView() {
-        view.backgroundColor = ThemeColors.robinEggBlue
+        view.backgroundColor = ThemeColor.salmonPink
     }
     
     private func setupMoodLabel() {
@@ -87,10 +87,11 @@ extension MoodViewController {
     private func configureLabel(label: UILabel, titleString: String) {
         label.text = titleString
         label.font = UIFont.systemFont(ofSize: 30, weight: .light)
-        label.textColor = UIColor.darkGray
+        label.textColor = ThemeColor.heading
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
+        
         view.addSubview(label)
     }
 }

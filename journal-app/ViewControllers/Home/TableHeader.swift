@@ -17,7 +17,7 @@ class TableHeader: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = ThemeColors.peach
+        backgroundColor = ThemeColor.background
         setupDayLabel()
         setupDateLabel()
         setupLeftButton()
@@ -35,7 +35,7 @@ extension TableHeader {
     private func setupDayLabel() {
         dayLabel.text = getTodayWeekDay()
         dayLabel.font = UIFont.systemFont(ofSize: 30, weight: .light)
-        dayLabel.textColor = UIColor.darkGray
+        dayLabel.textColor = ThemeColor.heading
         dayLabel.adjustsFontSizeToFitWidth = true
         dayLabel.numberOfLines = 0
         self.addSubview(dayLabel)
@@ -52,7 +52,7 @@ extension TableHeader {
     private func setupDateLabel() {
         dateLabel.text = formatDate()
         dateLabel.font = UIFont.systemFont(ofSize: 17, weight: .light)
-        dateLabel.textColor = UIColor.darkGray.withAlphaComponent(0.80)
+        dateLabel.textColor = ThemeColor.subheading
         dateLabel.adjustsFontSizeToFitWidth = true
         dateLabel.numberOfLines = 0
         self.addSubview(dateLabel)
@@ -69,7 +69,7 @@ extension TableHeader {
     private func setupLeftButton() {
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .light), scale: .medium)
         leftButton.setImage(UIImage(systemName: "arrowshape.turn.up.left", withConfiguration: config), for: .normal)
-        leftButton.tintColor = UIColor.darkGray.withAlphaComponent(0.70)
+        leftButton.tintColor = ThemeColor.subheading
         self.addSubview(leftButton)
         
         leftButton.addAction(UIAction { action in
@@ -89,7 +89,7 @@ extension TableHeader {
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .light), scale: .medium)
         
         rightButton.setImage(UIImage(systemName: "arrowshape.turn.up.right", withConfiguration: config), for: .normal)
-        rightButton.tintColor = UIColor.darkGray.withAlphaComponent(0.70)
+        rightButton.tintColor = ThemeColor.subheading
         self.addSubview(rightButton)
         
         rightButton.addAction(UIAction { action in

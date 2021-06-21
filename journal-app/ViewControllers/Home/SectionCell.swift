@@ -11,6 +11,7 @@ class SectionCell: UITableViewCell {
     
     typealias ActionHandler = (Action) -> ()
     private var actionHandler: ActionHandler?
+    
     private var numberOfEntries = 3
     private let addEntryButton = UIButton()
     private let editSectionButton = UIButton()
@@ -18,8 +19,10 @@ class SectionCell: UITableViewCell {
     
     lazy var title: UILabel = {
         let title = UILabel()
+        
         title.font = UIFont.systemFont(ofSize: 25, weight: .light)
         title.textColor = .white
+        
         return title
     }()
     
@@ -60,10 +63,9 @@ extension SectionCell {
     
     // Configure the contentView of the cell
     private func setupContentView() {
-        
         let background = UIView()
         
-        background.backgroundColor = ThemeColors.peach
+        background.backgroundColor = ThemeColor.background
         backgroundView = background
         
         contentView.layer.cornerRadius = 40
@@ -88,7 +90,7 @@ extension SectionCell {
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30, weight: .light), scale: .small)
         
         addEntryButton.setImage(UIImage(systemName: "plus", withConfiguration: config), for: .normal)
-        addEntryButton.tintColor = UIColor.init(white: 1, alpha: 0.50)
+        addEntryButton.tintColor = ThemeColor.overlay
         
         contentView.addSubview(addEntryButton)
         
@@ -115,13 +117,15 @@ extension SectionCell {
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30, weight: .light), scale: .small)
         
         editSectionButton.setImage(UIImage(systemName: "line.horizontal.3", withConfiguration: config), for: .normal)
-        editSectionButton.tintColor = UIColor.init(white: 1, alpha: 0.50)
+        editSectionButton.tintColor = ThemeColor.overlay
         
         contentView.addSubview(editSectionButton)
         
         // Add button action
         editSectionButton.addAction(UIAction { action in
-            // Display editing pop up
+            
+            // TODO: Present edit section pop-up
+            
         }, for: .touchUpInside)
         
         // Set constraints
@@ -138,8 +142,9 @@ extension SectionCell {
     private func setupStackView() {
         contentView.addSubview(stackView)
         
+        stackView.alignment = .leading
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
+        stackView.distribution = .equalSpacing
         stackView.spacing = 10
         
         // Constraints
@@ -150,10 +155,9 @@ extension SectionCell {
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
-            stackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -20)
         ])
         
-        // Add the starter entryViews to the stackView
+        // Add the starter number of entryViews to the stackView
         addStackViewSubViews()
     }
     
@@ -162,12 +166,21 @@ extension SectionCell {
         
         for _ in 1...numberOfEntries {
             let entry = EntryView()
+            
             stackView.addArrangedSubview(entry)
+            
+            entry.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                entry.heightAnchor.constraint(equalToConstant: 40),
+                entry.widthAnchor.constraint(equalTo: stackView.widthAnchor)
+            ])
         }
     }
 }
 
 // MARK: Action Handlers
+
 extension SectionCell {
     
     enum Action {

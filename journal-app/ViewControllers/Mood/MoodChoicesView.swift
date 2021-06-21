@@ -30,7 +30,7 @@ class MoodChoicesView: UIView {
 
 extension MoodChoicesView {
     private func setupView() {
-        self.backgroundColor = ThemeColors.peach
+        self.backgroundColor = ThemeColor.background
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowRadius = 5
         self.layer.shadowOpacity = 0.5
