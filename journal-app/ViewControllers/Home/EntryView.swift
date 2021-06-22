@@ -25,8 +25,9 @@ class EntryView: UIView, UITextFieldDelegate {
         textField.delegate = self
         
         textField.textColor = ThemeColor.subheading
+        textField.font = UIFont.systemFont(ofSize: 18, weight: .light)
         textField.backgroundColor = ThemeColor.overlay
-        textField.layer.borderColor = ThemeColor.subheading.cgColor
+        textField.layer.cornerRadius = 13
         
         self.addSubview(textField)
         

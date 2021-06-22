@@ -20,7 +20,8 @@ class SectionCell: UITableViewCell {
     lazy var title: UILabel = {
         let title = UILabel()
         
-        title.font = UIFont.systemFont(ofSize: 25, weight: .light)
+        title.font = UIFont.systemFont(ofSize: 25)
+        //title.font = UIFont.monospacedSystemFont(ofSize: 20, weight: .light)
         title.textColor = .white
         
         return title

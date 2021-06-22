@@ -53,7 +53,7 @@ extension TabBarViewController {
         menuButton.backgroundColor = ThemeColor.robinEggBlue
         menuButton.setTitle("+", for: .normal)
         menuButton.setTitleColor(ThemeColor.subheading, for: .normal)
-        menuButton.titleLabel?.font = UIFont.systemFont(ofSize: 35, weight: .ultraLight)
+        menuButton.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: .ultraLight)
         menuButton.layer.cornerRadius = menuButtonFrame.height / 2
         menuButton.layer.borderWidth = 0.8
         menuButton.layer.borderColor = ThemeColor.subheading.cgColor
