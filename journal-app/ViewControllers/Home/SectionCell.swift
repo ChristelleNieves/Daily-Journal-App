@@ -41,11 +41,11 @@ class SectionCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+
+        let bottomSpace: CGFloat = 5.0
+        let topSpace: CGFloat = 10.0
         
-        // THIS CODE WAS CAUSING THE PROBLEM
-        //let bottomSpace: CGFloat = 5.0
-        //let topSpace: CGFloat = 10.0
-        //self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: topSpace, left: 0, bottom: bottomSpace, right: 0))
+        self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: topSpace, left: 0, bottom: bottomSpace, right: 0))
     }
 }
 
@@ -143,11 +143,10 @@ extension SectionCell {
     private func setupStackView() {
         contentView.addSubview(stackView)
         
-        stackView.alignment = .leading
+        stackView.alignment = .fill
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillProportionally
         stackView.spacing = 10
-        stackView.autoresizesSubviews = false
         
         // Constraints
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -177,14 +176,6 @@ extension SectionCell {
         let entry = EntryView()
         
         stackView.addArrangedSubview(entry)
-        
-        entry.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            entry.heightAnchor.constraint(equalToConstant: 40),
-            entry.widthAnchor.constraint(equalTo: stackView.widthAnchor)
-        ])
-        
     }
 }
 

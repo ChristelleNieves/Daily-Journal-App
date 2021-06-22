@@ -10,6 +10,7 @@ import UIKit
 class EntryView: UIView, UITextFieldDelegate {
     
     let textField = UITextField()
+    private let height: CGFloat = 40
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,5 +48,9 @@ extension EntryView {
         textField.resignFirstResponder()
         
         return true
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 1, height: height)
     }
 }
