@@ -1,5 +1,8 @@
 # Daily-Journal-App
 A daily journal iOS application to keep track of your mood, to-do lists, goals, and more.
+- Add as many sections to your journal as you want
+- Customize the sections of your journal by choosing a title and color.
+- Mood tracking, built-in calendar, and daily journal writing prompts (currently in development)
 
-![Screen Shot 2021-06-17 at 12 57 48 AM](https://user-images.githubusercontent.com/29238419/122336103-4f2e7780-cf0a-11eb-8ce8-0056cae533ca.png)
-![Screen Shot 2021-06-17 at 1 14 41 AM](https://user-images.githubusercontent.com/29238419/122336110-5190d180-cf0a-11eb-89bd-dba2d219224b.png)
+<img width="385" alt="Screen Shot 2021-06-22 at 3 17 15 AM" src="https://user-images.githubusercontent.com/29238419/122880942-95b81380-d308-11eb-9f19-bc6346c730a6.png"><img width="380" alt="Screen Shot 2021-06-22 at 3 18 14 AM" src="https://user-images.githubusercontent.com/29238419/122880944-9650aa00-d308-11eb-82d6-61f141316989.png">
+<img width="380" alt="Screen Shot 2021-06-22 at 3 31 56 AM" src="https://user-images.githubusercontent.com/29238419/122882726-79b57180-d30a-11eb-874e-e89240223052.png">
