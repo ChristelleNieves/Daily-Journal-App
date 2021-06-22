@@ -71,8 +71,7 @@ extension HomeViewController {
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
         tableView.backgroundColor = ThemeColor.background
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = view.frame.height * 1/3
+        //tableView.estimatedRowHeight = view.frame.height * 1/3
         tableView.register(SectionCell.self, forCellReuseIdentifier: "SectionCell")
         
         view.addSubview(tableView)
@@ -124,7 +123,9 @@ extension HomeViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SectionCell", for: indexPath) as! SectionCell
         
         cell.setActionHandler { action in
+            
             self.tableView.reloadData()
+            
         }
         
         cell.title.text = sections[indexPath.row]

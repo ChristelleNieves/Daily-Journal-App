@@ -42,10 +42,10 @@ class SectionCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let bottomSpace: CGFloat = 5.0
-        let topSpace: CGFloat = 10.0
-        
-        self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: topSpace, left: 0, bottom: bottomSpace, right: 0))
+        // THIS CODE WAS CAUSING THE PROBLEM
+        //let bottomSpace: CGFloat = 5.0
+        //let topSpace: CGFloat = 10.0
+        //self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: topSpace, left: 0, bottom: bottomSpace, right: 0))
     }
 }
 
@@ -63,6 +63,7 @@ extension SectionCell {
     
     // Configure the contentView of the cell
     private func setupContentView() {
+        
         let background = UIView()
         
         background.backgroundColor = ThemeColor.background
@@ -97,7 +98,8 @@ extension SectionCell {
         // Add button action
         addEntryButton.addAction(UIAction { action in
             
-            self.didAddSection()
+            self.createAndAddEntryView()
+            self.didAddEntry()
             
         }, for: .touchUpInside)
         
@@ -108,7 +110,6 @@ extension SectionCell {
             addEntryButton.topAnchor.constraint(equalTo: title.topAnchor),
             addEntryButton.leadingAnchor.constraint(equalTo: title.trailingAnchor, constant: 5),
             addEntryButton.bottomAnchor.constraint(equalTo: title.bottomAnchor),
-            
             addEntryButton.widthAnchor.constraint(equalToConstant: 30)
         ])
     }
@@ -146,6 +147,7 @@ extension SectionCell {
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.spacing = 10
+        stackView.autoresizesSubviews = false
         
         // Constraints
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -154,28 +156,35 @@ extension SectionCell {
             stackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30)
         ])
         
         // Add the starter number of entryViews to the stackView
         addStackViewSubViews()
     }
     
-    // Add a defined number of entryViews to the stackView
-    func addStackViewSubViews() {
+    // Add a pre-defined number of entryViews to the stackView
+    private func addStackViewSubViews() {
         
         for _ in 1...numberOfEntries {
-            let entry = EntryView()
-            
-            stackView.addArrangedSubview(entry)
-            
-            entry.translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([
-                entry.heightAnchor.constraint(equalToConstant: 40),
-                entry.widthAnchor.constraint(equalTo: stackView.widthAnchor)
-            ])
+            createAndAddEntryView()
+            didAddEntry()
         }
+    }
+
+    // Create a new EntryView and add it to the StackView
+    private func createAndAddEntryView() {
+        let entry = EntryView()
+        
+        stackView.addArrangedSubview(entry)
+        
+        entry.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            entry.heightAnchor.constraint(equalToConstant: 40),
+            entry.widthAnchor.constraint(equalTo: stackView.widthAnchor)
+        ])
+        
     }
 }
 
@@ -184,18 +193,15 @@ extension SectionCell {
 extension SectionCell {
     
     enum Action {
-        case addSection
+        case addEntry
     }
     
     func setActionHandler(_ handler: @escaping ActionHandler) {
         self.actionHandler = handler
     }
     
-    // Add one entryView to the stackView
-    private func didAddSection() {
-        let entry = EntryView()
-        
-        stackView.addArrangedSubview(entry)
-        self.actionHandler?(.addSection)
+    // Triggered each time an entry is added to the stackView
+    private func didAddEntry() {
+        self.actionHandler?(.addEntry)
     }
 }
