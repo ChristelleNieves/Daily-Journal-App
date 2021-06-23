@@ -11,17 +11,15 @@ class SectionCell: UITableViewCell {
     
     typealias ActionHandler = (Action) -> ()
     private var actionHandler: ActionHandler?
-    
     private var numberOfEntries = 3
     private let addEntryButton = UIButton()
     private let editSectionButton = UIButton()
-    private let stackView = UIStackView()
+    var stackView = UIStackView()
     
     lazy var title: UILabel = {
         let title = UILabel()
         
         title.font = UIFont.systemFont(ofSize: 25)
-        //title.font = UIFont.monospacedSystemFont(ofSize: 20, weight: .light)
         title.textColor = .white
         
         return title
@@ -54,7 +52,7 @@ class SectionCell: UITableViewCell {
 extension SectionCell {
     
     // Configure all the views in this cell
-    private func setupAllSubviews() {
+    func setupAllSubviews() {
         setupContentView()
         setupTitleLabel()
         setupAddEntryButton()
@@ -127,6 +125,20 @@ extension SectionCell {
         editSectionButton.addAction(UIAction { action in
             
             // TODO: Present edit section pop-up
+            let vc = PopUpEditSectionViewController()
+            
+            vc.sectionName = self.title.text ?? ""
+            vc.modalPresentationStyle = .overCurrentContext
+            
+            vc.setActionHandler { action in
+                
+                self.didDeleteSection()
+            }
+            
+            DispatchQueue.main.async {
+                self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+            }
+            //self.window?.rootViewController?.present(vc, animated: true, completion: nil)
             
         }, for: .touchUpInside)
         
@@ -141,7 +153,8 @@ extension SectionCell {
         ])
     }
     
-    private func setupStackView() {
+    func setupStackView() {
+        
         contentView.addSubview(stackView)
         
         stackView.alignment = .fill
@@ -186,6 +199,7 @@ extension SectionCell {
     
     enum Action {
         case addEntry
+        case deleteSection
     }
     
     func setActionHandler(_ handler: @escaping ActionHandler) {
@@ -195,5 +209,13 @@ extension SectionCell {
     // Triggered each time an entry is added to the stackView
     private func didAddEntry() {
         self.actionHandler?(.addEntry)
+    }
+    
+    private func didDeleteSection() {
+        for view in stackView.subviews {
+            view.removeFromSuperview()
+        }
+        
+        self.actionHandler?(.deleteSection)
     }
 }

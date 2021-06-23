@@ -27,7 +27,7 @@ class PopUpViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        willDismissPopup()
+        //willDismissPopup()
     }
 }
 
@@ -85,6 +85,7 @@ extension PopUpViewController {
         // Add button action
         okButton.addAction(UIAction { action in
             
+            self.willDismissPopup()
             self.dismiss(animated: true, completion: nil)
             
         }, for: .touchUpInside)

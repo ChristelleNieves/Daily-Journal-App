@@ -13,6 +13,13 @@ class PopUpEditSectionViewController: UIViewController {
     var colorChoice: UIColor?
     private let okButton = UIButton()
     private let popUpView = PopUpEditSectionView(frame: CGRect.zero)
+    private let titleLabel = UILabel()
+    private let deleteLabel = UILabel()
+    private let yesButton = UIButton()
+    private let changeTitleLabel = UILabel()
+    private let changeTitleTextField = UITextField()
+    private let changeColorLabel = UILabel()
+    private var deleteSection: Bool = false
     
     typealias ActionHandler = (Action) -> ()
     private var actionHandler: ActionHandler?
@@ -22,14 +29,15 @@ class PopUpEditSectionViewController: UIViewController {
         setupView()
         setupPopUpEditSectionView()
         setupOkButton()
-
+        setupTitleLabel()
+        setupDeleteLabel()
+        setupYesButton()
+        setupChangeColorLabel()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        willDismissPopup()
     }
-
 }
 
 extension PopUpEditSectionViewController {
@@ -65,6 +73,73 @@ extension PopUpEditSectionViewController {
         ])
     }
     
+    private func setupTitleLabel() {
+        configureLabel(label: titleLabel, text: "Edit Section")
+        
+        // Constraints
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: popUpView.topAnchor, constant: 5),
+            titleLabel.centerXAnchor.constraint(equalTo: popUpView.centerXAnchor)
+        ])
+    }
+    
+    private func setupDeleteLabel() {
+        configureLabel(label: deleteLabel, text: "Delete this section?")
+        
+        // Constraints
+        deleteLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            deleteLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
+            deleteLabel.leadingAnchor.constraint(equalTo: popUpView.leadingAnchor, constant: 10),
+        ])
+    }
+    
+    private func setupYesButton() {
+        yesButton.layer.cornerRadius = 15
+        yesButton.layer.borderWidth = 0.5
+        yesButton.layer.borderColor = ThemeColor.subheading.cgColor
+        yesButton.backgroundColor = .clear
+        yesButton.setTitleColor(ThemeColor.heading, for: .normal)
+        popUpView.addSubview(yesButton)
+        
+        // Add action
+        yesButton.addAction(UIAction { action in
+            if !self.deleteSection {
+                self.deleteSection = true
+                self.yesButton.setTitle("X", for: .normal)
+            }
+            else {
+                self.deleteSection = false
+                self.yesButton.setTitle("", for: .normal)
+            }
+        }, for: .touchUpInside)
+        
+        // Constraints
+        yesButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            yesButton.topAnchor.constraint(equalTo: deleteLabel.topAnchor),
+            yesButton.leadingAnchor.constraint(equalTo: deleteLabel.trailingAnchor, constant: 50),
+            yesButton.heightAnchor.constraint(equalToConstant: 30),
+            yesButton.widthAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    private func setupChangeColorLabel() {
+        configureLabel(label: changeColorLabel, text: "Change section color:")
+        
+        // Constraints
+        changeColorLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            changeColorLabel.topAnchor.constraint(equalTo: deleteLabel.bottomAnchor, constant: 50),
+            changeColorLabel.leadingAnchor.constraint(equalTo: deleteLabel.leadingAnchor)
+        ])
+    }
+    
     // Set up the Ok button
     private func setupOkButton() {
         
@@ -86,6 +161,9 @@ extension PopUpEditSectionViewController {
         // Add button action
         okButton.addAction(UIAction { action in
             
+            if self.deleteSection {
+                self.willDismissPopup()
+            }
             self.dismiss(animated: true, completion: nil)
             
         }, for: .touchUpInside)
@@ -101,10 +179,21 @@ extension PopUpEditSectionViewController {
     }
 }
 
+// MARK: Helper Functions
+extension PopUpEditSectionViewController {
+    private func configureLabel(label: UILabel, text: String) {
+        label.text = text
+        label.textColor = ThemeColor.heading
+        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
+        popUpView.addSubview(label)
+    }
+}
+
+// MARK: Actions
 extension PopUpEditSectionViewController {
     
     enum Action {
-        case dismiss
+        case dismiss(Bool)
     }
     
     func setActionHandler(_ handler: @escaping ActionHandler) {
@@ -112,6 +201,6 @@ extension PopUpEditSectionViewController {
     }
     
     func willDismissPopup() {
-        
+        self.actionHandler?(.dismiss(deleteSection))
     }
 }

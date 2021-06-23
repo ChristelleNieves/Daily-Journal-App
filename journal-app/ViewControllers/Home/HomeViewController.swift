@@ -122,14 +122,24 @@ extension HomeViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SectionCell", for: indexPath) as! SectionCell
         
-        cell.setActionHandler { action in
-            
-            self.tableView.reloadData()
-            
-        }
-        
         cell.title.text = sections[indexPath.row]
         cell.contentView.backgroundColor = colors[indexPath.row]
+        
+        cell.setActionHandler { action in
+            
+            if action == .addEntry {
+                self.tableView.reloadData()
+            }
+            else if action == .deleteSection {
+                self.sections.remove(at: indexPath.row)
+                self.colors.remove(at: indexPath.row)
+                
+                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.left)
+                cell.setupAllSubviews()
+                
+                self.tableView.reloadData()
+            }
+        }
         
         return cell
     }
