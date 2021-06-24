@@ -133,7 +133,7 @@ extension HomeViewController {
                 print("Received deleteSection from SectionCell")
                 self.journal.removeSection(indexPath.row)
                 
-                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.left)
+                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
     
                 cell.emptyStackview()
                 cell.addStackViewSubViews()
@@ -161,7 +161,6 @@ extension HomeViewController {
                 print("Received dismissal from popupVC")
                 guard !vc.sectionName.trimmingCharacters(in: .whitespaces).isEmpty else {
                     self.noSectionsView.isHidden = false
-                    //self.tableView.reloadData()
                     return
                 }
                 

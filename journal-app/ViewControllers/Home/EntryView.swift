@@ -44,6 +44,9 @@ class EntryView: UIView, UITextFieldDelegate {
 }
 
 extension EntryView {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // TODO
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
