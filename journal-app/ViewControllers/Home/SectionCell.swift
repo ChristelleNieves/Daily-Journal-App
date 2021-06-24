@@ -60,6 +60,13 @@ extension SectionCell {
         setupStackView()
     }
     
+    func emptyStackview() {
+        for view in stackView.subviews {
+            stackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
+        }
+    }
+    
     // Configure the contentView of the cell
     private func setupContentView() {
         
@@ -177,7 +184,7 @@ extension SectionCell {
     }
     
     // Add a pre-defined number of entryViews to the stackView
-    private func addStackViewSubViews() {
+    func addStackViewSubViews() {
         
         for _ in 1...numberOfEntries {
             createAndAddEntryView()

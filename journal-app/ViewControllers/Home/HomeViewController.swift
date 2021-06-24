@@ -9,9 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var sectionname = ""
-    private var colors = [UIColor]()
-    private var sections = [String]()
+    var journal = Journal()
     private let tableView = UITableView()
     private let refreshControl = UIRefreshControl()
     private let headerView = TableHeader(frame: CGRect.zero)
@@ -71,7 +69,6 @@ extension HomeViewController {
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
         tableView.backgroundColor = ThemeColor.background
-        //tableView.estimatedRowHeight = view.frame.height * 1/3
         tableView.register(SectionCell.self, forCellReuseIdentifier: "SectionCell")
         
         view.addSubview(tableView)
@@ -106,7 +103,7 @@ extension HomeViewController {
 extension HomeViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if sections.count == 0 {
+        if journal.isEmpty() {
             // Display message
             tableView.isHidden = true
             noSectionsView.isHidden = false
@@ -115,29 +112,34 @@ extension HomeViewController {
         else {
             tableView.isHidden = false
             noSectionsView.isHidden = true
-            return sections.count
+            return journal.getNumberOfSections()
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SectionCell", for: indexPath) as! SectionCell
         
-        cell.title.text = sections[indexPath.row]
-        cell.contentView.backgroundColor = colors[indexPath.row]
+        cell.title.text = journal.sections[indexPath.row].getSectionTitle()
+        cell.contentView.backgroundColor = journal.sections[indexPath.row].getSectionColor()
         
         cell.setActionHandler { action in
             
             if action == .addEntry {
+                print("Received addEntry from SectionCell")
                 self.tableView.reloadData()
+                return
             }
             else if action == .deleteSection {
-                self.sections.remove(at: indexPath.row)
-                self.colors.remove(at: indexPath.row)
+                print("Received deleteSection from SectionCell")
+                self.journal.removeSection(indexPath.row)
                 
                 tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.left)
-                cell.setupAllSubviews()
+    
+                cell.emptyStackview()
+                cell.addStackViewSubViews()
                 
                 self.tableView.reloadData()
+                return
             }
         }
         
@@ -150,29 +152,31 @@ extension HomeViewController {
 extension HomeViewController {
     
     // Display the pop up vc to add a section
-    private func goToPopupVC() {
+    private func goToPopupVC(){
         let vc = PopUpViewController()
         
         vc.setActionHandler { action in
             
-            guard !vc.sectionName.trimmingCharacters(in: .whitespaces).isEmpty else {
-                self.noSectionsView.isHidden = false
+            if action == .dismiss {
+                print("Received dismissal from popupVC")
+                guard !vc.sectionName.trimmingCharacters(in: .whitespaces).isEmpty else {
+                    self.noSectionsView.isHidden = false
+                    //self.tableView.reloadData()
+                    return
+                }
+                
+                let newSection = Section(title: vc.sectionName, color: vc.colorChoice!)
+
+                self.journal.addSection(newSection)
+                let _ = self.journal.getNumberOfSections()
+                
                 self.tableView.reloadData()
                 return
             }
-            
-            self.addNewSection(name: vc.sectionName, color: vc.colorChoice!)
-            self.tableView.reloadData()
-            
         }
         
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true, completion: nil)
-    }
-    
-    private func addNewSection(name: String, color: UIColor) {
-        sections.append(name)
-        colors.append(color)
     }
     
     func showPopUp() {

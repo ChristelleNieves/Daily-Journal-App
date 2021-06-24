@@ -27,7 +27,7 @@ class PopUpViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        //willDismissPopup()
+        willDismissPopup()
     }
 }
 
@@ -84,8 +84,7 @@ extension PopUpViewController {
         
         // Add button action
         okButton.addAction(UIAction { action in
-            
-            self.willDismissPopup()
+    
             self.dismiss(animated: true, completion: nil)
             
         }, for: .touchUpInside)
@@ -105,7 +104,7 @@ extension PopUpViewController {
 extension PopUpViewController {
     
     enum Action {
-        case dismiss(String, UIColor)
+        case dismiss
     }
     
     func setActionHandler(_ handler: @escaping ActionHandler) {
@@ -116,6 +115,6 @@ extension PopUpViewController {
     private func willDismissPopup() {
         self.sectionName = popUpView.getName()
         self.colorChoice = popUpView.getColorChoice()
-        self.actionHandler?(.dismiss(sectionName, colorChoice!))
+        self.actionHandler?(.dismiss)
     }
 }
