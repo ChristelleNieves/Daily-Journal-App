@@ -9,6 +9,7 @@ import UIKit
 
 class SectionCell: UITableViewCell {
     
+    private var entryViews = [EntryView]()
     typealias ActionHandler = (Action) -> ()
     private var actionHandler: ActionHandler?
     private var numberOfEntries = 3
@@ -145,7 +146,6 @@ extension SectionCell {
             DispatchQueue.main.async {
                 self.window?.rootViewController?.present(vc, animated: true, completion: nil)
             }
-            //self.window?.rootViewController?.present(vc, animated: true, completion: nil)
             
         }, for: .touchUpInside)
         
@@ -194,9 +194,19 @@ extension SectionCell {
 
     // Create a new EntryView and add it to the StackView
     private func createAndAddEntryView() {
-        let entry = EntryView()
+        let entryView = EntryView()
         
-        stackView.addArrangedSubview(entry)
+        entryViews.append(entryView)
+        
+        entryView.setActionHandler { action in
+            
+            switch action {
+            case .editEntry:
+                self.didEditEntry()
+            }
+        }
+        
+        stackView.addArrangedSubview(entryView)
     }
 }
 
@@ -205,6 +215,7 @@ extension SectionCell {
 extension SectionCell {
     
     enum Action {
+        case editEntry([Entry])
         case addEntry
         case deleteSection
     }
@@ -216,6 +227,16 @@ extension SectionCell {
     // Triggered each time an entry is added to the stackView
     private func didAddEntry() {
         self.actionHandler?(.addEntry)
+    }
+    
+    private func didEditEntry() {
+        var entries = [Entry]()
+        
+        for view in entryViews {
+            entries.append(Entry(text: view.textField.text ?? ""))
+        }
+        
+        self.actionHandler?(.editEntry(entries))
     }
     
     private func didDeleteSection() {

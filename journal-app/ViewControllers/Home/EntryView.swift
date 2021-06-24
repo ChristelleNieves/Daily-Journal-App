@@ -9,7 +9,9 @@ import UIKit
 
 class EntryView: UIView, UITextFieldDelegate {
     
-    let textField = UITextField()
+    typealias ActionHandler = (Action) -> ()
+    private var actionHandler: ActionHandler?
+    var textField = UITextField()
     private let height: CGFloat = 40
     
     override init(frame: CGRect) {
@@ -45,7 +47,7 @@ class EntryView: UIView, UITextFieldDelegate {
 
 extension EntryView {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        // TODO
+        didEditEntry()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -56,5 +58,19 @@ extension EntryView {
     
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 1, height: height)
+    }
+}
+
+extension EntryView {
+    enum Action {
+        case editEntry
+    }
+    
+    func setActionHandler(_ handler: @escaping ActionHandler) {
+        self.actionHandler = handler
+    }
+    
+    func didEditEntry() {
+        self.actionHandler?(.editEntry)
     }
 }

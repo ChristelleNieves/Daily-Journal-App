@@ -66,7 +66,6 @@ extension HomeViewController {
         tableView.dataSource = self
         tableView.allowsSelection = false
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .none
         tableView.separatorStyle = .none
         tableView.backgroundColor = ThemeColor.background
         tableView.register(SectionCell.self, forCellReuseIdentifier: "SectionCell")
@@ -101,6 +100,7 @@ extension HomeViewController {
 // MARK: TableView Functions
 
 extension HomeViewController {
+    // If the table view is empty, show a view that informs the user to add a section. Otheriwse, display the sections of the journal
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if journal.isEmpty() {
@@ -122,24 +122,37 @@ extension HomeViewController {
         cell.title.text = journal.sections[indexPath.row].getSectionTitle()
         cell.contentView.backgroundColor = journal.sections[indexPath.row].getSectionColor()
         
+        // Handle cell actions here
         cell.setActionHandler { action in
             
-            if action == .addEntry {
-                print("Received addEntry from SectionCell")
+            switch action {
+            
+            case .editEntry(let entries):
+                // Save the updated entries array to the journal
+                self.journal.sections[indexPath.row].entries = entries
+                break
+            case .addEntry:
+                guard self.journal.sections.count > indexPath.row else { return }
+                // Add an empty entry to the current journal section
+                self.journal.sections[indexPath.row].addEntry(Entry(text: ""))
+                
+                // Reload the table view
                 self.tableView.reloadData()
-                return
-            }
-            else if action == .deleteSection {
-                print("Received deleteSection from SectionCell")
+                break
+            case .deleteSection:
+                // Remove the section from the journal
                 self.journal.removeSection(indexPath.row)
                 
+                // Delete the row from the table view
                 tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
     
+                // Reset the stackview within the cell
                 cell.emptyStackview()
                 cell.addStackViewSubViews()
                 
+                // Reload the table view
                 self.tableView.reloadData()
-                return
+                break
             }
         }
         
@@ -158,22 +171,25 @@ extension HomeViewController {
         vc.setActionHandler { action in
             
             if action == .dismiss {
-                print("Received dismissal from popupVC")
+                // Make sure the section name is not all whitespace characters
                 guard !vc.sectionName.trimmingCharacters(in: .whitespaces).isEmpty else {
                     self.noSectionsView.isHidden = false
                     return
                 }
                 
-                let newSection = Section(title: vc.sectionName, color: vc.colorChoice!)
+                // Create a new section with the title and color from the popupVC, and a new entry array
+                let newSection = Section(title: vc.sectionName, color: vc.colorChoice!, entries: [Entry]())
 
+                // Add the newly created section to the journal
                 self.journal.addSection(newSection)
-                let _ = self.journal.getNumberOfSections()
                 
+                // Reload the table view
                 self.tableView.reloadData()
                 return
             }
         }
         
+        // Present the pop-up vc
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true, completion: nil)
     }
@@ -195,7 +211,6 @@ extension HomeViewController {
     
     // Scroll the tableView up when the keyboard is visible
     @objc func keyboardWillShow(_ notification:Notification) {
-        
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 40, right: 0)
         }
