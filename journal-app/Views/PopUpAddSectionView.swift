@@ -128,7 +128,7 @@ extension PopUpAddSectionView {
     }
     
     func getColorChoice() -> UIColor {
-        return colorButtonView.colorChoice
+        return colorButtonView.colorChoice ?? ThemeColor.robinEggBlue
     }
 }
 
