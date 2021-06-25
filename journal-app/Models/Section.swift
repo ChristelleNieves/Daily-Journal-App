@@ -10,6 +10,7 @@ import UIKit
 
 struct Journal {
     
+    var date = Date()
     var sections = [Section]()
     
     func isEmpty() -> Bool{
