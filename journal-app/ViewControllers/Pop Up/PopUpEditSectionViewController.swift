@@ -9,8 +9,8 @@ import UIKit
 
 class PopUpEditSectionViewController: UIViewController {
 
-    lazy var sectionName = ""
     var colorChoice: UIColor?
+    lazy var sectionName = ""
     private let okButton = UIButton()
     private let popUpView = PopUpEditSectionView(frame: CGRect.zero)
     private let titleLabel = UILabel()
@@ -32,7 +32,6 @@ class PopUpEditSectionViewController: UIViewController {
         setupTitleLabel()
         setupDeleteLabel()
         setupYesButton()
-        setupChangeColorLabel()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -98,7 +97,7 @@ extension PopUpEditSectionViewController {
     }
     
     private func setupYesButton() {
-        yesButton.layer.cornerRadius = 15
+        yesButton.layer.cornerRadius = 14
         yesButton.layer.borderWidth = 0.5
         yesButton.layer.borderColor = ThemeColor.subheading.cgColor
         yesButton.backgroundColor = .clear
@@ -123,11 +122,12 @@ extension PopUpEditSectionViewController {
         NSLayoutConstraint.activate([
             yesButton.topAnchor.constraint(equalTo: deleteLabel.topAnchor),
             yesButton.leadingAnchor.constraint(equalTo: deleteLabel.trailingAnchor, constant: 50),
-            yesButton.heightAnchor.constraint(equalToConstant: 30),
-            yesButton.widthAnchor.constraint(equalToConstant: 30)
+            yesButton.heightAnchor.constraint(equalToConstant: 28),
+            yesButton.widthAnchor.constraint(equalToConstant: 28)
         ])
     }
     
+    /*
     private func setupChangeColorLabel() {
         configureLabel(label: changeColorLabel, text: "Change section color:")
         
@@ -139,6 +139,7 @@ extension PopUpEditSectionViewController {
             changeColorLabel.leadingAnchor.constraint(equalTo: deleteLabel.leadingAnchor)
         ])
     }
+ */
     
     // Set up the Ok button
     private func setupOkButton() {
@@ -177,6 +178,7 @@ extension PopUpEditSectionViewController {
             okButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/5)
         ])
     }
+ 
 }
 
 // MARK: Helper Functions
@@ -184,7 +186,7 @@ extension PopUpEditSectionViewController {
     private func configureLabel(label: UILabel, text: String) {
         label.text = text
         label.textColor = ThemeColor.heading
-        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .light)
         popUpView.addSubview(label)
     }
 }

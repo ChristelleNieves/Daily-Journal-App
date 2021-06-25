@@ -27,7 +27,6 @@ extension PopUpEditSectionView {
     }
     
     private func setupView() {
-        
         self.backgroundColor = ThemeColor.background
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowRadius = 5

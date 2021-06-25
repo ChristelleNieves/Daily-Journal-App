@@ -9,10 +9,10 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var journal = Journal()
+    private var journal = Journal()
     private let tableView = UITableView()
     private let refreshControl = UIRefreshControl()
-    private let headerView = TableHeader(frame: CGRect.zero)
+    private let headerView = TableHeaderView(frame: CGRect.zero)
     private let noSectionsView = NoSectionsView(frame: CGRect.zero)
     
     override func viewDidLoad() {
@@ -100,9 +100,9 @@ extension HomeViewController {
 // MARK: TableView Functions
 
 extension HomeViewController {
-    // If the table view is empty, show a view that informs the user to add a section. Otheriwse, display the sections of the journal
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        // If the table view is empty, show a view that informs the user to add a section. Otheriwse, display the sections of the journal
         if journal.isEmpty() {
             // Display message
             tableView.isHidden = true
@@ -126,7 +126,6 @@ extension HomeViewController {
         cell.setActionHandler { action in
             
             switch action {
-            
             case .editEntry(let entries):
                 // Save the updated entries array to the journal
                 self.journal.sections[indexPath.row].entries = entries
@@ -200,7 +199,7 @@ extension HomeViewController {
     }
 }
 
-// MARK: Keyboard Configuration
+// MARK: Keyboard Actions
 
 extension HomeViewController {
     

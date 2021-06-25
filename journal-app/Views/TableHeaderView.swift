@@ -1,5 +1,5 @@
 //
-//  TableHeader.swift
+//  TableHeaderView.swift
 //  journal-app
 //
 //  Created by Christelle Nieves on 6/16/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableHeader: UIView {
+class TableHeaderView: UIView {
     
     let dayLabel = UILabel()
     let dateLabel = UILabel()
@@ -31,7 +31,7 @@ class TableHeader: UIView {
 }
 
 // MARK: UI Setup
-extension TableHeader {
+extension TableHeaderView {
     private func setupDayLabel() {
         dayLabel.text = getTodayWeekDay()
         dayLabel.font = UIFont.systemFont(ofSize: 30, weight: .light)
@@ -107,7 +107,7 @@ extension TableHeader {
 }
 
 // MARK: Date Helper Functions
-extension TableHeader {
+extension TableHeaderView {
     
     private func formatDate() -> String {
         let dateFormatter = DateFormatter()

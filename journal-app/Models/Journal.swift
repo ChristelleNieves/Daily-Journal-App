@@ -1,5 +1,5 @@
 //
-//  Section.swift
+//  Journal.swift
 //  journal-app
 //
 //  Created by Christelle Nieves on 6/20/21.

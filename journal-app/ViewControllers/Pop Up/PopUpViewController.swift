@@ -14,7 +14,6 @@ class PopUpViewController: UIViewController {
     var colorChoice: UIColor?
     private let okButton = UIButton()
     private let popUpView = PopUpAddSectionView(frame: CGRect.zero)
-    
     typealias ActionHandler = (Action) -> ()
     private var actionHandler: ActionHandler?
 
@@ -35,9 +34,7 @@ extension PopUpViewController {
     
     // Setup the main view
     private func setupView() {
-        
         view.backgroundColor = .clear
-        overrideUserInterfaceStyle = .light
         
         // Set up the blur effect
         let blurEffect = UIBlurEffect(style: .systemThickMaterial)
@@ -66,7 +63,6 @@ extension PopUpViewController {
     
     // Set up the Ok button
     private func setupOkButton() {
-        
         // Button appearance
         okButton.setTitle("Ok", for: .normal)
         okButton.setTitleColor(UIColor.darkGray, for: .normal)
@@ -102,7 +98,6 @@ extension PopUpViewController {
 
 // MARK: Action Handlers
 extension PopUpViewController {
-    
     enum Action {
         case dismiss
     }

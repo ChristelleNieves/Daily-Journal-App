@@ -9,19 +9,11 @@ import UIKit
 
 class PopUpAddSectionView: UIView, UITextFieldDelegate {
     
-    // Labels
     private let titleLabel = UILabel()
-    private let colorLabel = UILabel()
     private let journalTitleLabel = UILabel()
-    
-    // Buttons
-    private var buttons = [UIButton]()
-    
-    // Other
     private var colorChoice: UIColor?
     private let journalTitleTextField = UITextField()
-    private let buttonColors = [ThemeColor.robinEggBlue, ThemeColor.salmonPink, ThemeColor.peachPuff, ThemeColor.lilac]
-    
+    private let colorButtonView = ColorButtonView(frame: CGRect.zero)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,7 +30,6 @@ class PopUpAddSectionView: UIView, UITextFieldDelegate {
 extension PopUpAddSectionView {
     
     private func setupView() {
-        
         self.backgroundColor = ThemeColor.background
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowRadius = 5
@@ -47,7 +38,6 @@ extension PopUpAddSectionView {
     }
     
     private func setupTitleLabel() {
-        
         titleLabel.text = "Add New Section"
         titleLabel.textColor = UIColor.darkGray
         titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .light)
@@ -64,7 +54,6 @@ extension PopUpAddSectionView {
     }
     
     private func setupJournalTitleLabel() {
-        
         configureLabel(label: journalTitleLabel, text: "Section Name:")
         
         // Set Constraints
@@ -77,7 +66,6 @@ extension PopUpAddSectionView {
     }
     
     private func setupJournalTitleTextField() {
-        
         journalTitleTextField.delegate = self
         journalTitleTextField.backgroundColor = .clear
         journalTitleTextField.borderStyle = .roundedRect
@@ -95,119 +83,42 @@ extension PopUpAddSectionView {
         ])
     }
     
-    private func setupColorLabel() {
+    private func setupColorButtonView() {
+        self.addSubview(colorButtonView)
+        colorButtonView.label.text = "Section Color:"
+        colorButtonView.isUserInteractionEnabled = true
         
-        configureLabel(label: colorLabel, text: "Section Color:")
-        
-        // Set Constraints
-        colorLabel.translatesAutoresizingMaskIntoConstraints = false
+        // Set constraints
+        colorButtonView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            colorLabel.topAnchor.constraint(equalTo: journalTitleLabel.bottomAnchor, constant: 70),
-            colorLabel.leadingAnchor.constraint(equalTo: journalTitleLabel.leadingAnchor)
+            colorButtonView.topAnchor.constraint(equalTo: journalTitleLabel.bottomAnchor, constant: 70),
+            colorButtonView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            colorButtonView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            colorButtonView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
-    
-    // Sets up all the cholor choice buttons
-    private func setupColorButtons() {
-        
-        for i in 0...buttonColors.count - 1 {
-            let button = UIButton()
-            
-            configureColorButton(button: button)
-            buttons.append(button)
-            
-            button.backgroundColor = buttonColors[i]
-            
-            // Add button action
-            button.addAction(UIAction { action in
-                
-                self.colorChoice = self.buttonColors[i]
-                self.addBorderToButton(button: button)
-                self.uncheckOtherButtons(button: button)
-                
-            }, for: .touchUpInside)
-            
-            // Set constraints
-            button.translatesAutoresizingMaskIntoConstraints = false
-            
-            // The first button will be constrained to the colorLabel. Other buttons will be constrained to the previous button in the array
-            if i == 0 {
-                
-                // Display a border around the first color button by default
-                addBorderToButton(button: button)
-                
-                NSLayoutConstraint.activate([
-                    button.topAnchor.constraint(equalTo: colorLabel.topAnchor),
-                    button.leadingAnchor.constraint(equalTo: colorLabel.trailingAnchor, constant: 15)
-                ])
-            }
-            else {
-                NSLayoutConstraint.activate([
-                    button.topAnchor.constraint(equalTo: colorLabel.topAnchor),
-                    button.leadingAnchor.constraint(equalTo: buttons[i - 1].trailingAnchor, constant: 12)
-                ])
-            }
-        }
-    }
-    
-    // Remove the border from all buttons other than the current one
-    private func uncheckOtherButtons(button: UIButton) {
-        
-        // Go through the buttons array and remove thick borders from any button that is not the currently chosen one
-        for colorButton in self.buttons {
-            
-            if colorButton != button {
-                colorButton.layer.borderWidth = 0.5
-                colorButton.layer.borderColor = ThemeColor.heading.cgColor
-            }
-        }
-    }
-    
-    // Add a border around a button
-    private func addBorderToButton(button: UIButton) {
-        // Display a border around the color button that is currently chosen
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.darkGray.withAlphaComponent(0.80).cgColor
-    }
 }
-
 
 // MARK: Helper Functions
 
 extension PopUpAddSectionView {
-    
     // Add all the subviews to the main view
     private func setupAllSubviews() {
         setupView()
         setupTitleLabel()
         setupJournalTitleLabel()
         setupJournalTitleTextField()
-        setupColorLabel()
-        setupColorButtons()
-        
+        setupColorButtonView()
     }
     
     // Configures the style aspects of a label
     private func configureLabel(label: UILabel, text: String) {
-        
         label.text = text
-        label.textColor = UIColor.darkGray
+        label.textColor = ThemeColor.heading
         label.font = UIFont.systemFont(ofSize: 17, weight: .light)
         
         self.addSubview(label)
-    }
-    
-    // Configures the style aspects of a color choice button
-    private func configureColorButton(button: UIButton) {
-        
-        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        button.layer.cornerRadius = button.frame.size.width * 0.5
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = ThemeColor.heading.cgColor
-        button.clipsToBounds = true
-        
-        self.addSubview(button)
     }
     
     // Returns the text from the title textField, or an empty string if text is nil.
@@ -216,18 +127,14 @@ extension PopUpAddSectionView {
         return journalTitleTextField.text?.description ?? ""
     }
     
-    // Returns the color chosen by the user
     func getColorChoice() -> UIColor {
-        
-        return colorChoice ?? ThemeColor.robinEggBlue
+        return colorButtonView.colorChoice
     }
 }
-
 
 // MARK: TextField
 extension PopUpAddSectionView {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
         
         return true
@@ -235,7 +142,6 @@ extension PopUpAddSectionView {
     
     // Only allow textfield to accept 30 characters or less
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         // get the current text, or use an empty string if that failed
         let currentText = textField.text ?? ""
 
