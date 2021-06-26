@@ -86,14 +86,13 @@ extension AddSectionView {
     private func setupColorButtonView() {
         self.addSubview(colorButtonView)
         colorButtonView.label.text = "Section Color:"
-        colorButtonView.isUserInteractionEnabled = true
         
         // Set constraints
         colorButtonView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             colorButtonView.topAnchor.constraint(equalTo: journalTitleLabel.bottomAnchor, constant: 70),
-            colorButtonView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            colorButtonView.leadingAnchor.constraint(equalTo: journalTitleLabel.leadingAnchor),
             colorButtonView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             colorButtonView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])

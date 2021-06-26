@@ -132,6 +132,7 @@ extension HomeViewController {
                 break
             case .addEntry:
                 guard self.journal.sections.count > indexPath.row else { return }
+                
                 // Add an empty entry to the current journal section
                 self.journal.sections[indexPath.row].addEntry(Entry(text: ""))
                 
@@ -151,6 +152,18 @@ extension HomeViewController {
                 
                 // Reload the table view
                 self.tableView.reloadData()
+                break
+            case .editSectionTitle(let newTitle):
+                self.journal.sections[indexPath.row].setSectionTitle(newTitle)
+                self.tableView.reloadData()
+                break
+            case .editSectionColor(let newColor):
+                let currentColor = self.journal.sections[indexPath.row].getSectionColor()
+                
+                if newColor != currentColor {
+                    self.journal.sections[indexPath.row].setSectionColor(newColor)
+                    self.tableView.reloadData()
+                }
                 break
             }
         }

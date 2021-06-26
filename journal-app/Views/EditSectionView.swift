@@ -7,17 +7,17 @@
 
 import UIKit
 
-class EditSectionView: UIView {
+class EditSectionView: UIView, UITextFieldDelegate {
     
+    var changedTitle: Bool = false
     lazy var sectionName = ""
-    var colorChoice: UIColor?
     var deleteSection: Bool = false
     private let titleLabel = UILabel()
     private let deleteLabel = UILabel()
     private let yesButton = UIButton()
     private let changeTitleLabel = UILabel()
     private let changeTitleTextField = UITextField()
-    private let changeColorLabel = UILabel()
+    var colorButtonView = ColorButtonView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,6 +25,9 @@ class EditSectionView: UIView {
         setupTitleLabel()
         setupDeleteLabel()
         setupYesButton()
+        setupChangeTitleLabel()
+        setupChangeTitleTextField()
+        setupColorButtonView()
     }
     
     required init?(coder: NSCoder) {
@@ -69,7 +72,7 @@ extension EditSectionView {
         deleteLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            deleteLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
+            deleteLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
             deleteLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
         ])
     }
@@ -104,4 +107,82 @@ extension EditSectionView {
             yesButton.widthAnchor.constraint(equalToConstant: 28)
         ])
     }
+    
+    private func setupChangeTitleLabel() {
+        configureLabel(label: changeTitleLabel, text: "Change Title:")
+        
+        // Set Constraints
+        changeTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            changeTitleLabel.topAnchor.constraint(equalTo: deleteLabel.bottomAnchor, constant: 40),
+            changeTitleLabel.leadingAnchor.constraint(equalTo: deleteLabel.leadingAnchor)
+        ])
+    }
+    
+    private func setupChangeTitleTextField() {
+        changeTitleTextField.delegate = self
+        changeTitleTextField.backgroundColor = .clear
+        changeTitleTextField.borderStyle = .roundedRect
+        changeTitleTextField.attributedPlaceholder = NSAttributedString(string: "Enter New title here..")
+        
+        self.addSubview(changeTitleTextField)
+        
+        // Set Constraints
+        changeTitleTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            changeTitleTextField.topAnchor.constraint(equalTo: changeTitleLabel.topAnchor),
+            changeTitleTextField.leadingAnchor.constraint(equalTo: changeTitleLabel.trailingAnchor, constant: 5),
+            changeTitleTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
+        ])
+    }
+    
+    private func setupColorButtonView() {
+        self.addSubview(colorButtonView)
+        
+        colorButtonView.label.text = "Change Color:"
+        
+        // Set constraints
+        colorButtonView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            colorButtonView.topAnchor.constraint(equalTo: changeTitleLabel.bottomAnchor, constant: 40),
+            colorButtonView.leadingAnchor.constraint(equalTo: changeTitleLabel.leadingAnchor),
+            colorButtonView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            colorButtonView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+    }
+    // Returns the text from the title textField, or an empty string if text is nil.
+    func getName() -> String {
+        
+        return changeTitleTextField.text?.description ?? ""
+    }
 }
+
+// MARK: TextField
+extension EditSectionView {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        self.changedTitle = true
+        
+        return true
+    }
+    
+    // Only allow textfield to accept 30 characters or less
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // get the current text, or use an empty string if that failed
+        let currentText = textField.text ?? ""
+        
+        // attempt to read the range they are trying to change, or exit if we can't
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        
+        // add their new text to the existing text
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        
+        // make sure the result is under 25 characters
+        return updatedText.count <= 25
+    }
+}
+

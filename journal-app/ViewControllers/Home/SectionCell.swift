@@ -139,10 +139,22 @@ extension SectionCell {
             vc.sectionName = self.title.text ?? ""
             vc.modalPresentationStyle = .overCurrentContext
             
-            
             vc.setActionHandler { action in
                 
-                self.didDeleteSection()
+                switch action {
+                case .dismiss:
+                    if vc.deleteSection {
+                        self.didDeleteSection()
+                        break
+                    }
+                    else if vc.changedTitle {
+                        self.didChangeSectionTitle(vc.sectionName)
+                    }
+                    if vc.changedColor {
+                        guard vc.colorChoice != nil else { return }
+                        self.didChangeSectionColor(vc.colorChoice!)
+                    }
+                }
             }
             
             DispatchQueue.main.async {
@@ -163,7 +175,6 @@ extension SectionCell {
     }
     
     func setupStackView() {
-        
         contentView.addSubview(stackView)
         
         stackView.alignment = .fill
@@ -187,7 +198,6 @@ extension SectionCell {
     
     // Add a pre-defined number of entryViews to the stackView
     func addStackViewSubViews() {
-        
         for _ in 1...numberOfEntries {
             createAndAddEntryView()
             didAddEntry()
@@ -215,11 +225,12 @@ extension SectionCell {
 // MARK: Action Handlers
 
 extension SectionCell {
-    
     enum Action {
         case editEntry([Entry])
         case addEntry
         case deleteSection
+        case editSectionTitle(String)
+        case editSectionColor(UIColor)
     }
     
     func setActionHandler(_ handler: @escaping ActionHandler) {
@@ -229,6 +240,16 @@ extension SectionCell {
     // Triggered each time an entry is added to the stackView
     private func didAddEntry() {
         self.actionHandler?(.addEntry)
+    }
+    
+    private func didChangeSectionTitle(_ title: String) {
+        guard !title.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+        
+        self.actionHandler?(.editSectionTitle(title))
+    }
+    
+    private func didChangeSectionColor(_ color: UIColor) {
+        self.actionHandler?(.editSectionColor(color))
     }
     
     private func didEditEntry() {

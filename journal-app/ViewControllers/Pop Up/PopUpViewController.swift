@@ -15,12 +15,14 @@ enum PopupMode {
 
 class PopUpViewController: UIViewController {
     
+    var changedColor: Bool = false
+    var changedTitle: Bool = false
     var colorChoice: UIColor?
     lazy var sectionName = ""
     lazy var mode: PopupMode = .addSection
     lazy var popupView: UIView = UIView()
     private let okButton = UIButton()
-    private var deleteSection: Bool = false
+    var deleteSection: Bool = false
     
     typealias ActionHandler = (Action) -> ()
     private var actionHandler: ActionHandler?
@@ -140,6 +142,19 @@ extension PopUpViewController {
         if let popup = popupView as? AddSectionView {
             self.sectionName = popup.getName()
             self.colorChoice = popup.getColorChoice()
+        }
+        else if let popup = popupView as? EditSectionView {
+            if popup.deleteSection {
+                self.deleteSection = true
+            }
+            if popup.getName() != "" {
+                self.changedTitle = true
+                self.sectionName = popup.getName()
+            }
+            if popup.colorButtonView.colorChoice != nil {
+                self.changedColor = true
+                self.colorChoice = popup.colorButtonView.colorChoice
+            }
         }
         
         self.actionHandler?(.dismiss)
