@@ -8,19 +8,27 @@
 import Foundation
 import UIKit
 
+enum PopupMode {
+    case addSection
+    case editSection
+}
+
 class PopUpViewController: UIViewController {
     
+    lazy var mode: PopupMode = .addSection
+    lazy var popupView: UIView = UIView()
     lazy var sectionName = ""
     var colorChoice: UIColor?
     private let okButton = UIButton()
-    private let popUpView = PopUpAddSectionView(frame: CGRect.zero)
+    private var deleteSection: Bool = false
+    
     typealias ActionHandler = (Action) -> ()
     private var actionHandler: ActionHandler?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupPopUpView()
+        setupPopupView()
         setupOkButton()
     }
     
@@ -46,18 +54,26 @@ extension PopUpViewController {
         self.view.insertSubview(blurEffectView, at: 0)
     }
     
-    // Set up the pop-up view
-    private func setupPopUpView() {
-        view.addSubview(popUpView)
+    // Set up the correct pop-up view according to the current pop-up mode
+    private func setupPopupView() {
+        
+        switch mode {
+        case .addSection:
+            popupView = AddSectionView(frame: CGRect.zero)
+        case .editSection:
+            popupView = EditSectionView(frame: CGRect.zero)
+        }
+        
+        view.addSubview(popupView)
         
         // Constraints
-        popUpView.translatesAutoresizingMaskIntoConstraints = false
+        popupView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            popUpView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            popUpView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
-            popUpView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            popUpView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
+            popupView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            popupView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            popupView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            popupView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
         ])
     }
     
@@ -81,15 +97,24 @@ extension PopUpViewController {
         // Add button action
         okButton.addAction(UIAction { action in
     
-            self.dismiss(animated: true, completion: nil)
-            
+            // Set the action according to the current mode
+            switch self.mode {
+                case .addSection:
+                    self.dismiss(animated: true, completion: nil)
+                case .editSection:
+                if self.deleteSection {
+                    self.deleteSection = true
+                    self.willDismissPopup()
+                }
+                self.dismiss(animated: true, completion: nil)
+            }
         }, for: .touchUpInside)
         
         // Set Constraints
         okButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            okButton.topAnchor.constraint(equalTo: popUpView.bottomAnchor, constant: 20),
+            okButton.topAnchor.constraint(equalTo: popupView.bottomAnchor, constant: 20),
             okButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             okButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/5)
         ])
@@ -108,8 +133,12 @@ extension PopUpViewController {
     
     // Set the corresponding variables whenever the pop-up is being dismissed
     private func willDismissPopup() {
-        self.sectionName = popUpView.getName()
-        self.colorChoice = popUpView.getColorChoice()
+        
+        if let popup = popupView as? AddSectionView {
+            self.sectionName = popup.getName()
+            self.colorChoice = popup.getColorChoice()
+        }
+        
         self.actionHandler?(.dismiss)
     }
 }

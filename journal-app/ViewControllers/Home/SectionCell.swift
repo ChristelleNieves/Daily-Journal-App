@@ -133,10 +133,12 @@ extension SectionCell {
         editSectionButton.addAction(UIAction { action in
             
             // TODO: Present edit section pop-up
-            let vc = PopUpEditSectionViewController()
+            let vc = PopUpViewController()
+            vc.mode = .editSection
             
             vc.sectionName = self.title.text ?? ""
             vc.modalPresentationStyle = .overCurrentContext
+            
             
             vc.setActionHandler { action in
                 

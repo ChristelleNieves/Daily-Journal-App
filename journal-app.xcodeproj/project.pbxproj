@@ -24,11 +24,10 @@
 		BCC0E650267B23EF00E12B3E /* MoodChoicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */; };
 		BCC0E652267B287600E12B3E /* MoodReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E651267B287600E12B3E /* MoodReasonView.swift */; };
 		BCC0E656267BF88C00E12B3E /* NoSectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */; };
-		BCC0E658267C04AA00E12B3E /* PopUpAddSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */; };
+		BCC0E658267C04AA00E12B3E /* AddSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E657267C04AA00E12B3E /* AddSectionView.swift */; };
 		BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E659267C204500E12B3E /* PopUpViewController.swift */; };
 		BCC0E661267D950200E12B3E /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E660267D950200E12B3E /* EntryView.swift */; };
-		BCC0E6652680106200E12B3E /* PopUpEditSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6642680106200E12B3E /* PopUpEditSectionView.swift */; };
-		BCC0E6692680208100E12B3E /* PopUpEditSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6682680208100E12B3E /* PopUpEditSectionViewController.swift */; };
+		BCC0E6652680106200E12B3E /* EditSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6642680106200E12B3E /* EditSectionView.swift */; };
 		BCC0E66C268033C000E12B3E /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E66B268033C000E12B3E /* Journal.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,11 +51,10 @@
 		BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChoicesView.swift; sourceTree = "<group>"; };
 		BCC0E651267B287600E12B3E /* MoodReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodReasonView.swift; sourceTree = "<group>"; };
 		BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSectionsView.swift; sourceTree = "<group>"; };
-		BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAddSectionView.swift; sourceTree = "<group>"; };
+		BCC0E657267C04AA00E12B3E /* AddSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSectionView.swift; sourceTree = "<group>"; };
 		BCC0E659267C204500E12B3E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		BCC0E660267D950200E12B3E /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
-		BCC0E6642680106200E12B3E /* PopUpEditSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpEditSectionView.swift; sourceTree = "<group>"; };
-		BCC0E6682680208100E12B3E /* PopUpEditSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpEditSectionViewController.swift; sourceTree = "<group>"; };
+		BCC0E6642680106200E12B3E /* EditSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSectionView.swift; sourceTree = "<group>"; };
 		BCC0E66B268033C000E12B3E /* Journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,14 +80,14 @@
 		BC29FE5E2685B30100DC43C5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BCC0E657267C04AA00E12B3E /* AddSectionView.swift */,
+				BCC0E6642680106200E12B3E /* EditSectionView.swift */,
 				BCC0E6492679D7DD00E12B3E /* TableHeaderView.swift */,
 				BC29FE5B2685926C00DC43C5 /* ColorButtonView.swift */,
 				BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */,
 				BCC0E660267D950200E12B3E /* EntryView.swift */,
 				BCC0E651267B287600E12B3E /* MoodReasonView.swift */,
 				BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */,
-				BCC0E657267C04AA00E12B3E /* PopUpAddSectionView.swift */,
-				BCC0E6642680106200E12B3E /* PopUpEditSectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -193,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				BCC0E659267C204500E12B3E /* PopUpViewController.swift */,
-				BCC0E6682680208100E12B3E /* PopUpEditSectionViewController.swift */,
 			);
 			path = "Pop Up";
 			sourceTree = "<group>";
@@ -276,10 +273,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCC0E6462679CE5200E12B3E /* TabBarViewController.swift in Sources */,
-				BCC0E658267C04AA00E12B3E /* PopUpAddSectionView.swift in Sources */,
+				BCC0E658267C04AA00E12B3E /* AddSectionView.swift in Sources */,
 				BCC0E64A2679D7DD00E12B3E /* TableHeaderView.swift in Sources */,
 				BC29FE5A26858E3A00DC43C5 /* ColorButton.swift in Sources */,
-				BCC0E6692680208100E12B3E /* PopUpEditSectionViewController.swift in Sources */,
 				BCC0E6442679BCD200E12B3E /* Theme.swift in Sources */,
 				BCC0E66C268033C000E12B3E /* Journal.swift in Sources */,
 				BCC0E652267B287600E12B3E /* MoodReasonView.swift in Sources */,
@@ -288,7 +284,7 @@
 				BCC0E6252679B5ED00E12B3E /* AppDelegate.swift in Sources */,
 				BCC0E661267D950200E12B3E /* EntryView.swift in Sources */,
 				BC29FE5C2685926C00DC43C5 /* ColorButtonView.swift in Sources */,
-				BCC0E6652680106200E12B3E /* PopUpEditSectionView.swift in Sources */,
+				BCC0E6652680106200E12B3E /* EditSectionView.swift in Sources */,
 				BCC0E6272679B5ED00E12B3E /* SceneDelegate.swift in Sources */,
 				BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */,
 				BCC0E656267BF88C00E12B3E /* NoSectionsView.swift in Sources */,

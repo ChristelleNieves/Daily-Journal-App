@@ -166,6 +166,7 @@ extension HomeViewController {
     // Display the pop up vc to add a section
     private func goToPopupVC(){
         let vc = PopUpViewController()
+        vc.mode = .addSection
         
         vc.setActionHandler { action in
             

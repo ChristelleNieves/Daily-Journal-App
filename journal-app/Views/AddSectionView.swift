@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PopUpAddSectionView: UIView, UITextFieldDelegate {
+class AddSectionView: UIView, UITextFieldDelegate {
     
     private let titleLabel = UILabel()
     private let journalTitleLabel = UILabel()
@@ -27,7 +27,7 @@ class PopUpAddSectionView: UIView, UITextFieldDelegate {
 
 // MARK: Subview Setup
 
-extension PopUpAddSectionView {
+extension AddSectionView {
     
     private func setupView() {
         self.backgroundColor = ThemeColor.background
@@ -102,7 +102,7 @@ extension PopUpAddSectionView {
 
 // MARK: Helper Functions
 
-extension PopUpAddSectionView {
+extension AddSectionView {
     // Add all the subviews to the main view
     private func setupAllSubviews() {
         setupView()
@@ -133,7 +133,7 @@ extension PopUpAddSectionView {
 }
 
 // MARK: TextField
-extension PopUpAddSectionView {
+extension AddSectionView {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
