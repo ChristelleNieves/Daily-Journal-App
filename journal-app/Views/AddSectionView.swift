@@ -38,9 +38,7 @@ extension AddSectionView {
     }
     
     private func setupTitleLabel() {
-        titleLabel.text = "Add New Section"
-        titleLabel.textColor = UIColor.darkGray
-        titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .light)
+        configureLabel(label: titleLabel, text: "Add New Section")
         
         self.addSubview(titleLabel)
         
