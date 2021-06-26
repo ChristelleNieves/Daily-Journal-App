@@ -22,7 +22,7 @@ class EntryView: UIView, UITextFieldDelegate {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     func setupTextField() {
         textField.delegate = self
         

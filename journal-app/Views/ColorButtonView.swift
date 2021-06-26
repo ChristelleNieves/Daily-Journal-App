@@ -13,7 +13,7 @@ class ColorButtonView: UIView {
     var buttons = [ColorButton]()
     var colorChoice: UIColor?
     private let colors: [UIColor] = [ThemeColor.robinEggBlue, ThemeColor.salmonPink, ThemeColor.peachPuff, ThemeColor.lilac]
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLabel()

@@ -9,8 +9,8 @@ import UIKit
 
 class EditSectionView: UIView {
     
-    var colorChoice: UIColor?
     lazy var sectionName = ""
+    var colorChoice: UIColor?
     var deleteSection: Bool = false
     private let titleLabel = UILabel()
     private let deleteLabel = UILabel()
@@ -18,7 +18,7 @@ class EditSectionView: UIView {
     private let changeTitleLabel = UILabel()
     private let changeTitleTextField = UITextField()
     private let changeColorLabel = UILabel()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -31,6 +31,8 @@ class EditSectionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+// MARK: Subview Setup
 
 extension EditSectionView {
     private func setupView() {

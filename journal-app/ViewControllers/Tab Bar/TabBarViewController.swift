@@ -21,6 +21,8 @@ class TabBarViewController: UITabBarController {
     }
 }
 
+// MARK: Setup
+
 extension TabBarViewController {
     private func setupTabBar() {
         let appearance = UITabBarAppearance()
@@ -49,6 +51,7 @@ extension TabBarViewController {
         
         menuButtonFrame.origin.y = view.bounds.height - menuButtonFrame.height - 40
         menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width / 2
+        
         menuButton.frame = menuButtonFrame
         menuButton.backgroundColor = ThemeColor.robinEggBlue
         menuButton.setTitle("+", for: .normal)

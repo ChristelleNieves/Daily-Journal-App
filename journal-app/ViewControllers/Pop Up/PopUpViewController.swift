@@ -15,16 +15,16 @@ enum PopupMode {
 
 class PopUpViewController: UIViewController {
     
+    var colorChoice: UIColor?
+    lazy var sectionName = ""
     lazy var mode: PopupMode = .addSection
     lazy var popupView: UIView = UIView()
-    lazy var sectionName = ""
-    var colorChoice: UIColor?
     private let okButton = UIButton()
     private var deleteSection: Bool = false
     
     typealias ActionHandler = (Action) -> ()
     private var actionHandler: ActionHandler?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -37,6 +37,8 @@ class PopUpViewController: UIViewController {
         willDismissPopup()
     }
 }
+
+// MARK: Subview Setup
 
 extension PopUpViewController {
     
@@ -96,12 +98,12 @@ extension PopUpViewController {
         
         // Add button action
         okButton.addAction(UIAction { action in
-    
+            
             // Set the action according to the current mode
             switch self.mode {
-                case .addSection:
-                    self.dismiss(animated: true, completion: nil)
-                case .editSection:
+            case .addSection:
+                self.dismiss(animated: true, completion: nil)
+            case .editSection:
                 if self.deleteSection {
                     self.deleteSection = true
                     self.willDismissPopup()
@@ -122,6 +124,7 @@ extension PopUpViewController {
 }
 
 // MARK: Action Handlers
+
 extension PopUpViewController {
     enum Action {
         case dismiss

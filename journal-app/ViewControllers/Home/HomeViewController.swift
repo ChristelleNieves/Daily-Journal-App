@@ -144,7 +144,7 @@ extension HomeViewController {
                 
                 // Delete the row from the table view
                 tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-    
+                
                 // Reset the stackview within the cell
                 cell.emptyStackview()
                 cell.addStackViewSubViews()
@@ -179,7 +179,7 @@ extension HomeViewController {
                 
                 // Create a new section with the title and color from the popupVC, and a new entry array
                 let newSection = Section(title: vc.sectionName, color: vc.colorChoice!, entries: [Entry]())
-
+                
                 // Add the newly created section to the journal
                 self.journal.addSection(newSection)
                 

@@ -41,7 +41,7 @@ class SectionCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         let bottomSpace: CGFloat = 5.0
         let topSpace: CGFloat = 10.0
         
@@ -193,7 +193,7 @@ extension SectionCell {
             didAddEntry()
         }
     }
-
+    
     // Create a new EntryView and add it to the StackView
     private func createAndAddEntryView() {
         let entryView = EntryView()

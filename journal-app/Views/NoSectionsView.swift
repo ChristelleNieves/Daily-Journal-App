@@ -12,7 +12,7 @@ class NoSectionsView: UIView {
     private let headingLabel = UILabel()
     private let subHeadingLabel = UILabel()
     private let arrowImageView = UIImageView()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupAllSubviews()
