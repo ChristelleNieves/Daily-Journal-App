@@ -52,13 +52,13 @@ extension AddSectionView {
     }
     
     private func setupJournalTitleLabel() {
-        configureLabel(label: journalTitleLabel, text: "Section Name:")
+        configureLabel(label: journalTitleLabel, text: "Section Title:")
         
         // Set Constraints
         journalTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            journalTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
+            journalTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
             journalTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
         ])
     }
@@ -75,8 +75,8 @@ extension AddSectionView {
         journalTitleTextField.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            journalTitleTextField.topAnchor.constraint(equalTo: journalTitleLabel.topAnchor),
-            journalTitleTextField.leadingAnchor.constraint(equalTo: journalTitleLabel.trailingAnchor, constant: 5),
+            journalTitleTextField.topAnchor.constraint(equalTo: journalTitleLabel.bottomAnchor, constant: 10),
+            journalTitleTextField.leadingAnchor.constraint(equalTo: journalTitleLabel.leadingAnchor),
             journalTitleTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
         ])
     }

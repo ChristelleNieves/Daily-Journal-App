@@ -95,7 +95,7 @@ extension SectionCell {
     
     // Configure the addEntry button
     private func setupAddEntryButton() {
-        let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30, weight: .light), scale: .small)
+        let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .light), scale: .small)
         
         addEntryButton.setImage(UIImage(systemName: "plus", withConfiguration: config), for: .normal)
         addEntryButton.tintColor = ThemeColor.overlay
@@ -122,7 +122,7 @@ extension SectionCell {
     }
     
     private func setupEditSectionButton() {
-        let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30, weight: .light), scale: .small)
+        let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .light), scale: .small)
         
         editSectionButton.setImage(UIImage(systemName: "line.horizontal.3", withConfiguration: config), for: .normal)
         editSectionButton.tintColor = ThemeColor.overlay

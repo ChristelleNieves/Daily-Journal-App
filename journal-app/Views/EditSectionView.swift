@@ -72,7 +72,7 @@ extension EditSectionView {
         deleteLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            deleteLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
+            deleteLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
             deleteLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
         ])
     }
@@ -102,7 +102,7 @@ extension EditSectionView {
         
         NSLayoutConstraint.activate([
             yesButton.topAnchor.constraint(equalTo: deleteLabel.topAnchor),
-            yesButton.leadingAnchor.constraint(equalTo: deleteLabel.trailingAnchor, constant: 50),
+            yesButton.leadingAnchor.constraint(equalTo: deleteLabel.trailingAnchor, constant: 30),
             yesButton.heightAnchor.constraint(equalToConstant: 28),
             yesButton.widthAnchor.constraint(equalToConstant: 28)
         ])
@@ -115,7 +115,7 @@ extension EditSectionView {
         changeTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            changeTitleLabel.topAnchor.constraint(equalTo: deleteLabel.bottomAnchor, constant: 40),
+            changeTitleLabel.topAnchor.constraint(equalTo: deleteLabel.bottomAnchor, constant: 20),
             changeTitleLabel.leadingAnchor.constraint(equalTo: deleteLabel.leadingAnchor)
         ])
     }
@@ -132,8 +132,8 @@ extension EditSectionView {
         changeTitleTextField.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            changeTitleTextField.topAnchor.constraint(equalTo: changeTitleLabel.topAnchor),
-            changeTitleTextField.leadingAnchor.constraint(equalTo: changeTitleLabel.trailingAnchor, constant: 5),
+            changeTitleTextField.topAnchor.constraint(equalTo: changeTitleLabel.bottomAnchor, constant: 10),
+            changeTitleTextField.leadingAnchor.constraint(equalTo: changeTitleLabel.leadingAnchor),
             changeTitleTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
         ])
     }
@@ -147,7 +147,7 @@ extension EditSectionView {
         colorButtonView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            colorButtonView.topAnchor.constraint(equalTo: changeTitleLabel.bottomAnchor, constant: 40),
+            colorButtonView.topAnchor.constraint(equalTo: changeTitleTextField.bottomAnchor, constant: 20),
             colorButtonView.leadingAnchor.constraint(equalTo: changeTitleLabel.leadingAnchor),
             colorButtonView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             colorButtonView.bottomAnchor.constraint(equalTo: self.bottomAnchor)

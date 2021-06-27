@@ -59,8 +59,8 @@ class ColorButtonView: UIView {
             
             if i == 0 {
                 NSLayoutConstraint.activate([
-                    button.topAnchor.constraint(equalTo: label.topAnchor),
-                    button.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 12),
+                    button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
+                    button.leadingAnchor.constraint(equalTo: label.leadingAnchor, constant: 80),
                     button.heightAnchor.constraint(equalToConstant: 28),
                     button.widthAnchor.constraint(equalToConstant: 28)
                 ])
