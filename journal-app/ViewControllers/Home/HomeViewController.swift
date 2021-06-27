@@ -172,6 +172,31 @@ extension HomeViewController {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
+            
+            // Reset the stackview within the cell
+            let cell = tableView.cellForRow(at: indexPath) as! SectionCell
+            cell.emptyStackview()
+            cell.addStackViewSubViews()
+            
+            // Delete the section from the journal
+            self.journal.removeSection(indexPath.row)
+            
+            // Delete the row from the table view
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            
+            tableView.reloadData()
+            
+            completionHandler(true)
+        }
+        
+        deleteAction.image = UIImage(systemName: "trash")?.withTintColor(ThemeColor.heading, renderingMode: .alwaysOriginal)
+        deleteAction.backgroundColor = ThemeColor.background
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
+    }
 }
 
 // MARK: Pop Up View Helpers
