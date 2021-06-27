@@ -15,5 +15,6 @@ Tech Specifications:
 - Language: Swift
 - Framework: UIKit
 
-<img width="385" alt="Screen Shot 2021-06-22 at 3 17 15 AM" src="https://user-images.githubusercontent.com/29238419/122880942-95b81380-d308-11eb-9f19-bc6346c730a6.png"><img width="380" alt="Screen Shot 2021-06-22 at 3 18 14 AM" src="https://user-images.githubusercontent.com/29238419/122880944-9650aa00-d308-11eb-82d6-61f141316989.png">
-<img width="380" alt="Screen Shot 2021-06-22 at 3 31 56 AM" src="https://user-images.githubusercontent.com/29238419/122882726-79b57180-d30a-11eb-874e-e89240223052.png">
+<img width="298" alt="Screen Shot 2021-06-27 at 3 07 30 AM" src="https://user-images.githubusercontent.com/29238419/123536101-47cf5100-d6f6-11eb-91ce-da74c9fbfc66.png"><img width="298" alt="Screen Shot 2021-06-27 at 3 07 49 AM" src="https://user-images.githubusercontent.com/29238419/123536102-47cf5100-d6f6-11eb-8ed1-876d366a847b.png">
+<img width="299" alt="Screen Shot 2021-06-27 at 3 15 46 AM" src="https://user-images.githubusercontent.com/29238419/123536105-4f8ef580-d6f6-11eb-98f9-74ef2c9e05ad.png"><img width="296" alt="Screen Shot 2021-06-27 at 3 16 43 AM" src="https://user-images.githubusercontent.com/29238419/123536106-50278c00-d6f6-11eb-9853-53c4152ae744.png">
+<img width="297" alt="Screen Shot 2021-06-27 at 3 08 04 AM" src="https://user-images.githubusercontent.com/29238419/123536114-5584d680-d6f6-11eb-94dd-a8a316922253.png"><img width="301" alt="Screen Shot 2021-06-27 at 3 31 21 AM" src="https://user-images.githubusercontent.com/29238419/123536421-37b87100-d6f8-11eb-8283-e0f70de7f836.png">
