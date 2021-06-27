@@ -13,12 +13,15 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     var hasSetPointOrigin = false
     var pointOrigin: CGPoint?
     var calendar = FSCalendar()
+    var topBar = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
         view.addGestureRecognizer(panGesture)
         
+        view.backgroundColor = .white
+        setupTopBar()
         setupCalendar()
     }
     
@@ -29,34 +32,43 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
     }
     
+    private func setupTopBar () {
+        topBar.backgroundColor = UIColor.lightGray
+        topBar.layer.cornerRadius = 2
+        
+        view.addSubview(topBar)
+        
+        // Constraints
+        topBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            topBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 5),
+            topBar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            topBar.widthAnchor.constraint(equalToConstant: 50),
+            topBar.heightAnchor.constraint(equalToConstant: 4)
+        ])
+    }
+    
     private func setupCalendar() {
-        view.addSubview(calendar)
-        calendar.clipsToBounds = false
         calendar.delegate = self
         calendar.dataSource = self
+        calendar.clipsToBounds = false
         
-        // Bring to the front of all other views
-        //view.layer.zPosition = 1
+        view.addSubview(calendar)
         
         calendar.backgroundColor = UIColor.white
         calendar.allowsSelection = true
-        calendar.tintColor = .systemPink
         calendar.appearance.headerTitleColor = ThemeColor.color1
         calendar.appearance.todayColor = ThemeColor.color1.withAlphaComponent(0.5)
         calendar.appearance.selectionColor = ThemeColor.color1
         calendar.appearance.weekdayTextColor = ThemeColor.color1
         calendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 15, weight: .light)
-        calendar.layer.cornerRadius = 15
-        calendar.layer.borderWidth = 0.5
-        calendar.layer.borderColor = ThemeColor.subheading.cgColor
-        
-        //calendar.isHidden = true
         
         // Constraints
         calendar.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            calendar.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            calendar.topAnchor.constraint(equalTo: topBar.bottomAnchor, constant: 5),
             calendar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             calendar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             calendar.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -20)
@@ -85,5 +97,3 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
     }
 }
-
-

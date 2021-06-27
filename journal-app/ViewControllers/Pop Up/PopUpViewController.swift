@@ -87,7 +87,7 @@ extension PopUpViewController {
         okButton.setTitle("Ok", for: .normal)
         okButton.setTitleColor(UIColor.darkGray, for: .normal)
         okButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .light)
-        okButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.10)
+        okButton.backgroundColor = ThemeColor.background.withAlphaComponent(0.80)
         okButton.layer.cornerRadius = 20
         okButton.layer.shadowColor = UIColor.gray.cgColor
         okButton.layer.shadowRadius = 3
