@@ -27,7 +27,7 @@ class MoodViewController: UIViewController, UITextFieldDelegate {
 // MARK: Setup
 extension MoodViewController {
     private func setupMainView() {
-        view.backgroundColor = ThemeColor.salmonPink
+        view.backgroundColor = ThemeColor.color2
     }
     
     private func setupMoodLabel() {

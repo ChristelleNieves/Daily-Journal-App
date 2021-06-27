@@ -12,7 +12,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var journal = Journal()
     private let tableView = UITableView()
     private let refreshControl = UIRefreshControl()
-    private let headerView = TableHeaderView(frame: CGRect.zero)
+    private let headerView = HeaderViewController()
     private let noSectionsView = NoSectionsView(frame: CGRect.zero)
     
     override func viewDidLoad() {
@@ -39,16 +39,18 @@ extension HomeViewController {
     }
     
     private func setupHeaderView() {
-        view.addSubview(headerView)
+        self.addChild(headerView)
+        view.addSubview(headerView.view)
+        
         
         // Constraints
-        headerView.translatesAutoresizingMaskIntoConstraints = false
+        headerView.view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            headerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/10)
+            headerView.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            headerView.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            headerView.view.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/10)
         ])
     }
     
@@ -75,7 +77,7 @@ extension HomeViewController {
         // Constraints
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: headerView.view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 13),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -13),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

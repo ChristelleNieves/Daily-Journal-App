@@ -3,12 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		BC29FE5A26858E3A00DC43C5 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29FE5926858E3A00DC43C5 /* ColorButton.swift */; };
 		BC29FE5C2685926C00DC43C5 /* ColorButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29FE5B2685926C00DC43C5 /* ColorButtonView.swift */; };
+		BC29FE622688184900DC43C5 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29FE612688184900DC43C5 /* PresentationController.swift */; };
+		BC29FE64268818D600DC43C5 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29FE63268818D600DC43C5 /* CalendarViewController.swift */; };
+		BC29FE6626881B0E00DC43C5 /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29FE6526881B0E00DC43C5 /* HeaderViewController.swift */; };
 		BCC0E6252679B5ED00E12B3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6242679B5ED00E12B3E /* AppDelegate.swift */; };
 		BCC0E6272679B5ED00E12B3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6262679B5ED00E12B3E /* SceneDelegate.swift */; };
 		BCC0E6292679B5ED00E12B3E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6282679B5ED00E12B3E /* HomeViewController.swift */; };
@@ -19,7 +22,6 @@
 		BCC0E6442679BCD200E12B3E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6432679BCD200E12B3E /* Theme.swift */; };
 		BCC0E6462679CE5200E12B3E /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6452679CE5200E12B3E /* TabBarViewController.swift */; };
 		BCC0E6482679D39F00E12B3E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6472679D39F00E12B3E /* SettingsViewController.swift */; };
-		BCC0E64A2679D7DD00E12B3E /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6492679D7DD00E12B3E /* TableHeaderView.swift */; };
 		BCC0E64E267AF8F300E12B3E /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E64D267AF8F300E12B3E /* MoodViewController.swift */; };
 		BCC0E650267B23EF00E12B3E /* MoodChoicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */; };
 		BCC0E652267B287600E12B3E /* MoodReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E651267B287600E12B3E /* MoodReasonView.swift */; };
@@ -29,11 +31,18 @@
 		BCC0E661267D950200E12B3E /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E660267D950200E12B3E /* EntryView.swift */; };
 		BCC0E6652680106200E12B3E /* EditSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6642680106200E12B3E /* EditSectionView.swift */; };
 		BCC0E66C268033C000E12B3E /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E66B268033C000E12B3E /* Journal.swift */; };
+		C51F492A63CB6897FEAE3B81 /* Pods_journal_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B35FBB0E191D2F3F7B75A037 /* Pods_journal_app.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EB45959619E3689AA181534 /* Pods-journal-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-journal-app.release.xcconfig"; path = "Target Support Files/Pods-journal-app/Pods-journal-app.release.xcconfig"; sourceTree = "<group>"; };
+		3662908F8808F3D661DB891E /* Pods-journal-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-journal-app.debug.xcconfig"; path = "Target Support Files/Pods-journal-app/Pods-journal-app.debug.xcconfig"; sourceTree = "<group>"; };
+		B35FBB0E191D2F3F7B75A037 /* Pods_journal_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_journal_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC29FE5926858E3A00DC43C5 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		BC29FE5B2685926C00DC43C5 /* ColorButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButtonView.swift; sourceTree = "<group>"; };
+		BC29FE612688184900DC43C5 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		BC29FE63268818D600DC43C5 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		BC29FE6526881B0E00DC43C5 /* HeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
 		BCC0E6212679B5ED00E12B3E /* journal-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "journal-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCC0E6242679B5ED00E12B3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCC0E6262679B5ED00E12B3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,7 +55,6 @@
 		BCC0E6432679BCD200E12B3E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BCC0E6452679CE5200E12B3E /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		BCC0E6472679D39F00E12B3E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		BCC0E6492679D7DD00E12B3E /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
 		BCC0E64D267AF8F300E12B3E /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
 		BCC0E64F267B23EF00E12B3E /* MoodChoicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChoicesView.swift; sourceTree = "<group>"; };
 		BCC0E651267B287600E12B3E /* MoodReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodReasonView.swift; sourceTree = "<group>"; };
@@ -63,12 +71,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C51F492A63CB6897FEAE3B81 /* Pods_journal_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57F24E5DE8EAC7BDF32A118D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3662908F8808F3D661DB891E /* Pods-journal-app.debug.xcconfig */,
+				0EB45959619E3689AA181534 /* Pods-journal-app.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A236B8F650398281AF7AC9A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B35FBB0E191D2F3F7B75A037 /* Pods_journal_app.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BC29FE5D2685B2EF00DC43C5 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,7 +108,6 @@
 			children = (
 				BCC0E657267C04AA00E12B3E /* AddSectionView.swift */,
 				BCC0E6642680106200E12B3E /* EditSectionView.swift */,
-				BCC0E6492679D7DD00E12B3E /* TableHeaderView.swift */,
 				BC29FE5B2685926C00DC43C5 /* ColorButtonView.swift */,
 				BCC0E655267BF88C00E12B3E /* NoSectionsView.swift */,
 				BCC0E660267D950200E12B3E /* EntryView.swift */,
@@ -92,11 +117,23 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		BC29FE6726883C9E00DC43C5 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				BC29FE63268818D600DC43C5 /* CalendarViewController.swift */,
+				BC29FE612688184900DC43C5 /* PresentationController.swift */,
+				BC29FE6526881B0E00DC43C5 /* HeaderViewController.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		BCC0E6182679B5ED00E12B3E = {
 			isa = PBXGroup;
 			children = (
 				BCC0E6232679B5ED00E12B3E /* journal-app */,
 				BCC0E6222679B5ED00E12B3E /* Products */,
+				57F24E5DE8EAC7BDF32A118D /* Pods */,
+				A236B8F650398281AF7AC9A8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +174,7 @@
 		BCC0E63C2679B9AE00E12B3E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BC29FE6726883C9E00DC43C5 /* Calendar */,
 				BCC0E65F267C487500E12B3E /* Pop Up */,
 				BCC0E65E267C486000E12B3E /* Mood */,
 				BCC0E65D267C482F00E12B3E /* Settings */,
@@ -210,9 +248,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BCC0E6382679B5EF00E12B3E /* Build configuration list for PBXNativeTarget "journal-app" */;
 			buildPhases = (
+				1C81DD0EE0C9A0DD3EB989BE /* [CP] Check Pods Manifest.lock */,
 				BCC0E61D2679B5ED00E12B3E /* Sources */,
 				BCC0E61E2679B5ED00E12B3E /* Frameworks */,
 				BCC0E61F2679B5ED00E12B3E /* Resources */,
+				63B10E24D48BD8A3424E4970 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -267,6 +307,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C81DD0EE0C9A0DD3EB989BE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-journal-app-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63B10E24D48BD8A3424E4970 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-journal-app/Pods-journal-app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-journal-app/Pods-journal-app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-journal-app/Pods-journal-app-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BCC0E61D2679B5ED00E12B3E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -274,10 +356,11 @@
 			files = (
 				BCC0E6462679CE5200E12B3E /* TabBarViewController.swift in Sources */,
 				BCC0E658267C04AA00E12B3E /* AddSectionView.swift in Sources */,
-				BCC0E64A2679D7DD00E12B3E /* TableHeaderView.swift in Sources */,
+				BC29FE622688184900DC43C5 /* PresentationController.swift in Sources */,
 				BC29FE5A26858E3A00DC43C5 /* ColorButton.swift in Sources */,
 				BCC0E6442679BCD200E12B3E /* Theme.swift in Sources */,
 				BCC0E66C268033C000E12B3E /* Journal.swift in Sources */,
+				BC29FE6626881B0E00DC43C5 /* HeaderViewController.swift in Sources */,
 				BCC0E652267B287600E12B3E /* MoodReasonView.swift in Sources */,
 				BCC0E6292679B5ED00E12B3E /* HomeViewController.swift in Sources */,
 				BCC0E64E267AF8F300E12B3E /* MoodViewController.swift in Sources */,
@@ -285,6 +368,7 @@
 				BCC0E661267D950200E12B3E /* EntryView.swift in Sources */,
 				BC29FE5C2685926C00DC43C5 /* ColorButtonView.swift in Sources */,
 				BCC0E6652680106200E12B3E /* EditSectionView.swift in Sources */,
+				BC29FE64268818D600DC43C5 /* CalendarViewController.swift in Sources */,
 				BCC0E6272679B5ED00E12B3E /* SceneDelegate.swift in Sources */,
 				BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */,
 				BCC0E656267BF88C00E12B3E /* NoSectionsView.swift in Sources */,
@@ -427,6 +511,7 @@
 		};
 		BCC0E6392679B5EF00E12B3E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3662908F8808F3D661DB891E /* Pods-journal-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -447,6 +532,7 @@
 		};
 		BCC0E63A2679B5EF00E12B3E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EB45959619E3689AA181534 /* Pods-journal-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -19,9 +19,12 @@ struct ThemeColor {
     static let subheading: UIColor = UIColor.darkGray.withAlphaComponent(0.70)
     
     // Section/Accent colors
-    static let robinEggBlue: UIColor = UIColor.init(red: 164/240.0, green: 217/240.0, blue: 206/240.0, alpha: 1)
-    static let salmonPink: UIColor = UIColor.init(red: 255/240.0, green: 154/240.0, blue: 162/240.0, alpha: 1)
-    static let peachPuff: UIColor = UIColor.init(red: 249/240.0, green: 173/240.0, blue: 111/240.0, alpha: 1)
-    static let lilac: UIColor = UIColor.init(red: 201/240.0, green:162/240.0, blue: 202/240.0, alpha: 1)
+    //static let robinEggBlue: UIColor = UIColor.init(red: 164/240.0, green: 217/240.0, blue: 206/240.0, alpha: 1)
+    static let color1: UIColor = UIColor.init(red: 94/240.0, green: 136/240.0, blue: 140/240.0, alpha: 1)
+    //static let salmonPink: UIColor = UIColor.init(red: 255/240.0, green: 154/240.0, blue: 162/240.0, alpha: 1)
+    static let color2: UIColor = UIColor.init(red: 217/240.0, green: 153/240.0, blue: 139/240.0, alpha: 1)
+    //static let peachPuff: UIColor = UIColor.init(red: 249/240.0, green: 173/240.0, blue: 111/240.0, alpha: 1)
+    static let color3: UIColor = UIColor.init(red: 140/240.0, green: 86/240.0, blue: 96/240.0, alpha: 1)
+    static let color4: UIColor = UIColor.init(red: 242/240.0, green: 206/240.0, blue: 174/240.0, alpha: 1)
     
 }

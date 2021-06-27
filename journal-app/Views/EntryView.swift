@@ -12,7 +12,7 @@ class EntryView: UIView, UITextFieldDelegate {
     typealias ActionHandler = (Action) -> ()
     private var actionHandler: ActionHandler?
     var textField = UITextField()
-    private let height: CGFloat = 40
+    private let height: CGFloat = 35
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,10 +26,10 @@ class EntryView: UIView, UITextFieldDelegate {
     func setupTextField() {
         textField.delegate = self
         
-        textField.textColor = ThemeColor.subheading
+        textField.textColor = ThemeColor.heading
         textField.font = UIFont.systemFont(ofSize: 18, weight: .light)
-        textField.backgroundColor = ThemeColor.overlay
-        textField.layer.cornerRadius = 13
+        textField.backgroundColor = ThemeColor.overlay.withAlphaComponent(0.7)
+        textField.layer.cornerRadius = 11
         
         self.addSubview(textField)
         

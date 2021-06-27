@@ -125,7 +125,7 @@ extension AddSectionView {
     }
     
     func getColorChoice() -> UIColor {
-        return colorButtonView.colorChoice ?? ThemeColor.robinEggBlue
+        return colorButtonView.colorChoice ?? ThemeColor.color1
     }
 }
 

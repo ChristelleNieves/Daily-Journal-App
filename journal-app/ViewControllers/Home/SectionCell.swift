@@ -20,7 +20,7 @@ class SectionCell: UITableViewCell {
     lazy var title: UILabel = {
         let title = UILabel()
         
-        title.font = UIFont.systemFont(ofSize: 25)
+        title.font = UIFont.systemFont(ofSize: 20, weight: .light)
         title.textColor = .white
         
         return title
@@ -76,7 +76,7 @@ extension SectionCell {
         background.backgroundColor = ThemeColor.background
         backgroundView = background
         
-        contentView.layer.cornerRadius = 40
+        contentView.layer.cornerRadius = 30
     }
     
     private func setupTitleLabel() {
@@ -186,7 +186,7 @@ extension SectionCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20),
+            stackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30)
