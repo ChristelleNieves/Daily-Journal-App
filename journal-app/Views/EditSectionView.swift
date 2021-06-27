@@ -11,10 +11,7 @@ class EditSectionView: UIView, UITextFieldDelegate {
     
     var changedTitle: Bool = false
     lazy var sectionName = ""
-    var deleteSection: Bool = false
     private let titleLabel = UILabel()
-    private let deleteLabel = UILabel()
-    private let yesButton = UIButton()
     private let changeTitleLabel = UILabel()
     private let changeTitleTextField = UITextField()
     var colorButtonView = ColorButtonView()
@@ -23,8 +20,6 @@ class EditSectionView: UIView, UITextFieldDelegate {
         super.init(frame: frame)
         setupView()
         setupTitleLabel()
-        setupDeleteLabel()
-        setupYesButton()
         setupChangeTitleLabel()
         setupChangeTitleTextField()
         setupColorButtonView()
@@ -65,49 +60,6 @@ extension EditSectionView {
         ])
     }
     
-    private func setupDeleteLabel() {
-        configureLabel(label: deleteLabel, text: "Delete this section?")
-        
-        // Constraints
-        deleteLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            deleteLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
-            deleteLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-        ])
-    }
-    
-    private func setupYesButton() {
-        yesButton.layer.cornerRadius = 14
-        yesButton.layer.borderWidth = 0.5
-        yesButton.layer.borderColor = ThemeColor.subheading.cgColor
-        yesButton.backgroundColor = .clear
-        yesButton.setTitleColor(ThemeColor.heading, for: .normal)
-        self.addSubview(yesButton)
-        
-        // Add action
-        yesButton.addAction(UIAction { action in
-            if !self.deleteSection {
-                self.deleteSection = true
-                self.yesButton.setTitle("X", for: .normal)
-            }
-            else {
-                self.deleteSection = false
-                self.yesButton.setTitle("", for: .normal)
-            }
-        }, for: .touchUpInside)
-        
-        // Constraints
-        yesButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            yesButton.topAnchor.constraint(equalTo: deleteLabel.topAnchor),
-            yesButton.leadingAnchor.constraint(equalTo: deleteLabel.trailingAnchor, constant: 30),
-            yesButton.heightAnchor.constraint(equalToConstant: 28),
-            yesButton.widthAnchor.constraint(equalToConstant: 28)
-        ])
-    }
-    
     private func setupChangeTitleLabel() {
         configureLabel(label: changeTitleLabel, text: "Change Title:")
         
@@ -115,8 +67,8 @@ extension EditSectionView {
         changeTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            changeTitleLabel.topAnchor.constraint(equalTo: deleteLabel.bottomAnchor, constant: 20),
-            changeTitleLabel.leadingAnchor.constraint(equalTo: deleteLabel.leadingAnchor)
+            changeTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            changeTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
         ])
     }
     
@@ -185,4 +137,3 @@ extension EditSectionView {
         return updatedText.count <= 25
     }
 }
-

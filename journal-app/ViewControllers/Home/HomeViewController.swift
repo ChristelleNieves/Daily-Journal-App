@@ -141,20 +141,6 @@ extension HomeViewController {
                 // Reload the table view
                 self.tableView.reloadData()
                 break
-            case .deleteSection:
-                // Remove the section from the journal
-                self.journal.removeSection(indexPath.row)
-                
-                // Delete the row from the table view
-                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-                
-                // Reset the stackview within the cell
-                cell.emptyStackview()
-                cell.addStackViewSubViews()
-                
-                // Reload the table view
-                self.tableView.reloadData()
-                break
             case .editSectionTitle(let newTitle):
                 self.journal.sections[indexPath.row].setSectionTitle(newTitle)
                 self.tableView.reloadData()

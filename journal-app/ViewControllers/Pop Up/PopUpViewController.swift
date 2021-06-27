@@ -22,7 +22,6 @@ class PopUpViewController: UIViewController {
     lazy var mode: PopupMode = .addSection
     lazy var popupView: UIView = UIView()
     private let okButton = UIButton()
-    var deleteSection: Bool = false
     
     typealias ActionHandler = (Action) -> ()
     private var actionHandler: ActionHandler?
@@ -106,10 +105,7 @@ extension PopUpViewController {
             case .addSection:
                 self.dismiss(animated: true, completion: nil)
             case .editSection:
-                if self.deleteSection {
-                    self.deleteSection = true
-                    self.willDismissPopup()
-                }
+                self.willDismissPopup()
                 self.dismiss(animated: true, completion: nil)
             }
         }, for: .touchUpInside)
@@ -144,9 +140,6 @@ extension PopUpViewController {
             self.colorChoice = popup.getColorChoice()
         }
         else if let popup = popupView as? EditSectionView {
-            if popup.deleteSection {
-                self.deleteSection = true
-            }
             if popup.getName() != "" {
                 self.changedTitle = true
                 self.sectionName = popup.getName()

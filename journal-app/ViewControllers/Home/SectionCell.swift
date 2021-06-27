@@ -143,11 +143,7 @@ extension SectionCell {
                 
                 switch action {
                 case .dismiss:
-                    if vc.deleteSection {
-                        self.didDeleteSection()
-                        break
-                    }
-                    else if vc.changedTitle {
+                    if vc.changedTitle {
                         self.didChangeSectionTitle(vc.sectionName)
                     }
                     if vc.changedColor {
@@ -228,7 +224,6 @@ extension SectionCell {
     enum Action {
         case editEntry([Entry])
         case addEntry
-        case deleteSection
         case editSectionTitle(String)
         case editSectionColor(UIColor)
     }
@@ -260,13 +255,5 @@ extension SectionCell {
         }
         
         self.actionHandler?(.editEntry(entries))
-    }
-    
-    private func didDeleteSection() {
-        for view in stackView.subviews {
-            view.removeFromSuperview()
-        }
-        
-        self.actionHandler?(.deleteSection)
     }
 }
