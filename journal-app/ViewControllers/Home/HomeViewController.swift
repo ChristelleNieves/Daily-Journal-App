@@ -141,18 +141,6 @@ extension HomeViewController {
                 // Reload the table view
                 self.tableView.reloadData()
                 break
-            case .editSectionTitle(let newTitle):
-                self.journal.sections[indexPath.row].setSectionTitle(newTitle)
-                self.tableView.reloadData()
-                break
-            case .editSectionColor(let newColor):
-                let currentColor = self.journal.sections[indexPath.row].getSectionColor()
-                
-                if newColor != currentColor {
-                    self.journal.sections[indexPath.row].setSectionColor(newColor)
-                    self.tableView.reloadData()
-                }
-                break
             }
         }
         
@@ -162,30 +150,61 @@ extension HomeViewController {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
             
-            // Reset the stackview within the cell
-            let cell = tableView.cellForRow(at: indexPath) as! SectionCell
-            cell.emptyStackview()
-            cell.addStackViewSubViews()
+            let alert = UIAlertController(title: "Delete Section", message: "Are you sure you want to delete this section?", preferredStyle: .alert)
             
-            // Delete the section from the journal
-            self.journal.removeSection(indexPath.row)
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+                self.handleSectionDeletion(indexPath: indexPath)
+            })
             
-            // Delete the row from the table view
-            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            alert.addAction(deleteAction)
             
-            tableView.reloadData()
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            alert.addAction(cancelAction)
             
+            self.present(alert, animated: true, completion: nil)
             completionHandler(true)
         }
         
         deleteAction.image = UIImage(systemName: "trash")?.withTintColor(ThemeColor.heading, renderingMode: .alwaysOriginal)
         deleteAction.backgroundColor = ThemeColor.background
+        
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let archive = UIContextualAction(style: .normal, title: nil) { [weak self] (action, view, completionHandler) in
+            
+            let editView = PopUpViewController()
+            editView.mode = .editSection
+            
+            editView.setActionHandler { action in
+                switch action {
+                case .dismiss:
+                    if editView.changedColor {
+                        self?.handleSectionColorChange(color: editView.colorChoice!, indexPath: indexPath)
+                    }
+                    
+                    if editView.changedTitle {
+                        self?.handleSectionTitleChange(title: editView.sectionName, indexPath: indexPath)
+                    }
+                }
+            }
+            
+            editView.modalPresentationStyle = .overCurrentContext
+            self?.present(editView, animated: true, completion: nil)
+            completionHandler(true)
+        }
+        
+        archive.image = UIImage(systemName: "slider.horizontal.3")?.withTintColor(ThemeColor.heading, renderingMode: .alwaysOriginal)
+        archive.backgroundColor = ThemeColor.background
+        
+        let configuration = UISwipeActionsConfiguration(actions: [archive])
         return configuration
     }
 }
 
-// MARK: Pop Up View Helpers
+// MARK: Helper Functions
 
 extension HomeViewController {
     
@@ -223,6 +242,33 @@ extension HomeViewController {
     func showPopUp() {
         self.noSectionsView.isHidden = true
         goToPopupVC()
+    }
+    
+    func handleSectionDeletion(indexPath: IndexPath) {
+        // Reset the stackview within the cell
+        let cell = tableView.cellForRow(at: indexPath) as! SectionCell
+        cell.emptyStackview()
+        cell.addStackViewSubViews()
+        
+        // Delete the section from the journal
+        self.journal.removeSection(indexPath.row)
+        
+        // Delete the row from the table view
+        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        
+        tableView.reloadData()
+    }
+    
+    func handleSectionTitleChange(title: String, indexPath: IndexPath) {
+        guard !title.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+        
+        self.journal.sections[indexPath.row].setSectionTitle(title)
+        self.tableView.reloadData()
+    }
+    
+    func handleSectionColorChange(color: UIColor, indexPath: IndexPath) {
+        self.journal.sections[indexPath.row].setSectionColor(color)
+        self.tableView.reloadData()
     }
 }
 

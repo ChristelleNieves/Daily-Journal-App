@@ -10,12 +10,12 @@ import UIKit
 class SectionCell: UITableViewCell {
     
     private var entryViews = [EntryView]()
-    typealias ActionHandler = (Action) -> ()
-    private var actionHandler: ActionHandler?
     private var numberOfEntries = 3
     private let addEntryButton = UIButton()
-    private let editSectionButton = UIButton()
     var stackView = UIStackView()
+    
+    typealias ActionHandler = (Action) -> ()
+    private var actionHandler: ActionHandler?
     
     lazy var title: UILabel = {
         let title = UILabel()
@@ -57,7 +57,6 @@ extension SectionCell {
         setupContentView()
         setupTitleLabel()
         setupAddEntryButton()
-        setupEditSectionButton()
         setupStackView()
     }
     
@@ -115,58 +114,9 @@ extension SectionCell {
         
         NSLayoutConstraint.activate([
             addEntryButton.topAnchor.constraint(equalTo: title.topAnchor),
-            addEntryButton.leadingAnchor.constraint(equalTo: title.trailingAnchor, constant: 5),
+            addEntryButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
             addEntryButton.bottomAnchor.constraint(equalTo: title.bottomAnchor),
             addEntryButton.widthAnchor.constraint(equalToConstant: 30)
-        ])
-    }
-    
-    private func setupEditSectionButton() {
-        let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .light), scale: .small)
-        
-        editSectionButton.setImage(UIImage(systemName: "line.horizontal.3", withConfiguration: config), for: .normal)
-        editSectionButton.tintColor = ThemeColor.overlay
-        
-        contentView.addSubview(editSectionButton)
-        
-        // Add button action
-        editSectionButton.addAction(UIAction { action in
-            
-            // TODO: Present edit section pop-up
-            let vc = PopUpViewController()
-            vc.mode = .editSection
-            
-            vc.sectionName = self.title.text ?? ""
-            vc.modalPresentationStyle = .overCurrentContext
-            
-            vc.setActionHandler { action in
-                
-                switch action {
-                case .dismiss:
-                    if vc.changedTitle {
-                        self.didChangeSectionTitle(vc.sectionName)
-                    }
-                    if vc.changedColor {
-                        guard vc.colorChoice != nil else { return }
-                        self.didChangeSectionColor(vc.colorChoice!)
-                    }
-                }
-            }
-            
-            DispatchQueue.main.async {
-                self.window?.rootViewController?.present(vc, animated: true, completion: nil)
-            }
-            
-        }, for: .touchUpInside)
-        
-        // Set constraints
-        editSectionButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            editSectionButton.topAnchor.constraint(equalTo: title.topAnchor),
-            editSectionButton.leadingAnchor.constraint(equalTo: addEntryButton.trailingAnchor, constant: 8),
-            editSectionButton.bottomAnchor.constraint(equalTo: title.bottomAnchor),
-            editSectionButton.widthAnchor.constraint(equalToConstant: 30)
         ])
     }
     
@@ -224,8 +174,6 @@ extension SectionCell {
     enum Action {
         case editEntry([Entry])
         case addEntry
-        case editSectionTitle(String)
-        case editSectionColor(UIColor)
     }
     
     func setActionHandler(_ handler: @escaping ActionHandler) {
@@ -235,16 +183,6 @@ extension SectionCell {
     // Triggered each time an entry is added to the stackView
     private func didAddEntry() {
         self.actionHandler?(.addEntry)
-    }
-    
-    private func didChangeSectionTitle(_ title: String) {
-        guard !title.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-        
-        self.actionHandler?(.editSectionTitle(title))
-    }
-    
-    private func didChangeSectionColor(_ color: UIColor) {
-        self.actionHandler?(.editSectionColor(color))
     }
     
     private func didEditEntry() {
