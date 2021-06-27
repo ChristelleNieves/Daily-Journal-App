@@ -12,7 +12,7 @@ class HeaderViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     
     let dayLabel = UILabel()
     let dateLabel = UILabel()
-    private var date = Date()
+    private var todayDate = Date()
     private let leftButton = UIButton()
     private let rightButton = UIButton()
 
@@ -31,7 +31,7 @@ class HeaderViewController: UIViewController, FSCalendarDelegate, FSCalendarData
 // MARK: UI Setup
 extension HeaderViewController {
     private func setupDayLabel() {
-        dayLabel.text = getTodayWeekDay()
+        dayLabel.text = getTodayWeekDay(todayDate)
         dayLabel.font = UIFont.systemFont(ofSize: 30, weight: .light)
         dayLabel.textColor = ThemeColor.heading
         dayLabel.adjustsFontSizeToFitWidth = true
@@ -53,7 +53,7 @@ extension HeaderViewController {
     }
     
     private func setupDateLabel() {
-        dateLabel.text = formatDate()
+        dateLabel.text = formatDate(todayDate)
         dateLabel.font = UIFont.systemFont(ofSize: 17, weight: .light)
         dateLabel.textColor = ThemeColor.subheading
         dateLabel.adjustsFontSizeToFitWidth = true
@@ -78,6 +78,16 @@ extension HeaderViewController {
         let calendarVC = CalendarViewController()
         calendarVC.modalPresentationStyle = .custom
         calendarVC.transitioningDelegate = self
+        
+        calendarVC.setActionHandler { action in
+            switch action {
+            case .selectDate(let date):
+                self.dayLabel.text = self.getTodayWeekDay(date)
+                self.dateLabel.text = self.formatDate(date)
+                break
+            }
+        }
+        
         self.present(calendarVC, animated: true, completion: nil)
     }
     
@@ -124,13 +134,13 @@ extension HeaderViewController {
 // MARK: Date Helper Functions
 extension HeaderViewController {
     
-    private func formatDate() -> String {
+    private func formatDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         return dateFormatter.string(from: date)
     }
     
-    private func getTodayWeekDay()-> String {
+    private func getTodayWeekDay(_ date: Date)-> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
         let weekDay = dateFormatter.string(from: date)
@@ -138,17 +148,17 @@ extension HeaderViewController {
       }
     
     private func incrementDate() {
-        let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: date)
-        date = modifiedDate!
-        self.dayLabel.text = getTodayWeekDay()
-        self.dateLabel.text = formatDate()
+        let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: todayDate)
+        todayDate = modifiedDate!
+        self.dayLabel.text = getTodayWeekDay(todayDate)
+        self.dateLabel.text = formatDate(todayDate)
     }
     
     private func decrementDate() {
-        let modifiedDate = Calendar.current.date(byAdding: .day, value: -1, to: date)
-        date = modifiedDate!
-        self.dayLabel.text = getTodayWeekDay()
-        self.dateLabel.text = formatDate()
+        let modifiedDate = Calendar.current.date(byAdding: .day, value: -1, to: todayDate)
+        todayDate = modifiedDate!
+        self.dayLabel.text = getTodayWeekDay(todayDate)
+        self.dateLabel.text = formatDate(todayDate)
     }
 }
 

@@ -15,6 +15,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     var calendar = FSCalendar()
     var topBar = UIView()
     
+    typealias ActionHandler = (Action) -> ()
+    private var actionHandler: ActionHandler?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
@@ -75,6 +78,10 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         ])
     }
     
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        didSelectADate(date)
+    }
+    
     @objc func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         
@@ -95,5 +102,19 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                 }
             }
         }
+    }
+}
+
+extension CalendarViewController {
+    enum Action {
+        case selectDate(Date)
+    }
+    
+    func setActionHandler(_ handler: @escaping ActionHandler) {
+        self.actionHandler = handler
+    }
+    
+    func didSelectADate(_ date: Date) {
+        self.actionHandler?(.selectDate(date))
     }
 }

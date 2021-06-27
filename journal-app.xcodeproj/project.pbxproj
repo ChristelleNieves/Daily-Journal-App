@@ -12,6 +12,8 @@
 		BC29FE622688184900DC43C5 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29FE612688184900DC43C5 /* PresentationController.swift */; };
 		BC29FE64268818D600DC43C5 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29FE63268818D600DC43C5 /* CalendarViewController.swift */; };
 		BC29FE6626881B0E00DC43C5 /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29FE6526881B0E00DC43C5 /* HeaderViewController.swift */; };
+		BC29FE6C26886A5400DC43C5 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29FE6B26886A5400DC43C5 /* Section.swift */; };
+		BC29FE6E26886A7A00DC43C5 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29FE6D26886A7A00DC43C5 /* Entry.swift */; };
 		BCC0E6252679B5ED00E12B3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6242679B5ED00E12B3E /* AppDelegate.swift */; };
 		BCC0E6272679B5ED00E12B3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6262679B5ED00E12B3E /* SceneDelegate.swift */; };
 		BCC0E6292679B5ED00E12B3E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E6282679B5ED00E12B3E /* HomeViewController.swift */; };
@@ -43,6 +45,8 @@
 		BC29FE612688184900DC43C5 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		BC29FE63268818D600DC43C5 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		BC29FE6526881B0E00DC43C5 /* HeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
+		BC29FE6B26886A5400DC43C5 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		BC29FE6D26886A7A00DC43C5 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		BCC0E6212679B5ED00E12B3E /* journal-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "journal-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCC0E6242679B5ED00E12B3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCC0E6262679B5ED00E12B3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -237,6 +241,8 @@
 			isa = PBXGroup;
 			children = (
 				BCC0E66B268033C000E12B3E /* Journal.swift */,
+				BC29FE6B26886A5400DC43C5 /* Section.swift */,
+				BC29FE6D26886A7A00DC43C5 /* Entry.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -354,6 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC29FE6E26886A7A00DC43C5 /* Entry.swift in Sources */,
 				BCC0E6462679CE5200E12B3E /* TabBarViewController.swift in Sources */,
 				BCC0E658267C04AA00E12B3E /* AddSectionView.swift in Sources */,
 				BC29FE622688184900DC43C5 /* PresentationController.swift in Sources */,
@@ -369,6 +376,7 @@
 				BC29FE5C2685926C00DC43C5 /* ColorButtonView.swift in Sources */,
 				BCC0E6652680106200E12B3E /* EditSectionView.swift in Sources */,
 				BC29FE64268818D600DC43C5 /* CalendarViewController.swift in Sources */,
+				BC29FE6C26886A5400DC43C5 /* Section.swift in Sources */,
 				BCC0E6272679B5ED00E12B3E /* SceneDelegate.swift in Sources */,
 				BCC0E65A267C204500E12B3E /* PopUpViewController.swift in Sources */,
 				BCC0E656267BF88C00E12B3E /* NoSectionsView.swift in Sources */,
