@@ -3,7 +3,8 @@ A daily journal iOS application to keep track of your mood, to-do lists, goals, 
 
 Use Details:
 - Add as many sections to your journal as you want
-- Swipe to delete a section
+- Swipe left to delete a section
+- Swipe right to edit a section
 - Customize the sections of your journal by choosing a title and color.
 - Built-in calendar
 
