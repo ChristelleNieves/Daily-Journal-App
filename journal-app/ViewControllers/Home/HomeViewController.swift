@@ -70,6 +70,7 @@ extension HomeViewController {
         tableView.refreshControl = refreshControl
         tableView.separatorStyle = .none
         tableView.backgroundColor = ThemeColor.background
+        tableView.showsVerticalScrollIndicator = false
         tableView.register(SectionCell.self, forCellReuseIdentifier: "SectionCell")
         
         view.addSubview(tableView)
@@ -246,9 +247,7 @@ extension HomeViewController {
     
     func handleSectionDeletion(indexPath: IndexPath) {
         // Reset the stackview within the cell
-        let cell = tableView.cellForRow(at: indexPath) as! SectionCell
-        cell.emptyStackview()
-        cell.addStackViewSubViews()
+        self.journal.sections[indexPath.row].removeAllEntries()
         
         // Delete the section from the journal
         self.journal.removeSection(indexPath.row)

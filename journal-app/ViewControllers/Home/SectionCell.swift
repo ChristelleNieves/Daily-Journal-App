@@ -21,7 +21,7 @@ class SectionCell: UITableViewCell {
         let title = UILabel()
         
         title.font = UIFont.systemFont(ofSize: 20, weight: .light)
-        title.textColor = .white
+        title.textColor = ThemeColor.heading
         
         return title
     }()
@@ -74,8 +74,10 @@ extension SectionCell {
         
         background.backgroundColor = ThemeColor.background
         backgroundView = background
-        
-        contentView.layer.cornerRadius = 30
+        contentView.layer.shadowColor = UIColor.lightGray.withAlphaComponent(0.70).cgColor
+        contentView.layer.shadowOpacity = 0.5
+        contentView.layer.shadowRadius = 4
+        contentView.layer.cornerRadius = 23
     }
     
     private func setupTitleLabel() {
@@ -97,14 +99,14 @@ extension SectionCell {
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .light), scale: .small)
         
         addEntryButton.setImage(UIImage(systemName: "plus", withConfiguration: config), for: .normal)
-        addEntryButton.tintColor = ThemeColor.overlay
+        addEntryButton.tintColor = ThemeColor.subheading
         
         contentView.addSubview(addEntryButton)
         
         // Add button action
         addEntryButton.addAction(UIAction { action in
             
-            self.createAndAddEntryView()
+            self.createAndAddEntryView("")
             self.didAddEntry()
             
         }, for: .touchUpInside)
@@ -139,21 +141,22 @@ extension SectionCell {
         ])
         
         // Add the starter number of entryViews to the stackView
-        addStackViewSubViews()
+        addStarterStackViewSubViews()
     }
     
     // Add a pre-defined number of entryViews to the stackView
-    func addStackViewSubViews() {
+    func addStarterStackViewSubViews() {
         for _ in 1...numberOfEntries {
-            createAndAddEntryView()
+            createAndAddEntryView("")
             didAddEntry()
         }
     }
     
     // Create a new EntryView and add it to the StackView
-    private func createAndAddEntryView() {
+    private func createAndAddEntryView(_ text: String) {
         let entryView = EntryView()
         
+        entryView.textField.text = text
         entryViews.append(entryView)
         
         entryView.setActionHandler { action in

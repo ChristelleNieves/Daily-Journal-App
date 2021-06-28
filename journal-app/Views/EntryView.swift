@@ -26,10 +26,10 @@ class EntryView: UIView, UITextFieldDelegate {
     func setupTextField() {
         textField.delegate = self
         
-        textField.textColor = ThemeColor.heading
-        textField.font = UIFont.systemFont(ofSize: 18, weight: .light)
+        textField.textColor = ThemeColor.subheading
+        textField.font = UIFont.systemFont(ofSize: 17, weight: .light)
         textField.backgroundColor = ThemeColor.overlay.withAlphaComponent(0.7)
-        textField.layer.cornerRadius = 11
+        textField.layer.cornerRadius = 10
         
         self.addSubview(textField)
         

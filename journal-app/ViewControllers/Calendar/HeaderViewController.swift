@@ -92,8 +92,8 @@ extension HeaderViewController {
     }
     
     private func setupLeftButton() {
-        let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .light), scale: .medium)
-        leftButton.setImage(UIImage(systemName: "arrowshape.turn.up.left", withConfiguration: config), for: .normal)
+        let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30, weight: .light), scale: .medium)
+        leftButton.setImage(UIImage(systemName: "chevron.left", withConfiguration: config), for: .normal)
         leftButton.tintColor = ThemeColor.subheading
         view.addSubview(leftButton)
         
@@ -105,15 +105,15 @@ extension HeaderViewController {
         leftButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            leftButton.topAnchor.constraint(equalTo: dayLabel.bottomAnchor),
+            leftButton.centerYAnchor.constraint(equalTo: dayLabel.bottomAnchor),
             leftButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30)
         ])
     }
     
     private func setupRightButton() {
-        let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .light), scale: .medium)
+        let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30, weight: .light), scale: .medium)
         
-        rightButton.setImage(UIImage(systemName: "arrowshape.turn.up.right", withConfiguration: config), for: .normal)
+        rightButton.setImage(UIImage(systemName: "chevron.right", withConfiguration: config), for: .normal)
         rightButton.tintColor = ThemeColor.subheading
         view.addSubview(rightButton)
         
@@ -125,7 +125,7 @@ extension HeaderViewController {
         rightButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            rightButton.topAnchor.constraint(equalTo: dayLabel.bottomAnchor),
+            rightButton.centerYAnchor.constraint(equalTo: leftButton.centerYAnchor),
             rightButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
         ])
     }

@@ -26,6 +26,10 @@ struct Section {
         return entries
     }
     
+    mutating func removeAllEntries() {
+        self.entries.removeAll()
+    }
+    
     mutating func setSectionTitle(_ title: String) {
         self.title = title
     }
