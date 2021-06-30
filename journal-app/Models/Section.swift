@@ -23,10 +23,6 @@ struct Section {
     }
     
     func getSectionEntries() -> [Entry] {
-        print("All entries for section with title \(title)")
-        for entry in entries {
-            print(entry.getEntryText())
-        }
         return entries
     }
     

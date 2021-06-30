@@ -138,7 +138,6 @@ extension HomeViewController {
             case .editEntry(let entries):
                 // Save the updated entries array to the journal
                 self.journal.sections[indexPath.row].entries = entries
-                print("Edited entry")
                 let _ = self.journal.sections[indexPath.row].getSectionEntries()
                 break
             case .addEntry:
@@ -146,8 +145,6 @@ extension HomeViewController {
                 
                 // Add an empty entry to the current journal section
                 self.journal.sections[indexPath.row].addEntry(Entry(text: ""))
-                
-                print("Added entry")
                 
                 // Reload the table view
                 self.tableView.reloadData()
@@ -260,8 +257,6 @@ extension HomeViewController {
         
         // Delete entries from the journal section
         self.journal.sections[indexPath.row].removeAllEntries()
-        print("After deleting section \(self.journal.sections[indexPath.row].getSectionTitle())")
-        let _ = self.journal.sections[indexPath.row].getSectionEntries()
         
         // Delete the section from the journal
         self.journal.removeSection(indexPath.row)
