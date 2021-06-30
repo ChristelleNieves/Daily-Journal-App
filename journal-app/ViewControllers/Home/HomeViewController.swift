@@ -122,6 +122,7 @@ extension HomeViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SectionCell", for: indexPath) as! SectionCell
         
+        cell.entries = journal.sections[indexPath.row].getSectionEntries()
         cell.title.text = journal.sections[indexPath.row].getSectionTitle()
         cell.contentView.backgroundColor = journal.sections[indexPath.row].getSectionColor()
         
@@ -153,11 +154,11 @@ extension HomeViewController {
             
             let alert = UIAlertController(title: "Delete Section", message: "Are you sure you want to delete this section?", preferredStyle: .alert)
             
-            let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+            let deleteAlertAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
                 self.handleSectionDeletion(indexPath: indexPath)
             })
             
-            alert.addAction(deleteAction)
+            alert.addAction(deleteAlertAction)
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             alert.addAction(cancelAction)
@@ -246,7 +247,8 @@ extension HomeViewController {
     }
     
     func handleSectionDeletion(indexPath: IndexPath) {
-        // Reset the stackview within the cell
+        
+        // Delete entries from the journal section
         self.journal.sections[indexPath.row].removeAllEntries()
         
         // Delete the section from the journal
