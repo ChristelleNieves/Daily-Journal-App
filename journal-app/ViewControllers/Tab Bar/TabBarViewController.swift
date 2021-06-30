@@ -10,7 +10,7 @@ import UIKit
 class TabBarViewController: UITabBarController {
     
     private let homeVC = HomeViewController()
-    private let moodVC = MoodViewController()
+    private let moodVC = DailyViewController()
     private let settingsVC = SettingsViewController()
     
     override func viewDidLoad() {
@@ -53,9 +53,9 @@ extension TabBarViewController {
         menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width / 2
         
         menuButton.frame = menuButtonFrame
-        menuButton.backgroundColor = ThemeColor.heading
+        menuButton.backgroundColor = ThemeColor.background
         menuButton.setTitle("+", for: .normal)
-        menuButton.setTitleColor(UIColor.white, for: .normal)
+        menuButton.setTitleColor(ThemeColor.heading, for: .normal)
         menuButton.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: .ultraLight)
         menuButton.layer.cornerRadius = menuButtonFrame.height / 2
         menuButton.layer.borderWidth = 0.8
