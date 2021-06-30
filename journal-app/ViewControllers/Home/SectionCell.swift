@@ -64,8 +64,10 @@ extension SectionCell {
     
     func emptyStackview() {
         for view in stackView.subviews {
-            stackView.removeArrangedSubview(view)
-            view.removeFromSuperview()
+            let v = view as? EntryView
+            v?.textField.text = ""
+            stackView.removeArrangedSubview(v!)
+            v!.removeFromSuperview()
         }
     }
     
@@ -158,7 +160,7 @@ extension SectionCell {
     private func createAndAddEntryView(_ text: String) {
         let entryView = EntryView()
         
-        entryView.textField.text = text
+        //entryView.textField.text = text
         entryViews.append(entryView)
         
         entryView.setActionHandler { action in
@@ -194,7 +196,9 @@ extension SectionCell {
         var entries = [Entry]()
         
         for view in entryViews {
-            entries.append(Entry(text: view.textField.text ?? ""))
+            if view.textField.text != "" {
+                entries.append(Entry(text: view.textField.text ?? ""))
+            }
         }
         
         self.actionHandler?(.editEntry(entries))
