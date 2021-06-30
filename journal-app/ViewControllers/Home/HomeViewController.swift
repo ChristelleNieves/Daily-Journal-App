@@ -122,13 +122,18 @@ extension HomeViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SectionCell", for: indexPath) as! SectionCell
         
-        cell.entries = journal.sections[indexPath.row].getSectionEntries()
+        // Reset the cell stackview if it has any entries that don't belong
+        if cell.stackView.hasEntries() && journal.sections[indexPath.row].entries.isEmpty{
+            cell.emptyStackview()
+            cell.addStarterStackViewSubViews()
+        }
+        
+        // Set cell title and background color
         cell.title.text = journal.sections[indexPath.row].getSectionTitle()
         cell.contentView.backgroundColor = journal.sections[indexPath.row].getSectionColor()
         
         // Handle cell actions here
         cell.setActionHandler { action in
-            
             switch action {
             case .editEntry(let entries):
                 // Save the updated entries array to the journal
@@ -146,6 +151,7 @@ extension HomeViewController {
             }
         }
         
+        // Return a configured cell
         return cell
     }
     

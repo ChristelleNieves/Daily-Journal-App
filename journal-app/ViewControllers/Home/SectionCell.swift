@@ -11,9 +11,8 @@ class SectionCell: UITableViewCell {
     
     static var reuseIdentifier = "SectionCell"
     
-    var entries = [Entry]()
-    private var entryViews = [EntryView]()
     private var numberOfEntries = 3
+    private var entryViews = [EntryView]()
     private let addEntryButton = UIButton()
     var stackView = UIStackView()
     
@@ -144,25 +143,13 @@ extension SectionCell {
         ])
         
         // Add the starter number of entryViews to the stackView
-        if entries.count == 0 {
-            addStarterStackViewSubViews()
-        }
-        else {
-            addStackViewSubViews()
-        }
+        addStarterStackViewSubViews()
     }
     
     // Add a pre-defined number of entryViews to the stackView
     func addStarterStackViewSubViews() {
         for _ in 1...numberOfEntries {
             createAndAddEntryView("")
-            didAddEntry()
-        }
-    }
-    
-    func addStackViewSubViews() {
-        for entry in entries {
-            createAndAddEntryView(entry.text)
             didAddEntry()
         }
     }
@@ -211,5 +198,17 @@ extension SectionCell {
         }
         
         self.actionHandler?(.editEntry(entries))
+    }
+}
+
+extension UIStackView {
+    func hasEntries() -> Bool {
+        for view in self.subviews {
+            let textView = view as? EntryView
+            if textView?.textField.text != "" {
+                return true
+            }
+        }
+        return false
     }
 }
