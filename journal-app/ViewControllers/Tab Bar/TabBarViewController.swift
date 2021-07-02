@@ -10,7 +10,7 @@ import UIKit
 class TabBarViewController: UITabBarController {
     
     private let homeVC = HomeViewController()
-    private let moodVC = DailyViewController()
+    private let moodVC = PastEntriesViewController()
     private let settingsVC = SettingsViewController()
     
     override func viewDidLoad() {

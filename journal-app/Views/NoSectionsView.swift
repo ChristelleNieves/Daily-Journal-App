@@ -46,7 +46,7 @@ extension NoSectionsView {
     
     // Configure the heading label and add it to the main view
     private func setupHeadingLabel() {
-        headingLabel.text = "Looks like you haven't added any sections to your journal yet!"
+        headingLabel.text = "Looks like you haven't added any lists to your journal yet!"
         headingLabel.textColor = ThemeColor.heading
         headingLabel.font = UIFont.systemFont(ofSize: 30, weight: .light)
         headingLabel.numberOfLines = 0
@@ -66,7 +66,7 @@ extension NoSectionsView {
     
     // Configure the subHeading label and add it to the main view
     private func setupSubheadingLabel() {
-        subHeadingLabel.text = "Add a section using the add button below to get started!"
+        subHeadingLabel.text = "Add a list using the add button below to get started!"
         subHeadingLabel.textColor = ThemeColor.subheading
         subHeadingLabel.font = UIFont.systemFont(ofSize: 15, weight: .light)
         subHeadingLabel.numberOfLines = 0

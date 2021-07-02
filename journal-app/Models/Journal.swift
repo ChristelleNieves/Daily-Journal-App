@@ -12,6 +12,8 @@ struct Journal {
     
     var date = Date()
     var sections = [Section]()
+    var questions = [Question]()
+    var mood: Mood?
     
     func isEmpty() -> Bool{
         return sections.count == 0
