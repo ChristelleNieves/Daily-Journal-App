@@ -38,7 +38,7 @@ extension AddSectionView {
     }
     
     private func setupTitleLabel() {
-        configureLabel(label: titleLabel, text: "Add New Section")
+        configureLabel(label: titleLabel, text: "Add New List")
         
         self.addSubview(titleLabel)
         
@@ -52,7 +52,7 @@ extension AddSectionView {
     }
     
     private func setupJournalTitleLabel() {
-        configureLabel(label: journalTitleLabel, text: "Section Title:")
+        configureLabel(label: journalTitleLabel, text: "List Title:")
         
         // Set Constraints
         journalTitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -76,14 +76,14 @@ extension AddSectionView {
         
         NSLayoutConstraint.activate([
             journalTitleTextField.topAnchor.constraint(equalTo: journalTitleLabel.bottomAnchor, constant: 10),
-            journalTitleTextField.leadingAnchor.constraint(equalTo: journalTitleLabel.leadingAnchor),
-            journalTitleTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
+            journalTitleTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            journalTitleTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15)
         ])
     }
     
     private func setupColorButtonView() {
         self.addSubview(colorButtonView)
-        colorButtonView.label.text = "Section Color:"
+        colorButtonView.label.text = "List Color:"
         
         // Set constraints
         colorButtonView.translatesAutoresizingMaskIntoConstraints = false
@@ -125,7 +125,7 @@ extension AddSectionView {
     }
     
     func getColorChoice() -> UIColor {
-        return colorButtonView.colorChoice ?? ThemeColor.color3
+        return colorButtonView.colorChoice ?? ThemeColor.today1
     }
 }
 

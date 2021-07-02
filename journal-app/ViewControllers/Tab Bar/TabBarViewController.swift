@@ -41,7 +41,7 @@ extension TabBarViewController {
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 25, weight: .light), scale: .medium)
         
         homeVC.tabBarItem.image = UIImage(systemName: "house", withConfiguration: config)
-        moodVC.tabBarItem.image = UIImage(systemName: "face.smiling", withConfiguration: config)
+        moodVC.tabBarItem.image = UIImage(systemName: "calendar", withConfiguration: config)
         settingsVC.tabBarItem.image = UIImage(systemName: "gear", withConfiguration: config)
     }
     

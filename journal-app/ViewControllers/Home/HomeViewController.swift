@@ -88,6 +88,7 @@ extension HomeViewController {
                 self.tableView.reloadData()
                 break
             case 2:
+                self.noSectionsView.isHidden = true
                 self.tableView.isHidden = true
             default:
                 break
@@ -123,6 +124,7 @@ extension HomeViewController {
         
         // Constraints
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: control.bottomAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 13),
@@ -328,7 +330,9 @@ extension HomeViewController {
             if action == .dismiss {
                 // Make sure the section name is not all whitespace characters
                 guard !vc.sectionName.trimmingCharacters(in: .whitespaces).isEmpty else {
-                    self.noSectionsView.isHidden = false
+                    if self.tableViewMode == .Todo && self.journal.sections.isEmpty {
+                        self.noSectionsView.isHidden = false
+                    }
                     return
                 }
                 
@@ -350,7 +354,11 @@ extension HomeViewController {
     }
     
     func showPopUp() {
-        self.noSectionsView.isHidden = true
+        if tableViewMode != .Todo {
+            control.selectedSegmentIndex = 1
+            tableViewMode = .Todo
+            tableView.reloadData()
+        }
         goToPopupVC()
     }
     

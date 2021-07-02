@@ -49,7 +49,7 @@ extension EditSectionView {
     }
     
     private func setupTitleLabel() {
-        configureLabel(label: titleLabel, text: "Edit Section")
+        configureLabel(label: titleLabel, text: "Edit List")
         
         // Constraints
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -85,8 +85,8 @@ extension EditSectionView {
         
         NSLayoutConstraint.activate([
             changeTitleTextField.topAnchor.constraint(equalTo: changeTitleLabel.bottomAnchor, constant: 10),
-            changeTitleTextField.leadingAnchor.constraint(equalTo: changeTitleLabel.leadingAnchor),
-            changeTitleTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
+            changeTitleTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            changeTitleTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15)
         ])
     }
     

@@ -73,10 +73,10 @@ extension PopUpViewController {
         popupView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            popupView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            popupView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
-            popupView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            popupView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
+            popupView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            popupView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            popupView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            popupView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
         ])
     }
     
@@ -95,7 +95,7 @@ extension PopUpViewController {
         okButton.layer.borderColor = UIColor.darkGray.withAlphaComponent(0.40).cgColor
         okButton.titleEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         
-        view.addSubview(okButton)
+        popupView.addSubview(okButton)
         
         // Add button action
         okButton.addAction(UIAction { action in
@@ -114,8 +114,8 @@ extension PopUpViewController {
         okButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            okButton.topAnchor.constraint(equalTo: popupView.bottomAnchor, constant: 20),
-            okButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            okButton.bottomAnchor.constraint(equalTo: popupView.bottomAnchor, constant: -100),
+            okButton.centerXAnchor.constraint(equalTo: popupView.centerXAnchor),
             okButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/5)
         ])
     }
