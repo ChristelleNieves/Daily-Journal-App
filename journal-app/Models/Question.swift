@@ -7,11 +7,6 @@
 
 import Foundation
 
-let dailyQuestions = [Question(question: "What are 3 things you are thankful for today?"),
-                              Question(question: "How do you plan on working towards your goals today?"),
-                              Question(question: "What will you do today to care for your mental health?"),
-                              Question(question: "Describe the reason for your current mood in one sentence")]
-
 struct Question {
     
     var question: String

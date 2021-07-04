@@ -1,5 +1,5 @@
 //
-//  PopUpAddSectionView.swift
+//  AddListView.swift
 //  journal-app
 //
 //  Created by Christelle Nieves on 6/17/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddSectionView: UIView, UITextFieldDelegate {
+class AddListView: UIView, UITextFieldDelegate {
     
     private let titleLabel = UILabel()
     private let journalTitleLabel = UILabel()
@@ -27,7 +27,7 @@ class AddSectionView: UIView, UITextFieldDelegate {
 
 // MARK: Subview Setup
 
-extension AddSectionView {
+extension AddListView {
     
     private func setupView() {
         self.backgroundColor = ThemeColor.background
@@ -99,7 +99,7 @@ extension AddSectionView {
 
 // MARK: Helper Functions
 
-extension AddSectionView {
+extension AddListView {
     // Add all the subviews to the main view
     private func setupAllSubviews() {
         setupView()
@@ -130,7 +130,7 @@ extension AddSectionView {
 }
 
 // MARK: TextField
-extension AddSectionView {
+extension AddListView {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         

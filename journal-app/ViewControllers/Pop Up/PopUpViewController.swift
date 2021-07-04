@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 enum PopupMode {
-    case addSection
-    case editSection
+    case addList
+    case editList
 }
 
 class PopUpViewController: UIViewController {
@@ -18,8 +18,8 @@ class PopUpViewController: UIViewController {
     var changedColor: Bool = false
     var changedTitle: Bool = false
     var colorChoice: UIColor?
-    lazy var sectionName = ""
-    lazy var mode: PopupMode = .addSection
+    lazy var listName = ""
+    lazy var mode: PopupMode = .addList
     lazy var popupView: UIView = UIView()
     private let okButton = UIButton()
     
@@ -61,10 +61,10 @@ extension PopUpViewController {
     private func setupPopupView() {
         
         switch mode {
-        case .addSection:
-            popupView = AddSectionView(frame: CGRect.zero)
-        case .editSection:
-            popupView = EditSectionView(frame: CGRect.zero)
+        case .addList:
+            popupView = AddListView(frame: CGRect.zero)
+        case .editList:
+            popupView = EditListView(frame: CGRect.zero)
         }
         
         view.addSubview(popupView)
@@ -102,9 +102,9 @@ extension PopUpViewController {
             
             // Set the action according to the current mode
             switch self.mode {
-            case .addSection:
+            case .addList:
                 self.dismiss(animated: true, completion: nil)
-            case .editSection:
+            case .editList:
                 self.willDismissPopup()
                 self.dismiss(animated: true, completion: nil)
             }
@@ -135,14 +135,14 @@ extension PopUpViewController {
     // Set the corresponding variables whenever the pop-up is being dismissed
     private func willDismissPopup() {
         
-        if let popup = popupView as? AddSectionView {
-            self.sectionName = popup.getName()
+        if let popup = popupView as? AddListView {
+            self.listName = popup.getName()
             self.colorChoice = popup.getColorChoice()
         }
-        else if let popup = popupView as? EditSectionView {
+        else if let popup = popupView as? EditListView {
             if popup.getName() != "" {
                 self.changedTitle = true
-                self.sectionName = popup.getName()
+                self.listName = popup.getName()
             }
             if popup.colorButtonView.colorChoice != nil {
                 self.changedColor = true

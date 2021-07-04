@@ -7,12 +7,15 @@
 
 import UIKit
 
-class TodayCell: UITableViewCell {
+class TodayCell: UITableViewCell, UITextViewDelegate {
     
     static var reuseIdentifier = "TodayCell"
     
     var title = UILabel()
     var textView = UITextView()
+    
+    typealias ActionHandler = (Action) -> ()
+    private var actionHandler: ActionHandler?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -68,6 +71,7 @@ class TodayCell: UITableViewCell {
     }
     
     private func setupTextView() {
+        textView.delegate = self
         textView.backgroundColor = ThemeColor.overlay.withAlphaComponent(0.70)
         textView.textColor = ThemeColor.subheading
         textView.font = UIFont.systemFont(ofSize: 15, weight: .light)
@@ -77,8 +81,8 @@ class TodayCell: UITableViewCell {
             .font: UIFont.systemFont(ofSize: 15, weight: .light),
             .foregroundColor: ThemeColor.subheading
         ]
-        
-        textView.attributedText = NSAttributedString(string: "Start typing...", attributes: attributes)
+
+        textView.attributedText = NSAttributedString(string: "", attributes: attributes)
         
         contentView.addSubview(textView)
         
@@ -91,6 +95,24 @@ class TodayCell: UITableViewCell {
             textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -17)
         ])
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        didEditText()
+    }
+}
+
+extension TodayCell {
+    enum Action {
+        case editText(String, String)
+    }
+    
+    func setActionHandler(_ handler: @escaping ActionHandler) {
+        self.actionHandler = handler
+    }
+    
+    private func didEditText() {
+        self.actionHandler?(.editText(title.text!,textView.text))
     }
 }
 

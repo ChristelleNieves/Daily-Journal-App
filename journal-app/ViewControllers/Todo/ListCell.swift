@@ -1,5 +1,5 @@
 //
-//  SectionCell.swift
+//  ListCell.swift
 //  journal-app
 //
 //  Created by Christelle Nieves on 6/16/21.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SectionCell: UITableViewCell {
+class ListCell: UITableViewCell {
     
-    static var reuseIdentifier = "SectionCell"
+    static var reuseIdentifier = "ListCell"
     
     private var numberOfEntries = 3
     private var entryViews = [EntryView]()
@@ -52,7 +52,7 @@ class SectionCell: UITableViewCell {
 }
 
 // MARK: Setup
-extension SectionCell {
+extension ListCell {
     
     // Configure all the views in this cell
     func setupAllSubviews() {
@@ -177,7 +177,7 @@ extension SectionCell {
 
 // MARK: Action Handlers
 
-extension SectionCell {
+extension ListCell {
     enum Action {
         case editEntry([Entry])
         case addEntry

@@ -8,21 +8,27 @@
 import Foundation
 import UIKit
 
-struct Section {
+struct List {
     
     var title: String
     var color: UIColor
     var entries: [Entry]
     
-    func getSectionTitle() -> String {
+    func getListTitle() -> String {
         return title
     }
     
-    func getSectionColor() -> UIColor {
+    func getListColor() -> UIColor {
         return color
     }
     
-    func getSectionEntries() -> [Entry] {
+    func getListEntries() -> [Entry] {
+        print("All entries in list \(title)")
+        
+        for entry in entries {
+            print(entry.text)
+        }
+        
         return entries
     }
     
@@ -30,11 +36,11 @@ struct Section {
         self.entries.removeAll()
     }
     
-    mutating func setSectionTitle(_ title: String) {
+    mutating func setListTitle(_ title: String) {
         self.title = title
     }
     
-    mutating func setSectionColor(_ color: UIColor) {
+    mutating func setListColor(_ color: UIColor) {
         self.color = color
     }
     

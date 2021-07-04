@@ -11,23 +11,26 @@ import UIKit
 struct Journal {
     
     var date = Date()
-    var sections = [Section]()
-    var questions = [Question]()
+    var lists = [List]()
+    var dailyQuestions = [Question(question: "What are 3 things you are thankful for today?"),
+                              Question(question: "How do you plan on working towards your goals today?"),
+                              Question(question: "What will you do today to care for your mental health?"),
+                              Question(question: "Describe the reason for your current mood in one sentence")]
     var mood: Mood?
     
     func isEmpty() -> Bool{
-        return sections.count == 0
+        return lists.count == 0
     }
     
-    func getNumberOfSections() -> Int {
-        return sections.count
+    func getNumberOfLists() -> Int {
+        return lists.count
     }
     
-    mutating func addSection(_ section: Section) {
-        self.sections.append(section)
+    mutating func addList(_ list: List) {
+        self.lists.append(list)
     }
     
-    mutating func removeSection(_ index: Int) {
-        self.sections.remove(at: index)
+    mutating func removeList(_ index: Int) {
+        self.lists.remove(at: index)
     }
 }

@@ -19,7 +19,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
     private let refreshControl = UIRefreshControl()
     private let headerView = HeaderViewController()
-    private let noSectionsView = NoSectionsView(frame: CGRect.zero)
+    private let noListsView = NoListsView(frame: CGRect.zero)
     private let moodVC = MoodViewController()
     private var control = UISegmentedControl()
     
@@ -41,7 +41,7 @@ extension HomeViewController {
         setupControl()
         setupMoodVC()
         setupTableView()
-        setupNoSectionsView()
+        setupNoListsView()
     }
     
     private func setupMainView() {
@@ -88,7 +88,7 @@ extension HomeViewController {
                 self.tableView.reloadData()
                 break
             case 2:
-                self.noSectionsView.isHidden = true
+                self.noListsView.isHidden = true
                 self.tableView.isHidden = true
             default:
                 break
@@ -118,7 +118,7 @@ extension HomeViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = ThemeColor.background
         tableView.showsVerticalScrollIndicator = false
-        tableView.register(SectionCell.self, forCellReuseIdentifier: "SectionCell")
+        tableView.register(ListCell.self, forCellReuseIdentifier: "ListCell")
         tableView.register(TodayCell.self, forCellReuseIdentifier: "TodayCell")
         view.addSubview(tableView)
         
@@ -133,17 +133,17 @@ extension HomeViewController {
         ])
     }
     
-    private func setupNoSectionsView() {
-        view.addSubview(noSectionsView)
+    private func setupNoListsView() {
+        view.addSubview(noListsView)
         
         // Constraints
-        noSectionsView.translatesAutoresizingMaskIntoConstraints = false
+        noListsView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            noSectionsView.topAnchor.constraint(equalTo: control.bottomAnchor, constant: 50),
-            noSectionsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            noSectionsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            noSectionsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
+            noListsView.topAnchor.constraint(equalTo: control.bottomAnchor, constant: 50),
+            noListsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            noListsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            noListsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
         ])
     }
 }
@@ -158,55 +158,57 @@ extension HomeViewController {
             if journal.isEmpty() {
                 // Display message
                 tableView.isHidden = true
-                noSectionsView.isHidden = false
+                noListsView.isHidden = false
                 return 0
             }
             else {
                 tableView.isHidden = false
-                noSectionsView.isHidden = true
-                return journal.getNumberOfSections()
+                noListsView.isHidden = true
+                return journal.getNumberOfLists()
             }
         }
         else {
             tableView.isHidden = false
-            noSectionsView.isHidden = true
-            return dailyQuestions.count
+            noListsView.isHidden = true
+            return journal.dailyQuestions.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableViewMode == .Todo {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SectionCell", for: indexPath) as! SectionCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListCell
             
             // Reset the cell stackview if it has any entries that don't belong
-            if cell.stackView.hasEntries() && journal.sections[indexPath.row].entries.isEmpty {
+            if cell.stackView.hasEntries() && journal.lists[indexPath.row].entries.isEmpty {
                 cell.emptyStackview()
                 cell.addStarterStackViewSubViews()
             }
             
             // Set cell title and background color
-            cell.title.text = journal.sections[indexPath.row].getSectionTitle()
-            cell.contentView.backgroundColor = journal.sections[indexPath.row].getSectionColor()
+            cell.title.text = journal.lists[indexPath.row].getListTitle()
+            cell.contentView.backgroundColor = journal.lists[indexPath.row].getListColor()
             
             // Handle cell actions here
             cell.setActionHandler { action in
                 switch action {
                 case .editEntry(let entries):
                     // Save the updated entries array to the journal
-                    self.journal.sections[indexPath.row].entries = entries
-                    let _ = self.journal.sections[indexPath.row].getSectionEntries()
+                    self.journal.lists[indexPath.row].entries = entries
+                    let _ = self.journal.lists[indexPath.row].getListEntries()
                     break
                 case .addEntry:
-                    guard self.journal.sections.count > indexPath.row else { return }
+                    guard self.journal.lists.count > indexPath.row else { return }
                     
-                    // Add an empty entry to the current journal section
-                    self.journal.sections[indexPath.row].addEntry(Entry(text: ""))
+                    // Add an empty entry to the current journal list
+                    self.journal.lists[indexPath.row].addEntry(Entry(text: ""))
+                    let _ = self.journal.lists[indexPath.row].getListEntries()
                     
                     // Reload the table view
                     self.tableView.reloadData()
                     break
                 }
             }
+            
             return cell
         }
         else {
@@ -214,11 +216,21 @@ extension HomeViewController {
             
             cell.textView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
             // Set cell title and background color
-            cell.title.text = dailyQuestions[indexPath.row].getQuestion()
+            cell.title.text = journal.dailyQuestions[indexPath.row].getQuestion()
             cell.contentView.backgroundColor = ThemeColor.todayColors[indexPath.row]
             
-            return cell
+            cell.setActionHandler { action in
+                switch action {
+                case .editText(let question, let answer):
+                    for i in 0..<self.journal.dailyQuestions.count {
+                        if self.journal.dailyQuestions[i].getQuestion() == question {
+                            self.journal.dailyQuestions[i].setAnswer(answer)
+                        }
+                    }
+                }
+            }
             
+            return cell
         }
     }
     
@@ -235,10 +247,10 @@ extension HomeViewController {
         if tableViewMode == .Todo {
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
                 
-                let alert = UIAlertController(title: "Delete Section", message: "Are you sure you want to delete this section?", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Delete List", message: "Are you sure you want to delete this list?", preferredStyle: .alert)
                 
                 let deleteAlertAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-                    self.handleSectionDeletion(indexPath: indexPath)
+                    self.handleListDeletion(indexPath: indexPath)
                 })
                 
                 alert.addAction(deleteAlertAction)
@@ -265,17 +277,17 @@ extension HomeViewController {
             let archive = UIContextualAction(style: .normal, title: nil) { [weak self] (action, view, completionHandler) in
                 
                 let editView = PopUpViewController()
-                editView.mode = .editSection
+                editView.mode = .editList
                 
                 editView.setActionHandler { action in
                     switch action {
                     case .dismiss:
                         if editView.changedColor {
-                            self?.handleSectionColorChange(color: editView.colorChoice!, indexPath: indexPath)
+                            self?.handleListColorChange(color: editView.colorChoice!, indexPath: indexPath)
                         }
                         
                         if editView.changedTitle {
-                            self?.handleSectionTitleChange(title: editView.sectionName, indexPath: indexPath)
+                            self?.handleListTitleChange(title: editView.listName, indexPath: indexPath)
                         }
                     }
                 }
@@ -323,24 +335,24 @@ extension HomeViewController {
     // Display the pop up vc to add a section
     private func goToPopupVC(){
         let vc = PopUpViewController()
-        vc.mode = .addSection
+        vc.mode = .addList
         
         vc.setActionHandler { action in
             
             if action == .dismiss {
                 // Make sure the section name is not all whitespace characters
-                guard !vc.sectionName.trimmingCharacters(in: .whitespaces).isEmpty else {
-                    if self.tableViewMode == .Todo && self.journal.sections.isEmpty {
-                        self.noSectionsView.isHidden = false
+                guard !vc.listName.trimmingCharacters(in: .whitespaces).isEmpty else {
+                    if self.tableViewMode == .Todo && self.journal.lists.isEmpty {
+                        self.noListsView.isHidden = false
                     }
                     return
                 }
                 
                 // Create a new section with the title and color from the popupVC, and a new entry array
-                let newSection = Section(title: vc.sectionName, color: vc.colorChoice!, entries: [Entry]())
+                let newList = List(title: vc.listName, color: vc.colorChoice!, entries: [Entry]())
                 
                 // Add the newly created section to the journal
-                self.journal.addSection(newSection)
+                self.journal.addList(newList)
                 
                 // Reload the table view
                 self.tableView.reloadData()
@@ -362,27 +374,27 @@ extension HomeViewController {
         goToPopupVC()
     }
     
-    func handleSectionDeletion(indexPath: IndexPath) {
-        // Delete entries from the journal section
-        self.journal.sections[indexPath.row].removeAllEntries()
+    func handleListDeletion(indexPath: IndexPath) {
+        // Delete entries from the journal list
+        self.journal.lists[indexPath.row].removeAllEntries()
         
         // Delete the section from the journal
-        self.journal.removeSection(indexPath.row)
+        self.journal.removeList(indexPath.row)
         
         // Delete the row from the table view
         tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         tableView.reloadData()
     }
     
-    func handleSectionTitleChange(title: String, indexPath: IndexPath) {
+    func handleListTitleChange(title: String, indexPath: IndexPath) {
         guard !title.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         
-        self.journal.sections[indexPath.row].setSectionTitle(title)
+        self.journal.lists[indexPath.row].setListTitle(title)
         self.tableView.reloadData()
     }
     
-    func handleSectionColorChange(color: UIColor, indexPath: IndexPath) {
-        self.journal.sections[indexPath.row].setSectionColor(color)
+    func handleListColorChange(color: UIColor, indexPath: IndexPath) {
+        self.journal.lists[indexPath.row].setListColor(color)
         self.tableView.reloadData()
     }
 }

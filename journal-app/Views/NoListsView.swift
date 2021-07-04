@@ -1,5 +1,5 @@
 //
-//  NoSectionsView.swift
+//  NoListsView.swift
 //  journal-app
 //
 //  Created by Christelle Nieves on 6/17/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoSectionsView: UIView {
+class NoListsView: UIView {
     
     private let headingLabel = UILabel()
     private let subHeadingLabel = UILabel()
@@ -25,7 +25,7 @@ class NoSectionsView: UIView {
 
 // MARK: View Setup
 
-extension NoSectionsView {
+extension NoListsView {
     
     // Configure all the views within this view
     private func setupAllSubviews() {

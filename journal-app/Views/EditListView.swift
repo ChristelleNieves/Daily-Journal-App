@@ -1,5 +1,5 @@
 //
-//  PopUpEditSectionView.swift
+//  EditListView.swift
 //  journal-app
 //
 //  Created by Christelle Nieves on 6/20/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditSectionView: UIView, UITextFieldDelegate {
+class EditListView: UIView, UITextFieldDelegate {
     
     var changedTitle: Bool = false
     lazy var sectionName = ""
@@ -32,7 +32,7 @@ class EditSectionView: UIView, UITextFieldDelegate {
 
 // MARK: Subview Setup
 
-extension EditSectionView {
+extension EditListView {
     private func setupView() {
         self.backgroundColor = ThemeColor.background
         self.layer.shadowColor = UIColor.gray.cgColor
@@ -113,7 +113,7 @@ extension EditSectionView {
 }
 
 // MARK: TextField
-extension EditSectionView {
+extension EditListView {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
